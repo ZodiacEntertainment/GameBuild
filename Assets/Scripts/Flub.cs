@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Alexis : MonoBehaviour {
+public class Flub : MonoBehaviour {
 
     //character Name
     public string charName = "";
@@ -57,9 +57,7 @@ public class Alexis : MonoBehaviour {
 
     public GameObject rangedAttack;
     public float attackDelay;
-    private bool canAttack = true;
-    GameObject temp;
-
+    private bool canAttack = false;
 
     // Use this for initialization
     void Start () {
@@ -68,29 +66,10 @@ public class Alexis : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space)){
-            if (canAttack){
-                temp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y + 0.25f, transform.position.z), Quaternion.identity) as GameObject;
-                temp.GetComponent<Projectile>().owner = this.gameObject;
-                temp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y - 0.25f, transform.position.z), Quaternion.identity) as GameObject;
-                temp.GetComponent<Projectile>().owner = this.gameObject;
-                StartCoroutine(AttackDelay());
-                temp = null;
-            }
-        }
-    }
-    public IEnumerator AttackDelay(){
-        canAttack = false;
-        yield return new WaitForSeconds(attackDelay);
-        canAttack = true;
-    }
-
-    public void OnTriggerEnter2D(Collider2D other){
-        //
-    }
+	
+	}
 
     public void TakeDamage(int _damage){
         coins -= _damage;
-        Debug.Log("Coins" + coins);
     }
 }
