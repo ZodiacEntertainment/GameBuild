@@ -5,10 +5,11 @@ public class Alexis : MonoBehaviour {
 
     //character Name
     public string charName = "";
+    public string controller;
 
     // Movement
     private int speed; // Speed tier 1-6
-    private int coins; // Number of coins 0-15
+    private int coins = 0; // Number of coins 0-15
 
     // Jump
     [SerializeField]
@@ -54,11 +55,14 @@ public class Alexis : MonoBehaviour {
     [SerializeField]
     [Tooltip("How long before the attack can be used again.")]
     private int ultCoolDown;
+    [HideInInspector]
+    public bool haveItem = false;
+    private GameObject inventory;
 
     public GameObject rangedAttack;
     public float attackDelay;
     private bool canAttack = true;
-    GameObject temp;
+    GameObject bulletTemp;
 
 
     // Use this for initialization
@@ -70,13 +74,29 @@ public class Alexis : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space)){
             if (canAttack){
-                temp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y + 0.25f, transform.position.z), Quaternion.identity) as GameObject;
-                temp.GetComponent<Projectile>().owner = this.gameObject;
-                temp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y - 0.25f, transform.position.z), Quaternion.identity) as GameObject;
-                temp.GetComponent<Projectile>().owner = this.gameObject;
+                for (int i = 0; i < 2; i ++) {
+                    bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y + 0.25f, transform.position.z), Quaternion.identity) as GameObject;
+                    bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
+                    bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y - 0.25f, transform.position.z), Quaternion.identity) as GameObject;
+                    bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
+                }
                 StartCoroutine(AttackDelay());
-                temp = null;
+                bulletTemp = null;
             }
+        }
+        if (Input.GetButtonDown("Fire1") && haveItem)
+        {
+            // Use the pickup
+            //Debug.Log("Used " + inventory);
+            haveItem = false;
+        }
+        else if (Input.GetButtonDown("Fire2") && haveItem)
+        {
+            // Drop the pickup
+            inventory.SetActive(true);
+            inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2f, this.gameObject.transform.position.y, inventory.transform.position.z);
+            //Debug.Log("Dropped " + inventory);
+            haveItem = false;
         }
     }
     public IEnumerator AttackDelay(){
@@ -86,7 +106,17 @@ public class Alexis : MonoBehaviour {
     }
 
     public void OnTriggerEnter2D(Collider2D other){
-        //
+        if (other.gameObject.CompareTag("Coin")){
+            coins++;
+            //Debug.Log("Total Coins = " + coins);
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Item") && !haveItem){
+            inventory = other.gameObject;
+            //Debug.Log("Picked up " + inventory);
+            inventory.SetActive(false);
+            haveItem = true;
+        }
     }
 
     public void TakeDamage(int _damage){
