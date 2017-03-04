@@ -74,12 +74,10 @@ public class Alexis : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space)){
             if (canAttack){
-                for (int i = 0; i < 2; i ++) {
-                    bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y + 0.25f, transform.position.z), Quaternion.identity) as GameObject;
-                    bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
-                    bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y - 0.25f, transform.position.z), Quaternion.identity) as GameObject;
-                    bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
-                }
+                bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y + 0.25f, transform.position.z), Quaternion.identity) as GameObject;
+                bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
+                bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y - 0.25f, transform.position.z), Quaternion.identity) as GameObject;
+                bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
                 StartCoroutine(AttackDelay());
                 bulletTemp = null;
             }
