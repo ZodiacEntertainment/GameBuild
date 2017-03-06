@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         move = new Vector3(speed, 0, 0);
-        Destroy(this.gameObject, 2.5f);
+        Destroy(this.gameObject, 1f);
     }
 	
 	// Update is called once per frame
@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour {
 	}
 
     public void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject != owner) {
+        if (other.gameObject.GetInstanceID() != owner.gameObject.GetInstanceID()) {
             switch (other.gameObject.name) {
                 case "Alexis":
                     other.gameObject.GetComponent<Alexis>().TakeDamage(damage);

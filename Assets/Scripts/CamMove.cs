@@ -11,15 +11,16 @@ public class CamMove : MonoBehaviour{
     public int _countDown;
 
     void Start(){
-        Generater = GetComponent<LevelGen>();
+        Generater = GameObject.Find("TriggerPoint").GetComponent<LevelGen>();
         StartCoroutine(CountDown());
     }
 
-    void Update(){
+    void FixedUpdate(){
         if (forward){
             transform.Translate(new Vector3(cameraSpeed, 0, 0) * Time.deltaTime);
             foreach (GameObject back in Generater.BackGrounds){
-                back.transform.Translate(new Vector3(-cameraSpeed, 0, 0) * Time.deltaTime);
+                if(back != null)
+                    back.transform.Translate(new Vector3(-cameraSpeed, 0, 0) * Time.deltaTime);
             }
         }
     }

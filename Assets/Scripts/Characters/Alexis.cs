@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Alexis : MonoBehaviour {
 
@@ -71,16 +72,14 @@ public class Alexis : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space)){
-            if (canAttack){
-                bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y + 0.25f, transform.position.z), Quaternion.identity) as GameObject;
-                bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
-                bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y - 0.25f, transform.position.z), Quaternion.identity) as GameObject;
-                bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
-                StartCoroutine(AttackDelay());
-                bulletTemp = null;
-            }
+	void FixedUpdate () {
+        if (Input.GetKeyDown(KeyCode.J) && canAttack) {
+            bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y + 0.25f, transform.position.z), Quaternion.identity) as GameObject;
+            bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
+            bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y - 0.25f, transform.position.z), Quaternion.identity) as GameObject;
+            bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
+            StartCoroutine(AttackDelay());
+            bulletTemp = null;
         }
         if (Input.GetButtonDown("Fire1") && haveItem)
         {

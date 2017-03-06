@@ -38,7 +38,7 @@ public class CharacterMovement : MonoBehaviour {
         }
 
         //reduce speed when not on the ground because otherwise it feels too slippery
-        if(!grounded && !jumping)
+        if (!grounded && !jumping)
         {
             jumping = true;
             currSpeed -= 5;
