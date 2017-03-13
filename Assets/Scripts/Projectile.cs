@@ -9,7 +9,8 @@ public class Projectile : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        move = new Vector3(speed, 0, 0);
+        move = transform.right;
+        //move = new Vector3(speed, 0, 0);
         Destroy(this.gameObject, 1f);
     }
 	
