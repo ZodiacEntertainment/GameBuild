@@ -65,12 +65,10 @@ public class Alexis : MonoBehaviour {
     private bool canAttack = true;
     GameObject bulletTemp;
 
-
     // Use this for initialization
     void Start () {
 	
 	}
-	
 	// Update is called once per frame
 	void FixedUpdate () {
         if (Input.GetKeyDown(KeyCode.J) && canAttack) {
@@ -101,7 +99,6 @@ public class Alexis : MonoBehaviour {
         yield return new WaitForSeconds(attackDelay);
         canAttack = true;
     }
-
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){
             coins++;
@@ -115,7 +112,6 @@ public class Alexis : MonoBehaviour {
             haveItem = true;
         }
     }
-
     public void TakeDamage(int _damage){
         coins -= _damage;
         Debug.Log("Coins" + coins);

@@ -18,9 +18,13 @@ public class CamMove : MonoBehaviour{
     void FixedUpdate(){
         if (forward){
             transform.Translate(new Vector3(cameraSpeed, 0, 0) * Time.deltaTime);
-            foreach (GameObject back in Generater.BackGrounds){
+            foreach (GameObject back in Generater.Stands){
                 if(back != null)
-                    back.transform.Translate(new Vector3(-cameraSpeed, 0, 0) * Time.deltaTime);
+                    back.transform.Translate(new Vector3(-cameraSpeed/2f, 0, 0) * Time.deltaTime);
+            }
+            foreach (GameObject sky in Generater.Skys){
+                if (sky != null)
+                    sky.transform.Translate(new Vector3(-cameraSpeed / 5f, 0, 0) * Time.deltaTime);
             }
         }
     }
