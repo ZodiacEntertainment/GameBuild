@@ -9,15 +9,16 @@ public class CharacterMovement : MonoBehaviour {
 
     Animator anim;
 
-    //bool to stor if on ground
+    //bool to store if on ground
     bool grounded = false;
-    public Transform groundCheck;
     //radius of circle within with the character checks for ground
-    float groundRadius = 0.2f;
+    public float groundRadius = .8f;
     //var to determine what objects are considered 'ground'
     public LayerMask whatIsGround;
-
-    public float jumpForce = 0.5f;
+    public Vector2 groundCheck1;
+    public Vector2 groundCheck2;
+    public float offset = .77f;
+    public float jumpForce = 1000f;
 
     //tell me if jumping
     public static bool jumping = true;
@@ -25,11 +26,18 @@ public class CharacterMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
-	}
+        
+    }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        //set origin point for raycast
+        groundCheck1.x = gameObject.transform.position.x + offset;
+        groundCheck2.x = gameObject.transform.position.x - offset;
+        groundCheck1.y = gameObject.transform.position.y;
+        groundCheck2.y = gameObject.transform.position.y;
+        
         //REMEMBER TO CHANGE KEYCODE.SPACE TO A REMAPABLE KEY LATER
         if (grounded && Input.GetKeyDown(KeyCode.Space))
         {
@@ -38,10 +46,10 @@ public class CharacterMovement : MonoBehaviour {
         }
 
         //reduce speed when not on the ground because otherwise it feels too slippery
-        if (!grounded && !jumping)
+        if(!grounded && !jumping)
         {
             jumping = true;
-            currSpeed -= 5;
+            currSpeed -= 2;
         }
 
         if (grounded && jumping)
@@ -76,7 +84,9 @@ public class CharacterMovement : MonoBehaviour {
     void FixedUpdate () {
 
         //check if player is on ground
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+        if (Physics2D.Raycast(groundCheck1, Vector2.down, groundRadius, whatIsGround) || Physics2D.Raycast(groundCheck2, Vector2.down, groundRadius, whatIsGround)) grounded = true;
+        else grounded = false;
+
         anim.SetBool("Ground", grounded);
 
         anim.SetFloat("vSpeed", GetComponent<Rigidbody2D>().velocity.y);
