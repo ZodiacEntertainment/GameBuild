@@ -23,8 +23,10 @@ public class CharacterMovement : MonoBehaviour {
     //tell me if jumping
     public static bool jumping = true;
 
-	// Use this for initialization
-	void Start () {
+    public float JumpForce { get; private set; }
+
+    // Use this for initialization
+    void Start () {
         anim = GetComponent<Animator>();
         
     }
@@ -37,13 +39,6 @@ public class CharacterMovement : MonoBehaviour {
         groundCheck2.x = gameObject.transform.position.x - offset;
         groundCheck1.y = gameObject.transform.position.y;
         groundCheck2.y = gameObject.transform.position.y;
-        
-        //REMEMBER TO CHANGE KEYCODE.SPACE TO A REMAPABLE KEY LATER
-        if (grounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            anim.SetBool("Ground", false);
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
-        }
 
         //reduce speed when not on the ground because otherwise it feels too slippery
         if(!grounded && !jumping)
@@ -82,6 +77,13 @@ public class CharacterMovement : MonoBehaviour {
     }
 
     void FixedUpdate () {
+
+        //REMEMBER TO CHANGE KEYCODE.SPACE TO A REMAPABLE KEY LATER
+        if (grounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetBool("Ground", false);
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+        }
 
         //check if player is on ground
         if (Physics2D.Raycast(groundCheck1, Vector2.down, groundRadius, whatIsGround) || Physics2D.Raycast(groundCheck2, Vector2.down, groundRadius, whatIsGround)) grounded = true;
