@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class Alexis : MonoBehaviour {
+public class Flub : MonoBehaviour {
 
-    //character Name
-    public string charName = "";
+    //controller prefix
     public string controller;
 
     // Movement
     private int speed; // Speed tier 1-6
-    private int coins = 0; // Number of coins 0-15
+    private int coins; // Number of coins 0-15
 
     // Jump
     [SerializeField]
@@ -29,6 +27,8 @@ public class Alexis : MonoBehaviour {
     [SerializeField]
     [Tooltip("How long before the attack can be used again.")]
     private int bCoolDown;
+    //is using slip trick
+    bool slipTrick = false;
 
     // Special Attack
     [SerializeField]
@@ -56,34 +56,23 @@ public class Alexis : MonoBehaviour {
     [SerializeField]
     [Tooltip("How long before the attack can be used again.")]
     private int ultCoolDown;
-    [HideInInspector]
+
     public bool haveItem = false;
     private GameObject inventory;
-
-    public GameObject rangedAttack;
-    public float attackDelay;
     private bool canAttack = true;
-    GameObject bulletTemp;
-    Quaternion rot;
 
     // Use this for initialization
     void Start () {
 	
 	}
-	// Update is called once per frame
-	void FixedUpdate () {
-        if (Input.GetKeyDown(KeyCode.J) && canAttack) {
-            bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y + 0.25f, transform.position.z), Quaternion.Euler(25f, 0, 0)) as GameObject;
-            bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
 
-            bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-            bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
-
-            bulletTemp = Instantiate(rangedAttack, new Vector3(transform.position.x + 0.5f, transform.position.y - 0.25f, transform.position.z), Quaternion.Euler(-25f, 0, 0)) as GameObject;
-            bulletTemp.GetComponent<Projectile>().owner = this.gameObject;
-
-            StartCoroutine(AttackDelay());
-            bulletTemp = null;
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.J) && canAttack)
+        {
+            //call anim
+            StartCoroutine(SlipTrick());
         }
         if (Input.GetButtonDown("Fire1") && haveItem)
         {
@@ -99,11 +88,16 @@ public class Alexis : MonoBehaviour {
             //Debug.Log("Dropped " + inventory);
             haveItem = false;
         }
+        if (slipTrick){
+            transform.Translate(new Vector3(2,0,0) * Time.deltaTime);
+        }
     }
-    public IEnumerator AttackDelay(){
+    public IEnumerator SlipTrick(){
+        slipTrick = true;
         canAttack = false;
-        yield return new WaitForSeconds(attackDelay);
+        yield return new WaitForSeconds(bCoolDown);
         canAttack = true;
+        slipTrick = false;
     }
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){
@@ -116,6 +110,25 @@ public class Alexis : MonoBehaviour {
             //Debug.Log("Picked up " + inventory);
             inventory.SetActive(false);
             haveItem = true;
+        }
+        if (slipTrick){
+            switch (other.gameObject.name){
+                case "Alexis":
+                    other.gameObject.GetComponent<Alexis>().TakeDamage(bDamage);
+                    break;
+                case "Flub":
+                    other.gameObject.GetComponent<Flub>().TakeDamage(bDamage);
+                    break;
+                case "Tamiel":
+                    other.gameObject.GetComponent<Tamiel>().TakeDamage(bDamage);
+                    break;
+                case "Mirina":
+                    other.gameObject.GetComponent<Mirina>().TakeDamage(bDamage);
+                    break;
+                default:
+                    //Debug.Log(other.gameObject.name);
+                    break;
+            }
         }
     }
     public void TakeDamage(int _damage){
