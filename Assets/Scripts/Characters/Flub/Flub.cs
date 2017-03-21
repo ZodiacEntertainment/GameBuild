@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Flub : MonoBehaviour {
+
+	public List<AudioClip> clips;
+	private AudioSource aSource;
 
     //controller prefix
     public string controller;
@@ -69,7 +73,7 @@ public class Flub : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.J) && canAttack)
+        if (Input.GetKeyDown(KeyCode.A) && canAttack)
         {
             //call anim
             StartCoroutine(SlipTrick());

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class Alexis : MonoBehaviour {
 
+	public List<AudioClip> clips;
+	private AudioSource aSource;
+
     //controller prefix
     public string controller;
 
@@ -66,13 +69,15 @@ public class Alexis : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
+		aSource = GetComponent<AudioSource>();
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
         if (Input.GetKeyDown(KeyCode.J) && canAttack) {
             BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             //call anim
+			aSource.clip = clips[0];
+			aSource.Play ();
             StartCoroutine(AttackDelay());
         }
         if (Input.GetButtonDown("Fire1") && haveItem){
@@ -108,6 +113,9 @@ public class Alexis : MonoBehaviour {
     }
     public void TakeDamage(int _damage){
         coins -= _damage;
-        Debug.Log("Coins" + coins);  
+        Debug.Log("Coins" + coins);
+		aSource.clip = clips [1];
+		aSource.Play ();
+        Debug.Log("Coins" + coins);
     }
 }
