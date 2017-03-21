@@ -9,7 +9,7 @@ public class Alexis : MonoBehaviour {
 
     // Movement
     private int speed; // Speed tier 1-6
-    private int coins = 0; // Number of coins 0-15
+    public int coins = 0; // Number of coins 0-15
 
     // Jump
     [SerializeField]
@@ -77,14 +77,14 @@ public class Alexis : MonoBehaviour {
         }
         if (Input.GetButtonDown("Fire1") && haveItem){
             // Use the pickup
-            //Debug.Log("Used " + inventory);
+            Debug.Log("Used " + inventory);
             haveItem = false;
         }
         else if (Input.GetButtonDown("Fire2") && haveItem){
             // Drop the pickup
+            inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
             inventory.SetActive(true);
-            inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2f, this.gameObject.transform.position.y, inventory.transform.position.z);
-            //Debug.Log("Dropped " + inventory);
+            Debug.Log("Dropped " + inventory);
             haveItem = false;
         }
     }
@@ -101,13 +101,13 @@ public class Alexis : MonoBehaviour {
         }
         if (other.gameObject.CompareTag("Item") && !haveItem){
             inventory = other.gameObject;
-            //Debug.Log("Picked up " + inventory);
+            Debug.Log("Picked up " + inventory);
             inventory.SetActive(false);
             haveItem = true;
         }
     }
     public void TakeDamage(int _damage){
         coins -= _damage;
-        Debug.Log("Coins" + coins);
+        Debug.Log("Coins" + coins);  
     }
 }
