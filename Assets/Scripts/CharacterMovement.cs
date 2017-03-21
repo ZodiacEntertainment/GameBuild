@@ -63,6 +63,12 @@ public class CharacterMovement : MonoBehaviour {
         {
             currSpeed = speed;
         }
+		//REMEMBER TO CHANGE KEYCODE.SPACE TO A REMAPABLE KEY LATER
+		if (grounded && Input.GetKeyDown(KeyCode.Space))
+		{
+			anim.SetBool("Ground", false);
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+		}
 
     }
 
@@ -77,14 +83,7 @@ public class CharacterMovement : MonoBehaviour {
     }
 
     void FixedUpdate () {
-
-        //REMEMBER TO CHANGE KEYCODE.SPACE TO A REMAPABLE KEY LATER
-        if (grounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            anim.SetBool("Ground", false);
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
-        }
-
+		
         //check if player is on ground
         if (Physics2D.Raycast(groundCheck1, Vector2.down, groundRadius, whatIsGround) || Physics2D.Raycast(groundCheck2, Vector2.down, groundRadius, whatIsGround)) grounded = true;
         else grounded = false;
