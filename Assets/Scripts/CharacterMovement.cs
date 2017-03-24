@@ -19,6 +19,7 @@ public class CharacterMovement : MonoBehaviour {
     public Vector2 groundCheck2;
     public float offset = .77f;
     public float jumpForce = 1000f;
+	public float fallCap;
 
     //tell me if jumping
     public static bool jumping = true;
