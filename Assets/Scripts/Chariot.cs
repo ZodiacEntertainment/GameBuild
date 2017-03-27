@@ -13,7 +13,7 @@ public class Chariot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(player.coins >= 1 && !hasTriggered)
+        if(player.coins >= 10 && !hasTriggered)
         {
             isInPosition = false;
             hasTriggered = true;
