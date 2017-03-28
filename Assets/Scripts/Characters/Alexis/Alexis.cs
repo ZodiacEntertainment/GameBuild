@@ -50,19 +50,10 @@ public class Alexis : MonoBehaviour {
     [Tooltip("How many coins lost when attack hits.")]
     private int hDamage;
 
-    // Ultimate Attack
-    [SerializeField]
-    [Tooltip("How many coins lost when attack hits.")]
-    private int ultDamage;
-    [SerializeField]
-    [Tooltip("How long the attack lasts.")]
-    private int ultDuration;
-    [SerializeField]
-    [Tooltip("How long before the attack can be used again.")]
-    private int ultCoolDown;
     [HideInInspector]
     public bool haveItem = false;
     private GameObject inventory;
+	private float delay;
 
     private bool canAttack = true;
 
@@ -70,18 +61,22 @@ public class Alexis : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		aSource = GetComponent<AudioSource>();
-		BlastArea.SetActive(false);
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
+		//basic attack
         if (Input.GetKeyDown(KeyCode.J) && canAttack) {
-			BlastArea.SetActive(true);
             BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             //call anim
 			aSource.clip = clips[0];
 			aSource.Play ();
+			delay = bCoolDown;
             StartCoroutine(AttackDelay());
         }
+		// special attack
+		if (Input.GetKeyDown (KeyCode.K) && canAttack) {
+			
+		}
         if (Input.GetButtonDown("Fire1") && haveItem){
             // Use the pickup
             Debug.Log("Used " + inventory);
@@ -96,9 +91,8 @@ public class Alexis : MonoBehaviour {
         }
     }
     public IEnumerator AttackDelay(){
-		BlastArea.SetActive(false);
         canAttack = false;
-        yield return new WaitForSeconds(bCoolDown);
+		yield return new WaitForSeconds(delay);
         canAttack = true;
     }
     public void OnTriggerEnter2D(Collider2D other){
@@ -116,7 +110,6 @@ public class Alexis : MonoBehaviour {
     }
     public void TakeDamage(int _damage){
         coins -= _damage;
-        Debug.Log("Coins" + coins);
 		aSource.clip = clips [1];
 		aSource.Play ();
         Debug.Log("Coins" + coins);
