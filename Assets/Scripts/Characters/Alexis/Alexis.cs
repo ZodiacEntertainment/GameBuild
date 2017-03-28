@@ -32,7 +32,7 @@ public class Alexis : MonoBehaviour {
     [Tooltip("How long before the attack can be used again.")]
     private int bCoolDown;
     //main AOE
-    public Collider2D BlastArea;
+	public GameObject BlastArea;
 
     // Special Attack
     [SerializeField]
@@ -70,10 +70,12 @@ public class Alexis : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		aSource = GetComponent<AudioSource>();
+		BlastArea.SetActive(false);
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
         if (Input.GetKeyDown(KeyCode.J) && canAttack) {
+			BlastArea.SetActive(true);
             BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             //call anim
 			aSource.clip = clips[0];
@@ -94,6 +96,7 @@ public class Alexis : MonoBehaviour {
         }
     }
     public IEnumerator AttackDelay(){
+		BlastArea.SetActive(false);
         canAttack = false;
         yield return new WaitForSeconds(bCoolDown);
         canAttack = true;

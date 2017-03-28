@@ -22,12 +22,6 @@ public class ShotGunMain : MonoBehaviour{
                 case "Flub":
                     target.gameObject.GetComponent<Flub>().TakeDamage(damage);
                     break;
-                case "Tamiel":
-                    target.gameObject.GetComponent<Tamiel>().TakeDamage(damage);
-                    break;
-                case "Mirina":
-                    target.gameObject.GetComponent<Mirina>().TakeDamage(damage);
-                    break;
                 default:
                     //Debug.Log(target.gameObject.name);
                     break;
