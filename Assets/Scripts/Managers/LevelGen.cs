@@ -49,14 +49,18 @@ public class LevelGen : MonoBehaviour {
     //collision check for 2D project   //  Bound offset control
     public void OnTriggerEnter2D(Collider2D other){
         if (other.tag == "Bound") {
-            for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < extendLength; i++) {
                 System.Random rnd = new System.Random();
-                int r = rnd.Next(0, tiles.Length);
+				int r = rnd.Next(0, tiles.Length- i);
+				r += i;
                 selectTiles[i] = tiles[r];
             }
             _bound = other.gameObject;
             _bound.transform.position = new Vector3(_bound.transform.position.x + 15f, _bound.transform.position.y, 0);
-            ExtendLevel();
+//			if(Tiles.Count < 10){
+//				ExtendLevel();
+//			}
+			ExtendLevel();
             ReduceLevel();
         }
     }

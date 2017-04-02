@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Alexis : MonoBehaviour {
+public class Alexis : Character {
 
 	public List<AudioClip> clips;
 	private AudioSource aSource;
@@ -44,25 +44,19 @@ public class Alexis : MonoBehaviour {
     [SerializeField]
     [Tooltip("How long before the attack can be used again.")]
     private int spCoolDown;
+	public GameObject grenade;
+	public Transform launchPoint;
 
     // Sustained Attack
     [SerializeField]
     [Tooltip("How many coins lost when attack hits.")]
     private int hDamage;
 
-    // Ultimate Attack
-    [SerializeField]
-    [Tooltip("How many coins lost when attack hits.")]
-    private int ultDamage;
-    [SerializeField]
-    [Tooltip("How long the attack lasts.")]
-    private int ultDuration;
-    [SerializeField]
-    [Tooltip("How long before the attack can be used again.")]
-    private int ultCoolDown;
     [HideInInspector]
     public bool haveItem = false;
     private GameObject inventory;
+	private float delay;
+	GameObject temp;
 
     private bool canAttack = true;
 
@@ -70,18 +64,24 @@ public class Alexis : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		aSource = GetComponent<AudioSource>();
-		BlastArea.SetActive(false);
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
+		//basic attack
         if (Input.GetKeyDown(KeyCode.J) && canAttack) {
-			BlastArea.SetActive(true);
             BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             //call anim
 			aSource.clip = clips[0];
 			aSource.Play ();
+			delay = bCoolDown;
             StartCoroutine(AttackDelay());
         }
+		// special attack
+		if (Input.GetKeyDown(KeyCode.K) && canAttack) {
+			temp = Instantiate(grenade, launchPoint.position, Quaternion.identity) as GameObject;
+			temp.GetComponent<Grenade>().owner = this.gameObject;
+			StartCoroutine(AttackDelay());
+		}
         if (Input.GetButtonDown("Fire1") && haveItem){
             // Use the pickup
             Debug.Log("Used " + inventory);
@@ -96,9 +96,8 @@ public class Alexis : MonoBehaviour {
         }
     }
     public IEnumerator AttackDelay(){
-		BlastArea.SetActive(false);
         canAttack = false;
-        yield return new WaitForSeconds(bCoolDown);
+		yield return new WaitForSeconds(delay);
         canAttack = true;
     }
     public void OnTriggerEnter2D(Collider2D other){
@@ -114,9 +113,8 @@ public class Alexis : MonoBehaviour {
             haveItem = true;
         }
     }
-    public void TakeDamage(int _damage){
+	public override void TakeDamage(int _damage){
         coins -= _damage;
-        Debug.Log("Coins" + coins);
 		aSource.clip = clips [1];
 		aSource.Play ();
         Debug.Log("Coins" + coins);
