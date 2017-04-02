@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Alexis : MonoBehaviour {
+public class Alexis : Character {
 
 	public List<AudioClip> clips;
 	private AudioSource aSource;
@@ -44,6 +44,8 @@ public class Alexis : MonoBehaviour {
     [SerializeField]
     [Tooltip("How long before the attack can be used again.")]
     private int spCoolDown;
+	public GameObject grenade;
+	public Transform launchPoint;
 
     // Sustained Attack
     [SerializeField]
@@ -54,6 +56,7 @@ public class Alexis : MonoBehaviour {
     public bool haveItem = false;
     private GameObject inventory;
 	private float delay;
+	GameObject temp;
 
     private bool canAttack = true;
 
@@ -74,8 +77,10 @@ public class Alexis : MonoBehaviour {
             StartCoroutine(AttackDelay());
         }
 		// special attack
-		if (Input.GetKeyDown (KeyCode.K) && canAttack) {
-			
+		if (Input.GetKeyDown(KeyCode.K) && canAttack) {
+			temp = Instantiate(grenade, launchPoint.position, Quaternion.identity) as GameObject;
+			temp.GetComponent<Grenade>().owner = this.gameObject;
+			StartCoroutine(AttackDelay());
 		}
         if (Input.GetButtonDown("Fire1") && haveItem){
             // Use the pickup
@@ -108,7 +113,7 @@ public class Alexis : MonoBehaviour {
             haveItem = true;
         }
     }
-    public void TakeDamage(int _damage){
+	public override void TakeDamage(int _damage){
         coins -= _damage;
 		aSource.clip = clips [1];
 		aSource.Play ();
