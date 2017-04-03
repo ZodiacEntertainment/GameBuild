@@ -123,12 +123,6 @@ public class Flub : MonoBehaviour {
                 case "Flub":
                     other.gameObject.GetComponent<Flub>().TakeDamage(bDamage);
                     break;
-                case "Tamiel":
-                    other.gameObject.GetComponent<Tamiel>().TakeDamage(bDamage);
-                    break;
-                case "Mirina":
-                    other.gameObject.GetComponent<Mirina>().TakeDamage(bDamage);
-                    break;
                 default:
                     //Debug.Log(other.gameObject.name);
                     break;

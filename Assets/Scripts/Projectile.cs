@@ -21,19 +21,13 @@ public class Projectile : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.GetInstanceID() != owner.gameObject.GetInstanceID()) {
-            switch (other.gameObject.name) {
+            switch (other.gameObject.name) { 
                 case "Alexis":
                     other.gameObject.GetComponent<Alexis>().TakeDamage(damage);
                     break;
                 case "Flub":
                     other.gameObject.GetComponent<Flub>().TakeDamage(damage);
-                    break;
-                case "Tamiel":
-                    other.gameObject.GetComponent<Tamiel>().TakeDamage(damage);
-                    break;
-                case "Mirina":
-                    other.gameObject.GetComponent<Mirina>().TakeDamage(damage);
-                    break;
+                    break; 
                 default:
                     Debug.Log(other.gameObject.name);
                     break;

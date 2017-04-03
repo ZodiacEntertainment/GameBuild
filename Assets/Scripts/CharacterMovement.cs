@@ -17,14 +17,12 @@ public class CharacterMovement : MonoBehaviour {
     public LayerMask whatIsGround;
     public Vector2 groundCheck1;
     public Vector2 groundCheck2;
-    public float offset = .77f;
+    public float leftOffset = .77f;
+    public float rightOffset = .77f;
     public float jumpForce = 1000f;
 	public float fallCap;
 
-    //tell me if jumping
-    public static bool jumping = true;
-
-    public float JumpForce { get; private set; }
+    public float JumpForce { get; private set; }    
 
     // Use this for initialization
     void Start () {
@@ -36,34 +34,23 @@ public class CharacterMovement : MonoBehaviour {
     void Update()
     {   
         //set origin point for raycast
-        groundCheck1.x = gameObject.transform.position.x + offset;
-        groundCheck2.x = gameObject.transform.position.x - offset;
+        groundCheck1.x = gameObject.transform.position.x + rightOffset;
+        groundCheck2.x = gameObject.transform.position.x - leftOffset;
         groundCheck1.y = gameObject.transform.position.y;
         groundCheck2.y = gameObject.transform.position.y;
 
-        //reduce speed when not on the ground because otherwise it feels too slippery
-        if(!grounded && !jumping)
-        {
-            jumping = true;
-            currSpeed -= 2;
-        }
-
-        if (grounded && jumping)
-        {
-            jumping = false;
-            currSpeed = speed;
-        }
-
-        //SAME FOR THIS
-        if (grounded && (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)))
+        //sprint when holding shift
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             currSpeed += 5;
         }
 
-        if (grounded && !jumping && (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift)))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
         {
             currSpeed = speed;
         }
+
+        //Jump when jump key is held
 		//REMEMBER TO CHANGE KEYCODE.SPACE TO A REMAPABLE KEY LATER
 		if (grounded && Input.GetKeyDown(KeyCode.Space))
 		{
