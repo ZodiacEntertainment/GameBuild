@@ -80,14 +80,15 @@ public class Alexis : Character {
 		if (Input.GetKeyDown(KeyCode.K) && canAttack) {
 			temp = Instantiate(grenade, launchPoint.position, Quaternion.identity) as GameObject;
 			temp.GetComponent<Grenade>().owner = this.gameObject;
-			StartCoroutine(AttackDelay());
+            delay = spCoolDown;
+            StartCoroutine(AttackDelay());
 		}
         if (Input.GetButtonDown("Fire1") && haveItem){
             // Use the pickup
             Debug.Log("Used " + inventory);
             haveItem = false;
         }
-        else if (Input.GetButtonDown("Fire2") && haveItem){
+        if (Input.GetButtonDown("Fire2") && haveItem){
             // Drop the pickup
             inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
             inventory.SetActive(true);
