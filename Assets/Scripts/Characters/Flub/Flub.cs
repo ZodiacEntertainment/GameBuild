@@ -12,7 +12,7 @@ public class Flub : MonoBehaviour {
 
     // Movement
     private int speed; // Speed tier 1-6
-    private int coins; // Number of coins 0-15
+	public int coins; // Number of coins 0-15
 
     // Jump
     [SerializeField]
@@ -73,8 +73,7 @@ public class Flub : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.A) && canAttack)
-        {
+        if (Input.GetKeyDown(KeyCode.A) && canAttack){
             //call anim
             StartCoroutine(SlipTrick());
         }
@@ -115,24 +114,8 @@ public class Flub : MonoBehaviour {
             inventory.SetActive(false);
             haveItem = true;
         }
-        if (slipTrick){
-            switch (other.gameObject.name){
-                case "Alexis":
-                    other.gameObject.GetComponent<Alexis>().TakeDamage(bDamage);
-                    break;
-                case "Flub":
-                    other.gameObject.GetComponent<Flub>().TakeDamage(bDamage);
-                    break;
-                case "Tamiel":
-                    other.gameObject.GetComponent<Tamiel>().TakeDamage(bDamage);
-                    break;
-                case "Mirina":
-                    other.gameObject.GetComponent<Mirina>().TakeDamage(bDamage);
-                    break;
-                default:
-                    //Debug.Log(other.gameObject.name);
-                    break;
-            }
+		if (slipTrick && other.tag == "Character"){
+			other.gameObject.GetComponent<Character> ().TakeDamage (bDamage);
         }
     }
     public void TakeDamage(int _damage){
