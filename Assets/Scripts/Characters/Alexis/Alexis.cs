@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Alexis : Character {
+public class Alexis : ZodiacCharacter {
 
 	public List<AudioClip> clips;
 	private AudioSource aSource;
@@ -12,7 +12,7 @@ public class Alexis : Character {
 
     // Movement
     private int speed; // Speed tier 1-6
-    public int coins = 0; // Number of coins 0-15
+    //public int coins = 0; // Number of coins 0-15
 
     // Jump
     [SerializeField]
@@ -44,7 +44,7 @@ public class Alexis : Character {
     [SerializeField]
     [Tooltip("How long before the attack can be used again.")]
     private int spCoolDown;
-	public GameObject grenade;
+	public GameObject granade;
 	public Transform launchPoint;
 
     // Sustained Attack
@@ -55,33 +55,37 @@ public class Alexis : Character {
     [HideInInspector]
     public bool haveItem = false;
     private GameObject inventory;
-	private float delay;
-	GameObject temp;
 
-    private bool canAttack = true;
+	private float delayBasic;
+    private float delaySpecial;
+    GameObject temp;
 
+    private bool canAttackBasic = true;
+    private bool canAttackSpecial = true;
 
     // Use this for initialization
     void Start () {
 		aSource = GetComponent<AudioSource>();
-	}
+        delayBasic = bCoolDown;
+        delaySpecial = spCoolDown;
+    }
 	// Update is called once per frame
 	void FixedUpdate () {
 		//basic attack
-        if (Input.GetKeyDown(KeyCode.J) && canAttack) {
+        if (Input.GetKeyDown(KeyCode.J) && canAttackBasic) {
             BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             //call anim
 			aSource.clip = clips[0];
 			aSource.Play ();
-			delay = bCoolDown;
-            StartCoroutine(AttackDelay());
+            StartCoroutine(AttackBasicDelay());
         }
 		// special attack
-		if (Input.GetKeyDown(KeyCode.K) && canAttack) {
-			temp = Instantiate(grenade, launchPoint.position, Quaternion.identity) as GameObject;
+		if (Input.GetKeyDown(KeyCode.K) && canAttackSpecial) {
+			temp = Instantiate(granade, launchPoint.position, Quaternion.identity) as GameObject;
 			temp.GetComponent<Grenade>().owner = this.gameObject;
-            delay = spCoolDown;
-            StartCoroutine(AttackDelay());
+            if (!GetComponent<CharacterMovement>().facingRight)
+                temp.GetComponent<Grenade>().HSpeed *= -1;
+            StartCoroutine(AttackSpecialDelay());
 		}
         if (Input.GetButtonDown("Fire1") && haveItem){
             // Use the pickup
@@ -92,15 +96,20 @@ public class Alexis : Character {
             // Drop the pickup
             inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
             inventory.SetActive(true);
-			inventory.gameObject.GetComponent<ItemDrop>().Drop();
             Debug.Log("Dropped " + inventory);
             haveItem = false;
         }
     }
-    public IEnumerator AttackDelay(){
-        canAttack = false;
-		yield return new WaitForSeconds(delay);
-        canAttack = true;
+    public IEnumerator AttackBasicDelay(){
+        canAttackBasic = false;
+		yield return new WaitForSeconds(delayBasic);
+        canAttackBasic = true;
+    }
+    public IEnumerator AttackSpecialDelay()
+    {
+        canAttackSpecial = false;
+        yield return new WaitForSeconds(delaySpecial);
+        canAttackSpecial = true;
     }
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){

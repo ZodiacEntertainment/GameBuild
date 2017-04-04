@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.GetInstanceID() != owner.gameObject.GetInstanceID()) {
 			if (other.tag == "Character"){
-				other.gameObject.GetComponent<Character> ().TakeDamage (damage);
+				other.gameObject.GetComponent<ZodiacCharacter> ().TakeDamage (damage);
 			}
             Destroy(this.gameObject);
         }
