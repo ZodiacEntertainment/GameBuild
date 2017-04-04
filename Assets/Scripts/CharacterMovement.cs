@@ -22,12 +22,14 @@ public class CharacterMovement : MonoBehaviour {
     public float jumpForce = 1000f;
 	public float fallCap;
 
-    public float JumpForce { get; private set; }    
+    public float JumpForce { get; private set; }
+
+    SpriteRenderer sprite;
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -65,9 +67,10 @@ public class CharacterMovement : MonoBehaviour {
     void Flip()
     {
         facingRight = !facingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        sprite.flipX = !facingRight;
+       // Vector3 theScale = transform.localScale;
+       // theScale.x *= -1;
+       // transform.localScale = theScale;
     }
 
     void FixedUpdate () {
