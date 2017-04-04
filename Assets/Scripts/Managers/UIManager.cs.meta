@@ -1,22 +1,17 @@
 fileFormatVersion: 2
 guid: b09f3a9349c5dbc468d4366ab3dc9397
-timeCreated: 1490643621
+timeCreated: 1491339332
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - tier0: {fileID: 21300000, guid: 721dba7335cb615409131ddd37324297, type: 3}
-  - tier1: {fileID: 21300000, guid: 2bba983b4014812419501e0636836793, type: 3}
-  - tier2: {fileID: 21300000, guid: 52d5df46d652d544498ad5731bb4fc78, type: 3}
-  - tier3: {fileID: 21300000, guid: 005c4f12963f9cc46b3da1cb4b8b5649, type: 3}
-  - tier4: {fileID: 21300000, guid: c7130ac0696347548944a235ca321903, type: 3}
-  - tier5: {fileID: 21300000, guid: 8a0015638e359914cb372094d00f5453, type: 3}
-  - tier6: {fileID: 21300000, guid: b49252d17fc554a48b3817eedf48a1d9, type: 3}
-  - tier7: {fileID: 21300000, guid: ff448ab417d61b04190439ac77e59ed4, type: 3}
-  - tier8: {fileID: 21300000, guid: cf0c5777f5b587248a63f73ac7747e6e, type: 3}
-  - tier9: {fileID: 21300000, guid: 23cc2b37381ffd845b323064df566bb8, type: 3}
-  - tier10: {fileID: 21300000, guid: d0a1534446cf17d41856ecf591871249, type: 3}
-  - player: {instanceID: 0}
+  - tier0: {fileID: 21300000, guid: b3f3ffd6745e67e42a8291dc386a37bd, type: 3}
+  - tier1: {fileID: 21300000, guid: c7fc1a8f4737faa4c85b384fc6ec6de9, type: 3}
+  - tier2: {fileID: 21300000, guid: 5c00a06275107f944869f33d3d73cc2d, type: 3}
+  - tier3: {fileID: 21300000, guid: b547cc9d242ede540af401e941afce6b, type: 3}
+  - tier4: {fileID: 21300000, guid: 1a3acbbb777453b4287eb340b7a383f1, type: 3}
+  - tier5: {fileID: 21300000, guid: d2a3305601d16bb40b76cb59f82b3316, type: 3}
+  - character: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

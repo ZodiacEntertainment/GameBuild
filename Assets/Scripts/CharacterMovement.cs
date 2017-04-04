@@ -5,7 +5,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	public float speed = 10f;
     public float currSpeed = 10f;
-	bool facingRight = true;
+	public bool facingRight = true;
 
     Animator anim;
 

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Flub : MonoBehaviour {
+public class Flub : ZodiacCharacter {
 
 	public List<AudioClip> clips;
 	private AudioSource aSource;
@@ -12,7 +12,7 @@ public class Flub : MonoBehaviour {
 
     // Movement
     private int speed; // Speed tier 1-6
-	public int coins; // Number of coins 0-15
+    //private new int coins; // Number of coins 0-15
 
     // Jump
     [SerializeField]
@@ -73,7 +73,8 @@ public class Flub : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.A) && canAttack){
+        if (Input.GetKeyDown(KeyCode.A) && canAttack)
+        {
             //call anim
             StartCoroutine(SlipTrick());
         }
@@ -114,11 +115,11 @@ public class Flub : MonoBehaviour {
             inventory.SetActive(false);
             haveItem = true;
         }
-		if (slipTrick && other.tag == "Character"){
-			other.gameObject.GetComponent<Character> ().TakeDamage (bDamage);
+        if (slipTrick){
+			other.gameObject.GetComponent<ZodiacCharacter>().TakeDamage(bDamage);
         }
     }
-    public void TakeDamage(int _damage){
+    public override void TakeDamage(int _damage){
         coins -= _damage;
         Debug.Log("Coins" + coins);
     }
