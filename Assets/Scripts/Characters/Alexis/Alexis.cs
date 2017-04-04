@@ -92,6 +92,7 @@ public class Alexis : Character {
             // Drop the pickup
             inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
             inventory.SetActive(true);
+			inventory.gameObject.GetComponent<ItemDrop>().Drop();
             Debug.Log("Dropped " + inventory);
             haveItem = false;
         }
