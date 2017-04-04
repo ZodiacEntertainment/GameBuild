@@ -7,13 +7,13 @@ public class Chariot : MonoBehaviour {
     public Alexis player;
     public GameObject RightBound;
 
-    public bool isInPosition = true;
-    public bool hasTriggered = false;
+    public bool isInPosition;
+    public bool hasTriggered;
 
 	// Update is called once per frame
 	void Update () {
 
-        if(player.coins >= 10 && !hasTriggered)
+        if(player.coins >= 15 && !hasTriggered)
         {
             isInPosition = false;
             hasTriggered = true;
