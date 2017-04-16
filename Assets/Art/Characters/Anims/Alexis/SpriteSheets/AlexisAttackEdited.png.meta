@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 800ebc99978c8cc46ab77e2644dd54f7
-timeCreated: 1492321076
+guid: e07f773ac58b3f84481907507c4a77b2
+timeCreated: 1492320678
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: alexis run spritesheet_0
-    21300002: alexis run spritesheet_1
-    21300004: alexis run spritesheet_2
-    21300006: alexis run spritesheet_3
-    21300008: alexis run spritesheet_4
-    21300010: alexis run spritesheet_5
-    21300012: alexis run spritesheet_6
-    21300014: alexis run spritesheet_7
+    21300000: AlexisAttackEdited_0
+    21300002: AlexisAttackEdited_1
+    21300004: AlexisAttackEdited_2
+    21300006: AlexisAttackEdited_3
+    21300008: AlexisAttackEdited_4
+    21300010: AlexisAttackEdited_5
+    21300012: AlexisAttackEdited_6
+    21300014: AlexisAttackEdited_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -61,106 +61,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: alexis run spritesheet_0
+      name: AlexisAttackEdited_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 134
-        width: 142
-        height: 134
+        y: 148
+        width: 198
+        height: 148
       alignment: 9
-      pivot: {x: 0.33, y: 0.5}
+      pivot: {x: 0.35, y: 0.53}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_1
+      name: AlexisAttackEdited_1
       rect:
         serializedVersion: 2
-        x: 142
-        y: 134
-        width: 142
-        height: 134
+        x: 198
+        y: 148
+        width: 198
+        height: 148
       alignment: 9
-      pivot: {x: 0.33, y: 0.5}
+      pivot: {x: 0.35, y: 0.53}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_2
+      name: AlexisAttackEdited_2
       rect:
         serializedVersion: 2
-        x: 284
-        y: 134
-        width: 142
-        height: 134
+        x: 396
+        y: 148
+        width: 198
+        height: 148
       alignment: 9
-      pivot: {x: 0.33, y: 0.5}
+      pivot: {x: 0.35, y: 0.53}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_3
+      name: AlexisAttackEdited_3
       rect:
         serializedVersion: 2
-        x: 426
-        y: 134
-        width: 142
-        height: 134
+        x: 594
+        y: 148
+        width: 198
+        height: 148
       alignment: 9
-      pivot: {x: 0.33, y: 0.5}
+      pivot: {x: 0.35, y: 0.53}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_4
+      name: AlexisAttackEdited_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 142
-        height: 134
+        width: 198
+        height: 148
       alignment: 9
-      pivot: {x: 0.33, y: 0.5}
+      pivot: {x: 0.35, y: 0.53}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_5
+      name: AlexisAttackEdited_5
       rect:
         serializedVersion: 2
-        x: 142
+        x: 198
         y: 0
-        width: 142
-        height: 134
+        width: 198
+        height: 148
       alignment: 9
-      pivot: {x: 0.33, y: 0.5}
+      pivot: {x: 0.35, y: 0.53}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_6
+      name: AlexisAttackEdited_6
       rect:
         serializedVersion: 2
-        x: 284
+        x: 396
         y: 0
-        width: 142
-        height: 134
+        width: 198
+        height: 148
       alignment: 9
-      pivot: {x: 0.33, y: 0.5}
+      pivot: {x: 0.35, y: 0.53}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_7
+      name: AlexisAttackEdited_7
       rect:
         serializedVersion: 2
-        x: 426
+        x: 594
         y: 0
-        width: 142
-        height: 134
+        width: 198
+        height: 148
       alignment: 9
-      pivot: {x: 0.33, y: 0.5}
+      pivot: {x: 0.35, y: 0.53}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

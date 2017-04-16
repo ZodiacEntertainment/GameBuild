@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 800ebc99978c8cc46ab77e2644dd54f7
-timeCreated: 1492321076
+guid: 6eca85599e424bb4dad665a3e0997718
+timeCreated: 1492321109
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: alexis run spritesheet_0
-    21300002: alexis run spritesheet_1
-    21300004: alexis run spritesheet_2
-    21300006: alexis run spritesheet_3
-    21300008: alexis run spritesheet_4
-    21300010: alexis run spritesheet_5
-    21300012: alexis run spritesheet_6
-    21300014: alexis run spritesheet_7
+    21300000: new take damage spritesheet_0
+    21300002: new take damage spritesheet_1
+    21300004: new take damage spritesheet_2
+    21300006: new take damage spritesheet_3
+    21300008: new take damage spritesheet_4
+    21300010: new take damage spritesheet_5
+    21300012: new take damage spritesheet_6
+    21300014: new take damage spritesheet_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -61,7 +61,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: alexis run spritesheet_0
+      name: new take damage spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -74,7 +74,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_1
+      name: new take damage spritesheet_1
       rect:
         serializedVersion: 2
         x: 142
@@ -87,7 +87,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_2
+      name: new take damage spritesheet_2
       rect:
         serializedVersion: 2
         x: 284
@@ -100,7 +100,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_3
+      name: new take damage spritesheet_3
       rect:
         serializedVersion: 2
         x: 426
@@ -113,7 +113,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_4
+      name: new take damage spritesheet_4
       rect:
         serializedVersion: 2
         x: 0
@@ -126,7 +126,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_5
+      name: new take damage spritesheet_5
       rect:
         serializedVersion: 2
         x: 142
@@ -139,7 +139,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_6
+      name: new take damage spritesheet_6
       rect:
         serializedVersion: 2
         x: 284
@@ -152,7 +152,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: alexis run spritesheet_7
+      name: new take damage spritesheet_7
       rect:
         serializedVersion: 2
         x: 426
