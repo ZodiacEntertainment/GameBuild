@@ -7,6 +7,7 @@ public class Alexis : ZodiacCharacter {
 
 	public List<AudioClip> clips;
 	private AudioSource aSource;
+	private Animator anim;
 
     //controller prefix
     public string controller;
@@ -67,6 +68,7 @@ public class Alexis : ZodiacCharacter {
     // Use this for initialization
     void Start () {
 		aSource = GetComponent<AudioSource>();
+		anim = GetComponent<Animator>();
         delayBasic = bCoolDown;
         delaySpecial = spCoolDown;
     }
@@ -76,6 +78,7 @@ public class Alexis : ZodiacCharacter {
         if (Input.GetKeyDown(KeyCode.J) && canAttackBasic) {
             BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             //call anim
+			anim.SetTrigger("BasicAttack");
 			aSource.clip = clips[0];
 			aSource.Play ();
 			//manager.StatUpdate (controller, "Attacks");
@@ -83,6 +86,7 @@ public class Alexis : ZodiacCharacter {
         }
 		// special attack
 		if (Input.GetKeyDown(KeyCode.K) && canAttackSpecial) {
+			anim.SetTrigger("SpecialAttack");
 			temp = Instantiate(granade, launchPoint.position, Quaternion.identity) as GameObject;
 			temp.GetComponent<Grenade>().owner = this.gameObject;
             if (!GetComponent<CharacterMovement>().facingRight)
