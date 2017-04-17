@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour {
     Animator anim;
 
     //bool to store if on ground
-    bool grounded = false;
+    public bool grounded = false;
     //radius of circle within with the character checks for ground
     public float groundRadius = .8f;
     //var to determine what objects are considered 'ground'
@@ -20,7 +20,6 @@ public class CharacterMovement : MonoBehaviour {
     public float leftOffset = .77f;
     public float rightOffset = .77f;
     public float jumpForce = 1000f;
-	public float fallCap;
 
     public float JumpForce { get; private set; }
 

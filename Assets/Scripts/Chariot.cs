@@ -4,28 +4,33 @@ using System.Collections;
 public class Chariot : MonoBehaviour {
 
     public CamMove cam;
-    public Alexis player;
+    public Alexis coinCounter;
     public GameObject RightBound;
 
-    public bool isInPosition;
-    public bool hasTriggered;
+   public  bool triggered;
+
+    public float maxCoins = 3f;
+
+    void Start()
+    {
+        triggered = false;
+    }
 
 	// Update is called once per frame
 	void Update () {
 
-        if(player.coins >= 15 && !hasTriggered)
+        if(coinCounter.coins >= maxCoins)
         {
-            isInPosition = false;
-            hasTriggered = true;
+            triggered = true;
         }
 
-        if (isInPosition)
+        if (triggered)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(-10, GetComponent<Rigidbody2D>().velocity.y);
         }
         else
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-10, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
         }
         
 	}
