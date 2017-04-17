@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 public class LevelTrigger : MonoBehaviour {
 
     public CamMove cam;
-	public int level;
+    public Chariot chariot;
+    public int level;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        cam.cameraSpeed = 0;
-		SceneManager.LoadScene(level);
+        if (chariot.triggered)
+        {
+            cam.cameraSpeed = 0;
+            SceneManager.LoadScene(level);
+        }
     }
 
 }

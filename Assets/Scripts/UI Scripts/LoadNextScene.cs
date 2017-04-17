@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LoadNextScene : MonoBehaviour {
 
-	public void ChangeToScene(int scene) {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
+    public int scene;
+
+    void TaskOnClick()
+    {
+        ChangeToScene(scene);
+    }
+
+	public void ChangeToScene(int s) {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(s);
         Debug.Log("It's been clicked, son.");
 	}
 }

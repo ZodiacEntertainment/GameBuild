@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class QuitGame : MonoBehaviour {
 
-	public void Quit() {
+    void TaskOnClick()
+    {
         Application.Quit();
-	}
+    }
 }
