@@ -4,17 +4,37 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
+	public GameObject alexis;
+	public GameObject flub;
+
 	public GameObject p1;
 	public GameObject p2;
 	public GameObject p3;
 	public GameObject p4;
 
-	public GameObject hud;
-	GameObject HUDtemp;
+	public GameObject p1HUD;
+	public GameObject p2HUD;
+	public GameObject p3HUD;
+	public GameObject p4HUD;
 
-	public int[] MostAttacks = new int[4];
-	public int[] MostTimesInFirst = new int[4];
+	//char select points
+	public Transform h1;
+	public Transform h2;
+	public Transform h3;
+	public Transform h4;
+
+	//game spawn points
+	public Transform SP1;
+	public Transform SP2;
+	public Transform SP3;
+	public Transform SP4;
+
+	public int[] MostDamageTaken = new int[]{0,0,0,0};
+	public int[] MostTimesInFirst = new int[]{0,0,0,0};
+	public int[] MostDamageGiven = new int[]{0,0,0,0};
+	public int[] MostCoins = new int[]{0,0,0,0};
 	public int[] statRef;
+
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad (this.gameObject);
@@ -40,11 +60,17 @@ public class GameManager : MonoBehaviour {
 		}
 		//assign ref to stat
 		switch(stat){
-		case "Attacks":
-			MostAttacks = statRef;
+		case "MDT":
+			MostDamageTaken = statRef;
 			break;
 		case "MTIF":
 			MostTimesInFirst = statRef;
+			break;
+		case "MDG":
+			MostDamageGiven = statRef;
+			break;
+		case "MC":
+			MostCoins = statRef;
 			break;
 		default :
 			break;
@@ -67,11 +93,17 @@ public class GameManager : MonoBehaviour {
 	}
 	public void DetermineStat(string stat){
 		switch(stat){
-		case "Attacks":
-			statRef = MostAttacks;
+		case "MDT":
+			statRef = MostDamageTaken;
 			break;
 		case "MTIF":
 			statRef = MostTimesInFirst;
+			break;
+		case "MDG":
+			statRef = MostDamageGiven;
+			break;
+		case "MC":
+			statRef = MostCoins;
 			break;
 		default :
 			Debug.Log ("Check stat name");
@@ -99,10 +131,89 @@ public class GameManager : MonoBehaviour {
 	}
 	public void CreateGame(){
 		//spawn character for game
-		//spawn huds for players
-		GameObject Canvas = GameObject.Find("HUD Canvas");
-		for(int i = 0; i < DetermineNumOfPlayers();i++)
-			HUDtemp = Instantiate(hud) as GameObject;
-		HUDtemp.transform.parent = Canvas.transform;
+		for(int i = 1; i <= DetermineNumOfPlayers(); i++){
+			switch (i) {
+			case 1:
+				p1.transform.position = SP1.position;
+				break;
+			case 2:
+				p2.transform.position = SP2.position;
+				break;
+			case 3:
+				p3.transform.position = SP3.position;
+				break;
+			case 4:
+				p4.transform.position = SP4.position;
+				break;
+			}
+		}
+	}
+	public void AssignCharacter(int player, string name){
+		//alexis
+		if (name == "Alexis") {
+			switch(player){
+			case 1:
+				if (p1 == null) {
+					p1 = Instantiate (alexis, h1.position, Quaternion.identity) as GameObject;
+					p1.transform.SetParent (this.transform, true);
+					p1.GetComponent<Alexis> ().controller = "p1";
+					p1.GetComponent<Alexis> ().manager = this;
+					p1HUD.GetComponent<UIManager> ().character = p1;
+				}
+				break;
+			case 2:
+				if (p2 == null) {
+					p2 = Instantiate (alexis, h2.position, Quaternion.identity) as GameObject;
+					p2.transform.SetParent (this.transform, true);
+					p2.GetComponent<Alexis> ().controller = "p2";
+					p2.GetComponent<Alexis> ().manager = this;
+					p2HUD.GetComponent<UIManager> ().character = p2;
+				}
+				break;
+			case 3:
+				if (p3 == null) {
+					p3 = Instantiate (alexis, h3.position, Quaternion.identity) as GameObject;
+					p3.transform.SetParent (this.transform, true);
+					p3.GetComponent<Alexis> ().controller = "p3";
+					p3.GetComponent<Alexis> ().manager = this;
+					p3HUD.GetComponent<UIManager> ().character = p3;
+				}
+				break;
+			case 4:
+				if (p4 == null) {
+					p4 = Instantiate (alexis, h4.position, Quaternion.identity) as GameObject;
+					p4.transform.SetParent (this.transform, true);
+					p4.GetComponent<Alexis> ().controller = "p4";
+					p4.GetComponent<Alexis> ().manager = this;
+					p4HUD.GetComponent<UIManager> ().character = p4;
+				}
+				break;
+			}
+		}
+		//flub
+		if (name == "Flub") {
+			switch(player){
+			case 1:
+				p1 = Instantiate (flub, transform.position, Quaternion.identity) as GameObject;
+				p1.GetComponent<Flub> ().controller = "p1";
+				p1HUD.GetComponent<UIManager>().character = p1;
+				break;
+			case 2:
+				p2 = Instantiate (flub, transform.position, Quaternion.identity) as GameObject;
+				p2.GetComponent<Flub> ().controller = "p2";
+				p2HUD.GetComponent<UIManager> ().character = p2;
+				break;
+			case 3:
+				p3 = Instantiate (flub, transform.position, Quaternion.identity) as GameObject;
+				p3.GetComponent<Flub> ().controller = "p3";
+				p3HUD.GetComponent<UIManager>().character = p3;
+				break;
+			case 4:
+				p4 = Instantiate (flub, transform.position, Quaternion.identity) as GameObject;
+				p4.GetComponent<Flub> ().controller = "p4";
+				p4HUD.GetComponent<UIManager>().character = p3;
+				break;
+			}
+		}
 	}
 }

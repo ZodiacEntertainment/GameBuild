@@ -78,7 +78,7 @@ public class Alexis : ZodiacCharacter {
             //call anim
 			aSource.clip = clips[0];
 			aSource.Play ();
-			manager.StatUpdate (controller, "Attacks");
+			//manager.StatUpdate (controller, "Attacks");
             StartCoroutine(AttackBasicDelay());
         }
 		// special attack
@@ -87,7 +87,7 @@ public class Alexis : ZodiacCharacter {
 			temp.GetComponent<Grenade>().owner = this.gameObject;
             if (!GetComponent<CharacterMovement>().facingRight)
                 temp.GetComponent<Grenade>().HSpeed *= -1;
-			manager.StatUpdate (controller, "Attacks");
+			//manager.StatUpdate (controller, "Attacks");
             StartCoroutine(AttackSpecialDelay());
 		}
         if (Input.GetButtonDown("Fire1") && haveItem){
