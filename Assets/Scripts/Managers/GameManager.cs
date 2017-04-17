@@ -135,15 +135,19 @@ public class GameManager : MonoBehaviour {
 			switch (i) {
 			case 1:
 				p1.transform.position = SP1.position;
+				p1HUD.SetActive (true);
 				break;
 			case 2:
 				p2.transform.position = SP2.position;
+				p2HUD.SetActive (true);
 				break;
 			case 3:
 				p3.transform.position = SP3.position;
+				p3HUD.SetActive (true);
 				break;
 			case 4:
 				p4.transform.position = SP4.position;
+				p4HUD.SetActive (true);
 				break;
 			}
 		}
