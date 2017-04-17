@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -35,9 +36,15 @@ public class GameManager : MonoBehaviour {
 	public int[] MostCoins = new int[]{0,0,0,0};
 	public int[] statRef;
 
+	bool gameStarted = false;
+
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad (this.gameObject);
+	}
+	public void Update(){
+		if (SceneManager.GetActiveScene ().name == "Mode1" && !gameStarted)
+			CreateGame ();
 	}
 
 	public void StatUpdate(string player, string stat){
@@ -134,20 +141,24 @@ public class GameManager : MonoBehaviour {
 		for(int i = 1; i <= DetermineNumOfPlayers(); i++){
 			switch (i) {
 			case 1:
-				p1.transform.position = SP1.position;
+				//p1.transform.position = SP1.position;
 				p1HUD.SetActive (true);
+				//p1.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 2:
 				p2.transform.position = SP2.position;
 				p2HUD.SetActive (true);
+				p2.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 3:
 				p3.transform.position = SP3.position;
 				p3HUD.SetActive (true);
+				p3.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 4:
 				p4.transform.position = SP4.position;
 				p4HUD.SetActive (true);
+				p4.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			}
 		}

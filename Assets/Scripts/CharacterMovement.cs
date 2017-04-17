@@ -10,60 +10,48 @@ public class CharacterMovement : MonoBehaviour {
     Animator anim;
 
     //bool to store if on ground
-    bool grounded = false;
+    public bool grounded = false;
     //radius of circle within with the character checks for ground
     public float groundRadius = .8f;
     //var to determine what objects are considered 'ground'
     public LayerMask whatIsGround;
     public Vector2 groundCheck1;
     public Vector2 groundCheck2;
-    public float offset = .77f;
+    public float leftOffset = .77f;
+    public float rightOffset = .77f;
     public float jumpForce = 1000f;
-	public float fallCap;
-
-    //tell me if jumping
-    public static bool jumping = true;
 
     public float JumpForce { get; private set; }
+
+    SpriteRenderer sprite;
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {   
         //set origin point for raycast
-        groundCheck1.x = gameObject.transform.position.x + offset;
-        groundCheck2.x = gameObject.transform.position.x - offset;
+        groundCheck1.x = gameObject.transform.position.x + rightOffset;
+        groundCheck2.x = gameObject.transform.position.x - leftOffset;
         groundCheck1.y = gameObject.transform.position.y;
         groundCheck2.y = gameObject.transform.position.y;
 
-        //reduce speed when not on the ground because otherwise it feels too slippery
-        if(!grounded && !jumping)
-        {
-            jumping = true;
-            currSpeed -= 2;
-        }
-
-        if (grounded && jumping)
-        {
-            jumping = false;
-            currSpeed = speed;
-        }
-
-        //SAME FOR THIS
-        if (grounded && (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)))
+        //sprint when holding shift
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             currSpeed += 5;
         }
 
-        if (grounded && !jumping && (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift)))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
         {
             currSpeed = speed;
         }
+
+        //Jump when jump key is held
 		//REMEMBER TO CHANGE KEYCODE.SPACE TO A REMAPABLE KEY LATER
 		if (grounded && Input.GetKeyDown(KeyCode.Space))
 		{
@@ -78,9 +66,10 @@ public class CharacterMovement : MonoBehaviour {
     void Flip()
     {
         facingRight = !facingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        sprite.flipX = !facingRight;
+       // Vector3 theScale = transform.localScale;
+       // theScale.x *= -1;
+       // transform.localScale = theScale;
     }
 
     void FixedUpdate () {
