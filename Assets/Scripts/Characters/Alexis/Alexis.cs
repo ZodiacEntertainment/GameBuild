@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Alexis : ZodiacCharacter {
+	public GameManager manager;
 
 	public List<AudioClip> clips;
 	private AudioSource aSource;
+	private Animator anim;
 
     //controller prefix
     public string controller;
@@ -66,6 +68,7 @@ public class Alexis : ZodiacCharacter {
     // Use this for initialization
     void Start () {
 		aSource = GetComponent<AudioSource>();
+		anim = GetComponent<Animator>();
         delayBasic = bCoolDown;
         delaySpecial = spCoolDown;
     }
@@ -75,16 +78,20 @@ public class Alexis : ZodiacCharacter {
         if (Input.GetKeyDown(KeyCode.J) && canAttackBasic) {
             BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             //call anim
+			anim.SetTrigger("BasicAttack");
 			aSource.clip = clips[0];
 			aSource.Play ();
+			//manager.StatUpdate (controller, "Attacks");
             StartCoroutine(AttackBasicDelay());
         }
 		// special attack
 		if (Input.GetKeyDown(KeyCode.K) && canAttackSpecial) {
+			anim.SetTrigger("SpecialAttack");
 			temp = Instantiate(granade, launchPoint.position, Quaternion.identity) as GameObject;
 			temp.GetComponent<Grenade>().owner = this.gameObject;
             if (!GetComponent<CharacterMovement>().facingRight)
                 temp.GetComponent<Grenade>().HSpeed *= -1;
+			//manager.StatUpdate (controller, "Attacks");
             StartCoroutine(AttackSpecialDelay());
 		}
         if (Input.GetButtonDown("Fire1") && haveItem){
