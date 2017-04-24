@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Alexis : ZodiacCharacter {
 
 	public List<AudioClip> clips;
+	public List<AudioClip> dmgTknClips;
 	private AudioSource aSource;
 
     //controller prefix
@@ -85,6 +86,8 @@ public class Alexis : ZodiacCharacter {
 			temp.GetComponent<Grenade>().owner = this.gameObject;
             if (!GetComponent<CharacterMovement>().facingRight)
                 temp.GetComponent<Grenade>().HSpeed *= -1;
+			aSource.clip = clips [1];
+			aSource.Play ();
             StartCoroutine(AttackSpecialDelay());
 		}
         if (Input.GetButtonDown("Fire1") && haveItem){
@@ -125,9 +128,11 @@ public class Alexis : ZodiacCharacter {
         }
     }
 	public override void TakeDamage(int _damage){
-        coins -= _damage;
-		aSource.clip = clips [1];
+		int i = Random.Range (0, 4);
+		coins -= _damage;
+		aSource.clip = dmgTknClips[i];
 		aSource.Play ();
-        Debug.Log("Coins" + coins);
+		Debug.Log ("Damage Taken Track " + i);
+        //Debug.Log("Coins" + coins);
     }
 }
