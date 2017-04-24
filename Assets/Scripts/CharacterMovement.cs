@@ -26,11 +26,15 @@ public class CharacterMovement : MonoBehaviour {
     public float JumpForce { get; private set; }
 
     SpriteRenderer sprite;
+	GameObject blastArea;
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+		if (GetComponent<Alexis> () != null) {
+			blastArea = GetComponent<Alexis> ().BlastArea;
+		}
     }
 
     // Update is called once per frame
@@ -69,6 +73,12 @@ public class CharacterMovement : MonoBehaviour {
     {
         facingRight = !facingRight;
         sprite.flipX = !facingRight;
+		if (GetComponent<Alexis> () != null) {
+			if (facingRight)
+				blastArea.transform.position = new Vector3 (transform.position.x - 1, blastArea.transform.position.y, blastArea.transform.position.z);
+			else
+				blastArea.transform.position = new Vector3 (transform.position.x + 1, blastArea.transform.position.y, blastArea.transform.position.z);
+		}
        // Vector3 theScale = transform.localScale;
        // theScale.x *= -1;
        // transform.localScale = theScale;

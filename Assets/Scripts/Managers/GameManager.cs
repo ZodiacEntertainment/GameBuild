@@ -47,22 +47,22 @@ public class GameManager : MonoBehaviour {
 			CreateGame ();
 	}
 
-	public void StatUpdate(string player, string stat){
+	public void StatUpdate(string player, string stat, int amount){
 		//assign stat to ref
 		DetermineStat(stat);
 		//Increment stat
 		switch(player){
 		case "p1":
-			statRef [0]++;
+			statRef [0] += amount;
 			break;
 		case "p2":
-			statRef [1]++;
+			statRef [1] += amount;
 			break;
 		case "p3":
-			statRef [2]++;
+			statRef [2] += amount;
 			break;
 		case "p4":
-			statRef [3]++;
+			statRef [3] += amount;
 			break;
 		}
 		//assign ref to stat
@@ -151,14 +151,14 @@ public class GameManager : MonoBehaviour {
 				//p2.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 3:
-				p3.transform.position = SP3.position;
+				//p3.transform.position = SP3.position;
 				p3HUD.SetActive (true);
-				p3.GetComponent<CharacterMovement>().grounded = false;
+				//p3.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 4:
-				p4.transform.position = SP4.position;
+				//p4.transform.position = SP4.position;
 				p4HUD.SetActive (true);
-				p4.GetComponent<CharacterMovement>().grounded = false;
+				//p4.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			}
 		}

@@ -81,7 +81,7 @@ public class Alexis : ZodiacCharacter {
 			anim.SetTrigger("BasicAttack");
 			aSource.clip = clips[0];
 			aSource.Play ();
-			//manager.StatUpdate (controller, "Attacks");
+			//manager.StatUpdate (controller, "Attacks", bDamage);
             StartCoroutine(AttackBasicDelay());
         }
 		// special attack
@@ -91,7 +91,7 @@ public class Alexis : ZodiacCharacter {
 			temp.GetComponent<Grenade>().owner = this.gameObject;
             if (!GetComponent<CharacterMovement>().facingRight)
                 temp.GetComponent<Grenade>().HSpeed *= -1;
-			//manager.StatUpdate (controller, "Attacks");
+			//manager.StatUpdate (controller, "Attacks", spDamage);
             StartCoroutine(AttackSpecialDelay());
 		}
 		if (Input.GetAxis(controller + "ItemUse") > 0.5f && haveItem){
@@ -121,6 +121,7 @@ public class Alexis : ZodiacCharacter {
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){
             coins++;
+			manager.StatUpdate (controller, "MC", 1);
             //Debug.Log("Total Coins = " + coins);
             Destroy(other.gameObject);
         }
@@ -136,5 +137,9 @@ public class Alexis : ZodiacCharacter {
 		aSource.clip = clips [1];
 		aSource.Play ();
         Debug.Log("Coins" + coins);
+		manager.StatUpdate (controller, "MDT", _damage);
     }
+	public void AttackUpdate(int amount){
+		manager.StatUpdate (controller, "MDG", amount);
+	}
 }

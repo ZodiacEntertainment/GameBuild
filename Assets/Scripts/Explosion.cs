@@ -14,6 +14,7 @@ public class Explosion : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Character" && other.gameObject.GetInstanceID() != owner.gameObject.GetInstanceID()) {
 			other.GetComponent<ZodiacCharacter>().TakeDamage(damage);
+			owner.GetComponent<Alexis> ().AttackUpdate (damage);
 		}
 	}
 }
