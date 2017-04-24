@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour {
 	public bool facingRight = true;
 
     Animator anim;
+	public string controller;
 
     //bool to store if on ground
     public bool grounded = false;
@@ -20,6 +21,7 @@ public class CharacterMovement : MonoBehaviour {
     public float leftOffset = .77f;
     public float rightOffset = .77f;
     public float jumpForce = 1000f;
+	public float runSpeed;
 
     public float JumpForce { get; private set; }
 
@@ -41,19 +43,19 @@ public class CharacterMovement : MonoBehaviour {
         groundCheck2.y = gameObject.transform.position.y;
 
         //sprint when holding shift
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+		if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetAxis(controller + "Run") > 0f)
         {
-            currSpeed += 5;
+            currSpeed += runSpeed;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
+		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift) || Input.GetAxis(controller + "Run") == 0f)
         {
             currSpeed = speed;
         }
 
         //Jump when jump key is held
 		//REMEMBER TO CHANGE KEYCODE.SPACE TO A REMAPABLE KEY LATER
-		if (grounded && Input.GetKeyDown(KeyCode.Space))
+		if (grounded && Input.GetAxis(controller + "Jump") > 0.5f || Input.GetKeyDown(KeyCode.Space))
 		{
 			anim.SetBool("Ground", false);
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
@@ -84,7 +86,7 @@ public class CharacterMovement : MonoBehaviour {
 
 
         //get direction of arrow key pressed (also works with wasd)
-		float move = Input.GetAxis ("Horizontal");
+		float move = Input.GetAxis (controller + "Horizontal");
 
         anim.SetFloat("Speed", Mathf.Abs(move));
 
