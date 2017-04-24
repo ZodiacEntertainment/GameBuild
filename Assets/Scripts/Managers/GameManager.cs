@@ -146,9 +146,9 @@ public class GameManager : MonoBehaviour {
 				//p1.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 2:
-				p2.transform.position = SP2.position;
+				//p2.transform.position = SP2.position;
 				p2HUD.SetActive (true);
-				p2.GetComponent<CharacterMovement>().grounded = false;
+				//p2.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 3:
 				p3.transform.position = SP3.position;
@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour {
 					p1 = Instantiate (alexis, h1.position, Quaternion.identity) as GameObject;
 					p1.transform.SetParent (this.transform, true);
 					p1.GetComponent<Alexis> ().controller = "p1";
+					p1.GetComponent<CharacterMovement>().controller = "p1";
 					p1.GetComponent<Alexis> ().manager = this;
 					p1HUD.GetComponent<UIManager> ().character = p1;
 				}
@@ -181,6 +182,7 @@ public class GameManager : MonoBehaviour {
 					p2 = Instantiate (alexis, h2.position, Quaternion.identity) as GameObject;
 					p2.transform.SetParent (this.transform, true);
 					p2.GetComponent<Alexis> ().controller = "p2";
+					p2.GetComponent<CharacterMovement>().controller = "p2";
 					p2.GetComponent<Alexis> ().manager = this;
 					p2HUD.GetComponent<UIManager> ().character = p2;
 				}
@@ -190,6 +192,7 @@ public class GameManager : MonoBehaviour {
 					p3 = Instantiate (alexis, h3.position, Quaternion.identity) as GameObject;
 					p3.transform.SetParent (this.transform, true);
 					p3.GetComponent<Alexis> ().controller = "p3";
+					p3.GetComponent<CharacterMovement>().controller = "p3";
 					p3.GetComponent<Alexis> ().manager = this;
 					p3HUD.GetComponent<UIManager> ().character = p3;
 				}
@@ -199,6 +202,7 @@ public class GameManager : MonoBehaviour {
 					p4 = Instantiate (alexis, h4.position, Quaternion.identity) as GameObject;
 					p4.transform.SetParent (this.transform, true);
 					p4.GetComponent<Alexis> ().controller = "p4";
+					p4.GetComponent<CharacterMovement>().controller = "p4";
 					p4.GetComponent<Alexis> ().manager = this;
 					p4HUD.GetComponent<UIManager> ().character = p4;
 				}
