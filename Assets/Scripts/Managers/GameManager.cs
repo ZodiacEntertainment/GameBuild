@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour {
 	public Transform SP3;
 	public Transform SP4;
 
+    //a number from 1 to 4 representing which player was whatever closest to the chariot.
+    //index represents position, number represents player.
+    public int[] score;
+
 	public int[] MostDamageTaken = new int[]{0,0,0,0};
 	public int[] MostTimesInFirst = new int[]{0,0,0,0};
 	public int[] MostDamageGiven = new int[]{0,0,0,0};
