@@ -1,0 +1,100 @@
+﻿Merge remote-tracking branch 'refs/remotes/origin/AnimationImplementation' into Mike's
+
+# Conflicts:
+#	Assets/Scenes/Mode1.unity
+#	Assets/Score.cs.meta
+#	Assets/Scripts/Characters/Character.cs.meta
+#	Assets/Scripts/Characters/Flub/Flub.cs
+#	Assets/Scripts/Characters/ItemDrop.cs.meta
+#	Assets/Scripts/Characters/Mirina.cs.meta
+#	Assets/Scripts/Characters/Tamiel.cs.meta
+#	Assets/Scripts/Explosion.cs.meta
+#	Assets/Scripts/Projectile.cs
+#	Assets/Scripts/Score.cs
+#	Assets/Scripts/Score.cs.meta
+#	Assets/Scripts/UI Scripts/LoadNextScene.cs.meta
+#	Assets/Scripts/UI Scripts/QuitGame.cs.meta
+#	Assets/Scripts/UI Scripts/UIManager.cs
+#	Assets/Scripts/UI Scripts/UIManager.cs.meta
+#	Assets/TransferScripts/CoinGeneration.cs.meta
+#	Assets/UIManager.cs.meta
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch Mike's
+# Your branch is ahead of 'origin/Mike's' by 2 commits.
+#   (use "git push" to publish your local commits)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   Assets/Art/Characters/Anims/Alexis.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisAnimationController.overrideController
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisAnimationController.overrideController.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisBasicAttack.anim
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisBasicAttack.anim.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisDamage.anim
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisDamage.anim.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisIdle.anim
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisIdle.anim.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisJump1.anim
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisJump1.anim.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisJump2.anim
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisJump2.anim.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisRun.anim
+#	new file:   Assets/Art/Characters/Anims/Alexis/AlexisRun.anim.meta
+#	renamed:    Assets/Art/Characters/Anims/AlexisSustainedAttack.anim -> Assets/Art/Characters/Anims/Alexis/AlexisSustainedAttack.anim
+#	renamed:    Assets/Art/Characters/Anims/AlexisSustainedAttack.anim.meta -> Assets/Art/Characters/Anims/Alexis/AlexisSustainedAttack.anim.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/SpriteSheets.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/SpriteSheets/AlexisAttackEdited.png
+#	new file:   Assets/Art/Characters/Anims/Alexis/SpriteSheets/AlexisAttackEdited.png.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/SpriteSheets/alexis run spritesheet.png
+#	new file:   Assets/Art/Characters/Anims/Alexis/SpriteSheets/alexis run spritesheet.png.meta
+#	renamed:    Assets/Art/Characters/Anims/main attack sprite sheet.png -> Assets/Art/Characters/Anims/Alexis/SpriteSheets/main attack sprite sheet.png
+#	renamed:    Assets/Art/Characters/Anims/main attack sprite sheet.png.meta -> Assets/Art/Characters/Anims/Alexis/SpriteSheets/main attack sprite sheet.png.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/SpriteSheets/new take damage spritesheet.png
+#	new file:   Assets/Art/Characters/Anims/Alexis/SpriteSheets/new take damage spritesheet.png.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/SpriteSheets/rsz_1alexis_idle_spritesheet_edit.png
+#	new file:   Assets/Art/Characters/Anims/Alexis/SpriteSheets/rsz_1alexis_idle_spritesheet_edit.png.meta
+#	new file:   Assets/Art/Characters/Anims/Alexis/SpriteSheets/rsz_jump_anim_sprite_sheet_edit.png
+#	renamed:    Assets/Art/Characters/Anims/jump anim sprite sheet.png.meta -> Assets/Art/Characters/Anims/Alexis/SpriteSheets/rsz_jump_anim_sprite_sheet_edit.png.meta
+#	renamed:    Assets/Art/Characters/Anims/sustain sprite sheet.png -> Assets/Art/Characters/Anims/Alexis/SpriteSheets/sustain sprite sheet.png
+#	renamed:    Assets/Art/Characters/Anims/sustain sprite sheet.png.meta -> Assets/Art/Characters/Anims/Alexis/SpriteSheets/sustain sprite sheet.png.meta
+#	renamed:    Assets/Test Assets/CharacterMovementTest/CharacterAnimator.controller -> Assets/Art/Characters/Anims/CharacterAnimator.controller
+#	renamed:    Assets/Test Assets/CharacterMovementTest/CharacterAnimator.controller.meta -> Assets/Art/Characters/Anims/CharacterAnimator.controller.meta
+#	deleted:    Assets/Art/Characters/Anims/jump anim sprite sheet.png
+#	modified:   Assets/Scenes/CharSelect.unity
+#	modified:   Assets/Scenes/MainMenu.unity
+#	modified:   Assets/Scripts/CharacterMovement.cs
+#	deleted:    Assets/Scripts/Load.cs
+#	deleted:    Assets/Scripts/LoadScene.cs
+#	modified:   Assets/Scripts/Managers/UIManager.cs.meta
+#	modified:   Assets/Scripts/Projectile.cs
+#	new file:   Assets/Scripts/Score.cs
+#	renamed:    Assets/Scripts/Load.cs.meta -> Assets/Scripts/Score.cs.meta
+#	new file:   Assets/Scripts/UI Scripts.meta
+#	new file:   Assets/Scripts/UI Scripts/LoadNextScene.cs
+#	renamed:    Assets/Scripts/LoadScene.cs.meta -> Assets/Scripts/UI Scripts/LoadNextScene.cs.meta
+#	new file:   Assets/Scripts/UI Scripts/QuitGame.cs
+#	new file:   Assets/Scripts/UI Scripts/QuitGame.cs.meta
+#	renamed:    Assets/Scripts/TestPopup.cs -> Assets/Scripts/UI Scripts/TestPopup.cs
+#	renamed:    Assets/Scripts/TestPopup.cs.meta -> Assets/Scripts/UI Scripts/TestPopup.cs.meta
+#	renamed:    Assets/Scripts/UIController.cs -> Assets/Scripts/UI Scripts/UIController.cs
+#	renamed:    Assets/Scripts/UIController.cs.meta -> Assets/Scripts/UI Scripts/UIController.cs.meta
+#	new file:   Assets/Scripts/UI Scripts/UIManager.cs
+#	renamed:    Assets/Scripts/test.cs.meta -> Assets/Scripts/UI Scripts/UIManager.cs.meta
+#	renamed:    Assets/Scripts/testnav.cs -> Assets/Scripts/UI Scripts/testnav.cs
+#	renamed:    Assets/Scripts/testnav.cs.meta -> Assets/Scripts/UI Scripts/testnav.cs.meta
+#	deleted:    Assets/Scripts/test.cs
+#	deleted:    Assets/Scripts/testPlay.cs
+#	deleted:    Assets/Scripts/testPlay.cs.meta
+#	deleted:    Assets/Scripts/testQuit.cs
+#	deleted:    Assets/Scripts/testQuit.cs.meta
+#
+

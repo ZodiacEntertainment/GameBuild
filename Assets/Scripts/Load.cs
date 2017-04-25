@@ -8,7 +8,7 @@ public class Load : MonoBehaviour {
     public void OnClick()
     {
         SceneManager.LoadScene(sceneToLoad);
-        Debug.Log("It's been clicked, son.");
+        //Debug.Log("It's been clicked, son.");
     }
 
 }

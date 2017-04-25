@@ -15,17 +15,11 @@ public class ShotGunMain : MonoBehaviour{
 
     public void BasicAttack() {
         if(target != null) {
-            switch (target.name){
-                case "Alexis":
-                    target.gameObject.GetComponent<Alexis>().TakeDamage(damage);
-                    break;
-                case "Flub":
-                    target.gameObject.GetComponent<Flub>().TakeDamage(damage);
-                    break;
-                default:
-                    //Debug.Log(target.gameObject.name);
-                    break;
-            }
+			if (target.tag == "Character" && target.gameObject.GetInstanceID() != owner.gameObject.GetInstanceID()) {
+				target.GetComponent<ZodiacCharacter>().TakeDamage(damage);
+				Debug.Log (target.GetComponent<Alexis>().controller);
+				owner.GetComponent<Alexis> ().AttackUpdate (damage);
+			}
         }
     }
 }

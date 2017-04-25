@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Alexis : ZodiacCharacter {
+	public GameManager manager;
 
 	public List<AudioClip> clips;
 	public List<AudioClip> dmgTknClips;
 	private AudioSource aSource;
+	private Animator anim;
 
     //controller prefix
     public string controller;
@@ -67,21 +69,25 @@ public class Alexis : ZodiacCharacter {
     // Use this for initialization
     void Start () {
 		aSource = GetComponent<AudioSource>();
+		anim = GetComponent<Animator>();
         delayBasic = bCoolDown;
         delaySpecial = spCoolDown;
     }
 	// Update is called once per frame
 	void FixedUpdate () {
 		//basic attack
-        if (Input.GetKeyDown(KeyCode.J) && canAttackBasic) {
+		if (Input.GetAxis(controller + "BA") > 0.5f && canAttackBasic) {
             BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             //call anim
+			anim.SetTrigger("BasicAttack");
 			aSource.clip = clips[0];
 			aSource.Play ();
+			//manager.StatUpdate (controller, "Attacks", bDamage);
             StartCoroutine(AttackBasicDelay());
         }
 		// special attack
-		if (Input.GetKeyDown(KeyCode.K) && canAttackSpecial) {
+		if (Input.GetAxis(controller + "SpA") > 0.5f && canAttackSpecial) {
+			anim.SetTrigger("SpecialAttack");
 			temp = Instantiate(granade, launchPoint.position, Quaternion.identity) as GameObject;
 			temp.GetComponent<Grenade>().owner = this.gameObject;
             if (!GetComponent<CharacterMovement>().facingRight)
@@ -90,12 +96,12 @@ public class Alexis : ZodiacCharacter {
 			aSource.Play ();
             StartCoroutine(AttackSpecialDelay());
 		}
-        if (Input.GetButtonDown("Fire1") && haveItem){
+		if (Input.GetAxis(controller + "ItemUse") > 0.5f && haveItem){
             // Use the pickup
             Debug.Log("Used " + inventory);
             haveItem = false;
         }
-        if (Input.GetButtonDown("Fire2") && haveItem){
+		if (Input.GetAxis(controller + "ItemDrop") > 0.5f && haveItem){
             // Drop the pickup
             inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
             inventory.SetActive(true);
@@ -117,6 +123,7 @@ public class Alexis : ZodiacCharacter {
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){
             coins++;
+			manager.StatUpdate (controller, "MC", 1);
             //Debug.Log("Total Coins = " + coins);
             Destroy(other.gameObject);
         }
@@ -132,7 +139,11 @@ public class Alexis : ZodiacCharacter {
 		coins -= _damage;
 		aSource.clip = dmgTknClips[i];
 		aSource.Play ();
+        Debug.Log("Coins" + coins);
+		manager.StatUpdate (controller, "MDT", _damage);
 		Debug.Log ("Damage Taken Track " + i);
-        //Debug.Log("Coins" + coins);
     }
+	public void AttackUpdate(int amount){
+		manager.StatUpdate (controller, "MDG", amount);
+	}
 }

@@ -14,7 +14,7 @@ public class FallCatch : MonoBehaviour {
 	
 	}
 
-	public void OnTriggerEnter2D (Collider2D other){
+	public void OnTriggerExit2D (Collider2D other){
 		if (other.tag == "Character") {
 			other.gameObject.transform.position = respawn.position;
 		}
