@@ -6,6 +6,7 @@ public class Alexis : ZodiacCharacter {
 	public GameManager manager;
 
 	public List<AudioClip> clips;
+	public List<AudioClip> dmgTknClips;
 	private AudioSource aSource;
 	private Animator anim;
 
@@ -91,7 +92,8 @@ public class Alexis : ZodiacCharacter {
 			temp.GetComponent<Grenade>().owner = this.gameObject;
             if (!GetComponent<CharacterMovement>().facingRight)
                 temp.GetComponent<Grenade>().HSpeed *= -1;
-			//manager.StatUpdate (controller, "Attacks", spDamage);
+			aSource.clip = clips [1];
+			aSource.Play ();
             StartCoroutine(AttackSpecialDelay());
 		}
 		if (Input.GetAxis(controller + "ItemUse") > 0.5f && haveItem){
@@ -133,11 +135,12 @@ public class Alexis : ZodiacCharacter {
         }
     }
 	public override void TakeDamage(int _damage){
-        coins -= _damage;
-		aSource.clip = clips [1];
+		int i = Random.Range (0, 4);
+		coins -= _damage;
+		aSource.clip = dmgTknClips[i];
 		aSource.Play ();
-        Debug.Log("Coins" + coins);
-		manager.StatUpdate (controller, "MDT", _damage);
+		Debug.Log ("Damage Taken Track " + i);
+        //Debug.Log("Coins" + coins);
     }
 	public void AttackUpdate(int amount){
 		manager.StatUpdate (controller, "MDG", amount);
