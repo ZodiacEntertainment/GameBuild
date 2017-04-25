@@ -6,6 +6,9 @@ public class CharacterMovement : MonoBehaviour {
 	public float speed = 10f;
     public float currSpeed = 10f;
 	public bool facingRight = true;
+	public AudioClip jumpClip;
+
+	private AudioSource jumpSource;
 
     Animator anim;
 	public string controller;
@@ -35,6 +38,7 @@ public class CharacterMovement : MonoBehaviour {
 		if (GetComponent<Alexis> () != null) {
 			blastArea = GetComponent<Alexis> ().BlastArea;
 		}
+		jumpSource = GetComponent<AudioSource> ();
     }
 
     // Update is called once per frame
@@ -64,6 +68,8 @@ public class CharacterMovement : MonoBehaviour {
 		{
 			anim.SetBool("Ground", false);
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+			jumpSource.clip = jumpClip;
+			jumpSource.Play();
 		}
 
     }
