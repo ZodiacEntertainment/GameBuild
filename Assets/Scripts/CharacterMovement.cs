@@ -49,7 +49,8 @@ public class CharacterMovement : MonoBehaviour {
         //sprint when holding shift
 		if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetAxis(controller + "Run") > 0f)
         {
-            currSpeed += runSpeed;
+			if(currSpeed == speed)
+				currSpeed = runSpeed + currSpeed;
         }
 
 		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift) || Input.GetAxis(controller + "Run") == 0f)
