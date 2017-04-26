@@ -30,10 +30,6 @@ public class GameManager : MonoBehaviour {
 	public Transform SP3;
 	public Transform SP4;
 
-    //a number from 1 to 4 representing which player was whatever closest to the chariot.
-    //index represents position, number represents player.
-    public int[] score;
-
 	public int[] MostDamageTaken = new int[]{0,0,0,0};
 	public int[] MostTimesInFirst = new int[]{0,0,0,0};
 	public int[] MostDamageGiven = new int[]{0,0,0,0};
@@ -45,8 +41,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad (this.gameObject);
-        score = new int[DetermineNumOfPlayers()];
-    }
+	}
 	public void Update(){
 		if (SceneManager.GetActiveScene ().name == "Mode1" && !gameStarted)
 			CreateGame ();
@@ -58,16 +53,16 @@ public class GameManager : MonoBehaviour {
 		//Increment stat
 		switch(player){
 		case "p1":
-			statRef [0]+= amount;
+			statRef [0] += amount;
 			break;
 		case "p2":
-			statRef [1]+= amount;
+			statRef [1] += amount;
 			break;
 		case "p3":
-			statRef [2]+=amount;
+			statRef [2] += amount;
 			break;
 		case "p4":
-			statRef [3]+=amount;
+			statRef [3] += amount;
 			break;
 		}
 		//assign ref to stat
@@ -151,19 +146,19 @@ public class GameManager : MonoBehaviour {
 				//p1.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 2:
-				p2.transform.position = SP2.position;
+				//p2.transform.position = SP2.position;
 				p2HUD.SetActive (true);
-				p2.GetComponent<CharacterMovement>().grounded = false;
+				//p2.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 3:
-				p3.transform.position = SP3.position;
+				//p3.transform.position = SP3.position;
 				p3HUD.SetActive (true);
-				p3.GetComponent<CharacterMovement>().grounded = false;
+				//p3.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 4:
-				p4.transform.position = SP4.position;
+				//p4.transform.position = SP4.position;
 				p4HUD.SetActive (true);
-				p4.GetComponent<CharacterMovement>().grounded = false;
+				//p4.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			}
 		}
@@ -177,6 +172,7 @@ public class GameManager : MonoBehaviour {
 					p1 = Instantiate (alexis, h1.position, Quaternion.identity) as GameObject;
 					p1.transform.SetParent (this.transform, true);
 					p1.GetComponent<Alexis> ().controller = "p1";
+					p1.GetComponent<CharacterMovement>().controller = "p1";
 					p1.GetComponent<Alexis> ().manager = this;
 					p1HUD.GetComponent<UIManager> ().character = p1;
 				}
@@ -186,6 +182,7 @@ public class GameManager : MonoBehaviour {
 					p2 = Instantiate (alexis, h2.position, Quaternion.identity) as GameObject;
 					p2.transform.SetParent (this.transform, true);
 					p2.GetComponent<Alexis> ().controller = "p2";
+					p2.GetComponent<CharacterMovement>().controller = "p2";
 					p2.GetComponent<Alexis> ().manager = this;
 					p2HUD.GetComponent<UIManager> ().character = p2;
 				}
@@ -195,6 +192,7 @@ public class GameManager : MonoBehaviour {
 					p3 = Instantiate (alexis, h3.position, Quaternion.identity) as GameObject;
 					p3.transform.SetParent (this.transform, true);
 					p3.GetComponent<Alexis> ().controller = "p3";
+					p3.GetComponent<CharacterMovement>().controller = "p3";
 					p3.GetComponent<Alexis> ().manager = this;
 					p3HUD.GetComponent<UIManager> ().character = p3;
 				}
@@ -204,6 +202,7 @@ public class GameManager : MonoBehaviour {
 					p4 = Instantiate (alexis, h4.position, Quaternion.identity) as GameObject;
 					p4.transform.SetParent (this.transform, true);
 					p4.GetComponent<Alexis> ().controller = "p4";
+					p4.GetComponent<CharacterMovement>().controller = "p4";
 					p4.GetComponent<Alexis> ().manager = this;
 					p4HUD.GetComponent<UIManager> ().character = p4;
 				}

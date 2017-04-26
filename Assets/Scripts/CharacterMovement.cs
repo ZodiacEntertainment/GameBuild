@@ -28,7 +28,6 @@ public class CharacterMovement : MonoBehaviour {
 
     public float JumpForce { get; private set; }
 
-
     SpriteRenderer sprite;
 	GameObject blastArea;
 
@@ -36,11 +35,10 @@ public class CharacterMovement : MonoBehaviour {
     void Start () {
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-        if (GetComponent<Alexis>() != null) {
-            blastArea = GetComponent<Alexis>().BlastArea;
-        }
+		if (GetComponent<Alexis> () != null) {
+			blastArea = GetComponent<Alexis> ().BlastArea;
+		}
 		jumpSource = GetComponent<AudioSource> ();
-        
     }
 
     // Update is called once per frame
@@ -94,6 +92,7 @@ public class CharacterMovement : MonoBehaviour {
     }
 
     void FixedUpdate () {
+		
         //check if player is on ground
         if (Physics2D.Raycast(groundCheck1, Vector2.down, groundRadius, whatIsGround) || Physics2D.Raycast(groundCheck2, Vector2.down, groundRadius, whatIsGround)) grounded = true;
         else grounded = false;

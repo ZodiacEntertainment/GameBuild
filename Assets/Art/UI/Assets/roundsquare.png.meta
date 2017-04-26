@@ -1,12 +1,7 @@
 fileFormatVersion: 2
 guid: c17e94971b639a84da15cfdbb51bd5af
-<<<<<<< HEAD
-timeCreated: 1488817980
-licenseType: Pro
-=======
 timeCreated: 1489525422
 licenseType: Free
->>>>>>> refs/remotes/origin/Mike's
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -35,11 +30,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-<<<<<<< HEAD
-    aniso: -1
-=======
     aniso: 16
->>>>>>> refs/remotes/origin/Mike's
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -52,11 +43,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-=======
   spriteBorder: {x: 12, y: 12, z: 12, w: 12}
->>>>>>> refs/remotes/origin/Mike's
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   spriteTessellationDetail: -1

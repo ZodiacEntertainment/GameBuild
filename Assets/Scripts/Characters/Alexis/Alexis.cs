@@ -139,8 +139,9 @@ public class Alexis : ZodiacCharacter {
 		coins -= _damage;
 		aSource.clip = dmgTknClips[i];
 		aSource.Play ();
+        Debug.Log("Coins" + coins);
+		manager.StatUpdate (controller, "MDT", _damage);
 		Debug.Log ("Damage Taken Track " + i);
-        //Debug.Log("Coins" + coins);
     }
 	public void AttackUpdate(int amount){
 		manager.StatUpdate (controller, "MDG", amount);
