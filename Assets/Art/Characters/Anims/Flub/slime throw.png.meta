@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: af0c984f6a2ea5744a3f85ccb48e5ae0
+timeCreated: 1493155102
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: slime throw_0
+    21300002: slime throw_1
+    21300004: slime throw_2
+    21300006: slime throw_3
+    21300008: slime throw_4
+    21300010: slime throw_5
+    21300012: slime throw_6
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: slime throw_0
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 152
+        width: 243
+        height: 110
+      alignment: 9
+      pivot: {x: 0.20629531, y: 0.3177475}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slime throw_1
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 153
+        width: 243
+        height: 110
+      alignment: 9
+      pivot: {x: 0.30199692, y: 0.34690788}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slime throw_2
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 151
+        width: 243
+        height: 110
+      alignment: 9
+      pivot: {x: 0.43850023, y: 0.45656157}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slime throw_3
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 399
+        width: 243
+        height: 110
+      alignment: 9
+      pivot: {x: 0.48631656, y: 0.37073642}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slime throw_4
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 400
+        width: 243
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5147494, y: 0.25477767}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slime throw_5
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 400
+        width: 243
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5186788, y: 0.31119856}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slime throw_6
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 402
+        width: 243
+        height: 110
+      alignment: 9
+      pivot: {x: 0.58829784, y: 0.32192826}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

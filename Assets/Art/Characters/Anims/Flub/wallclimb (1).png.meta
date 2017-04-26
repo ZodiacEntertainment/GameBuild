@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: 12f3e32fb406df94b80aa2a589de76a0
+timeCreated: 1493154500
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: wallclimb (1)_0
+    21300002: wallclimb (1)_1
+    21300004: wallclimb (1)_2
+    21300006: wallclimb (1)_3
+    21300008: wallclimb (1)_4
+    21300010: wallclimb (1)_5
+    21300012: wallclimb (1)_6
+    21300014: wallclimb (1)_7
+    21300016: wallclimb (1)_8
+    21300018: wallclimb (1)_9
+    21300020: wallclimb (1)_10
+    21300022: wallclimb (1)_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wallclimb (1)_0
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 465
+        width: 71
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_1
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 465
+        width: 76
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_2
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 457
+        width: 91
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_3
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 469
+        width: 103
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_4
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 465
+        width: 141
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_5
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 265
+        width: 157
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_6
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 266
+        width: 116
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_7
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 266
+        width: 123
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_8
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 273
+        width: 103
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_9
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 266
+        width: 91
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_10
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 80
+        width: 76
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallclimb (1)_11
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 82
+        width: 71
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
