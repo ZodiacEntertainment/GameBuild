@@ -135,6 +135,7 @@ public class Alexis : ZodiacCharacter {
         }
     }
 	public override void TakeDamage(int _damage){
+		anim.SetTrigger ("TakeDamage");
 		int i = Random.Range (0, 4);
 		coins -= _damage;
 		aSource.clip = dmgTknClips[i];
