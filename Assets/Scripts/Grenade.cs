@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Grenade : MonoBehaviour {
 
@@ -8,10 +9,12 @@ public class Grenade : MonoBehaviour {
 	public float launchForce;
 	public GameObject explosion;
 	public GameObject owner;
+	public float life;
 
 	// Use this for initialization
 	void Start () {
-		Destroy (this.gameObject, 3f);
+		StartCoroutine (LifeSpan());
+		//Destroy (this.gameObject, 3f);
 		GetComponent<Rigidbody2D>().AddForce(new Vector2(0, launchForce));
 	}
 	
@@ -20,9 +23,21 @@ public class Grenade : MonoBehaviour {
 		move = new Vector2 (HSpeed, 0f);
 		transform.Translate (move * Time.deltaTime);
 	}
-	public void OnDestroy(){
+
+	public IEnumerator LifeSpan(){
+		yield return new WaitForSeconds (life);
+		SpawnExplosion ();
+	}
+	public void SpawnExplosion(){
+		Destroy (gameObject);
 		GameObject temp;
 		temp = Instantiate(explosion,transform.position,Quaternion.identity) as GameObject;
 		temp.GetComponent<Explosion> ().owner = owner;
+	}
+	public void OnTriggerEnter2D(Collider2D other){
+		if (other.tag == "Character") {
+			if (other.gameObject.GetInstanceID() != owner.gameObject.GetInstanceID())
+				SpawnExplosion ();
+		}
 	}
 }
