@@ -10,8 +10,8 @@ public class Alexis : ZodiacCharacter {
 	private AudioSource aSource;
 	private Animator anim;
 
-    //controller prefix
-    public string controller;
+    //controller prefix in parent
+    //public string controller;
 
     // Movement
     private int speed; // Speed tier 1-6
