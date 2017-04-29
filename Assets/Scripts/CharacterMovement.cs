@@ -69,7 +69,7 @@ public class CharacterMovement : MonoBehaviour {
 		if (grounded && Input.GetAxis(controller + "Jump") > 0.5f || Input.GetKeyDown(KeyCode.Space))
 		{
 			anim.SetBool("Ground", false);
-			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce * 8));
 			jumpSource.clip = jumpClip;
 			jumpSource.Play();
 		}
@@ -108,9 +108,12 @@ public class CharacterMovement : MonoBehaviour {
 
         anim.SetFloat("vSpeed", GetComponent<Rigidbody2D>().velocity.y);
 
-
+		float move;
         //get direction of arrow key pressed (also works with wasd)
-		float move = Input.GetAxis (controller + "Horizontal");
+		if (Input.GetAxis (controller + "Horizontal") > 0f)
+			move = Input.GetAxis (controller + "Horizontal");
+		else
+			move = Input.GetAxis ("Horizontal");
 
         anim.SetFloat("Speed", Mathf.Abs(move));
 
