@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -37,12 +38,16 @@ public class GameManager : MonoBehaviour {
 	public int[] statRef;
 
 	bool gameStarted = false;
+	public GameObject playerInFirst;
+	bool onePlayer = false;
 
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad (this.gameObject);
 	}
 	public void Update(){
+		if(gameStarted)
+			PlayerPlacement ();
 		if (SceneManager.GetActiveScene ().name == "Mode1" && !gameStarted)
 			CreateGame ();
 	}
@@ -137,26 +142,27 @@ public class GameManager : MonoBehaviour {
 		return players;
 	}
 	public void CreateGame(){
+		gameStarted = true;
 		//spawn character for game
 		for(int i = 1; i <= DetermineNumOfPlayers(); i++){
 			switch (i) {
 			case 1:
-				//p1.transform.position = SP1.position;
+				p1.transform.position = SP1.position;
 				p1HUD.SetActive (true);
 				//p1.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 2:
-				//p2.transform.position = SP2.position;
+				p2.transform.position = SP2.position;
 				p2HUD.SetActive (true);
 				//p2.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 3:
-				//p3.transform.position = SP3.position;
+				p3.transform.position = SP3.position;
 				p3HUD.SetActive (true);
 				//p3.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 4:
-				//p4.transform.position = SP4.position;
+				p4.transform.position = SP4.position;
 				p4HUD.SetActive (true);
 				//p4.GetComponent<CharacterMovement>().grounded = false;
 				break;
@@ -174,7 +180,10 @@ public class GameManager : MonoBehaviour {
 					p1.GetComponent<Alexis> ().controller = "p1";
 					p1.GetComponent<CharacterMovement>().controller = "p1";
 					p1.GetComponent<Alexis> ().manager = this;
+					p1.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P1";
+					p1.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.red;
 					p1HUD.GetComponent<UIManager> ().character = p1;
+					p1HUD.SetActive (true);
 				}
 				break;
 			case 2:
@@ -184,7 +193,10 @@ public class GameManager : MonoBehaviour {
 					p2.GetComponent<Alexis> ().controller = "p2";
 					p2.GetComponent<CharacterMovement>().controller = "p2";
 					p2.GetComponent<Alexis> ().manager = this;
+					p2.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P2";
+					p2.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.green;
 					p2HUD.GetComponent<UIManager> ().character = p2;
+					p2HUD.SetActive (true);
 				}
 				break;
 			case 3:
@@ -194,7 +206,10 @@ public class GameManager : MonoBehaviour {
 					p3.GetComponent<Alexis> ().controller = "p3";
 					p3.GetComponent<CharacterMovement>().controller = "p3";
 					p3.GetComponent<Alexis> ().manager = this;
+					p3.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P3";
+					p3.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.blue;
 					p3HUD.GetComponent<UIManager> ().character = p3;
+					p3HUD.SetActive (true);
 				}
 				break;
 			case 4:
@@ -204,7 +219,10 @@ public class GameManager : MonoBehaviour {
 					p4.GetComponent<Alexis> ().controller = "p4";
 					p4.GetComponent<CharacterMovement>().controller = "p4";
 					p4.GetComponent<Alexis> ().manager = this;
+					p4.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P4";
+					p4.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.black;
 					p4HUD.GetComponent<UIManager> ().character = p4;
+					p4HUD.SetActive (true);
 				}
 				break;
 			}
@@ -233,6 +251,61 @@ public class GameManager : MonoBehaviour {
 				p4HUD.GetComponent<UIManager>().character = p3;
 				break;
 			}
+		}
+	}
+
+	public void PlayerPlacement(){
+		switch(DetermineNumOfPlayers()){
+		case 0:
+			Debug.Log ("No players Selected");
+			break;
+		case 1:
+			if(!onePlayer){
+				if (p1 != null) {
+					playerInFirst = p1;
+					StatUpdate (playerInFirst.GetComponent<ZodiacCharacter>().controller, "MTIF", 1);
+				}
+				else{
+					if (p2 != null) {
+						playerInFirst = p2;
+						StatUpdate (playerInFirst.GetComponent<ZodiacCharacter>().controller, "MTIF", 1);
+					}
+					else{
+						if (p3 != null) {
+							playerInFirst = p3;
+							StatUpdate (playerInFirst.GetComponent<ZodiacCharacter>().controller, "MTIF", 1);
+						}
+						else{
+							if (p4 != null) {
+								playerInFirst = p4;
+								StatUpdate (playerInFirst.GetComponent<ZodiacCharacter>().controller, "MTIF", 1);
+							}
+						}
+					}
+				}
+			}
+			break;
+		default:
+			if (p4 != null && p4 != playerInFirst && p4.transform.position.x > playerInFirst.transform.position.x) {
+				playerInFirst = p4;
+				StatUpdate (playerInFirst.GetComponent<ZodiacCharacter>().controller, "MTIF", 1);
+			} else {
+				if (p3 != null && p3 != playerInFirst && p3.transform.position.x > playerInFirst.transform.position.x) {
+					playerInFirst = p3;
+					StatUpdate (playerInFirst.GetComponent<ZodiacCharacter> ().controller, "MTIF", 1);
+				} else {
+					if (p2 != null && p2 != playerInFirst && p2.transform.position.x > playerInFirst.transform.position.x) {
+						playerInFirst = p2;
+						StatUpdate (playerInFirst.GetComponent<ZodiacCharacter> ().controller, "MTIF", 1);
+					} else {
+						if (p1 != null && p1 != playerInFirst && p1.transform.position.x > playerInFirst.transform.position.x) {
+							playerInFirst = p1;
+							StatUpdate (playerInFirst.GetComponent<ZodiacCharacter> ().controller, "MTIF", 1);
+						}
+					}
+				}
+			}
+			break;
 		}
 	}
 }

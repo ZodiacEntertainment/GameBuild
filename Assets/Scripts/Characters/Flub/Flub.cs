@@ -7,8 +7,8 @@ public class Flub : ZodiacCharacter {
 	public List<AudioClip> clips;
 	private AudioSource aSource;
 
-    //controller prefix
-    public string controller;
+    //controller prefix in parent
+    //public string controller;
 
     // Movement
     private int speed; // Speed tier 1-6

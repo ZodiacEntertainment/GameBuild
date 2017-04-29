@@ -10,8 +10,8 @@ public class Alexis : ZodiacCharacter {
 	private AudioSource aSource;
 	private Animator anim;
 
-    //controller prefix
-    public string controller;
+    //controller prefix in parent
+    //public string controller;
 
     // Movement
     private int speed; // Speed tier 1-6
@@ -135,6 +135,7 @@ public class Alexis : ZodiacCharacter {
         }
     }
 	public override void TakeDamage(int _damage){
+		anim.SetTrigger ("TakeDamage");
 		int i = Random.Range (0, 4);
 		coins -= _damage;
 		aSource.clip = dmgTknClips[i];

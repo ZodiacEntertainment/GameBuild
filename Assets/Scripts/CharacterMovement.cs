@@ -30,6 +30,7 @@ public class CharacterMovement : MonoBehaviour {
 
     SpriteRenderer sprite;
 	GameObject blastArea;
+	Transform launchPoint;
 
     // Use this for initialization
     void Start () {
@@ -37,6 +38,7 @@ public class CharacterMovement : MonoBehaviour {
         sprite = GetComponent<SpriteRenderer>();
 		if (GetComponent<Alexis> () != null) {
 			blastArea = GetComponent<Alexis> ().BlastArea;
+			launchPoint = GetComponent<Alexis> ().launchPoint;
 		}
 		jumpSource = GetComponent<AudioSource> ();
     }
@@ -81,10 +83,15 @@ public class CharacterMovement : MonoBehaviour {
         facingRight = !facingRight;
         sprite.flipX = !facingRight;
 		if (GetComponent<Alexis> () != null) {
-			if (facingRight)
-				blastArea.transform.position = new Vector3 (transform.position.x - 1, blastArea.transform.position.y, blastArea.transform.position.z);
-			else
+			if (facingRight) {
 				blastArea.transform.position = new Vector3 (transform.position.x + 1, blastArea.transform.position.y, blastArea.transform.position.z);
+				launchPoint.position = new Vector3 (transform.position.x + 1, launchPoint.position.y, launchPoint.position.z);
+				blastArea.transform.localScale = new Vector3(1,1,1);
+			} else {
+				blastArea.transform.position = new Vector3 (transform.position.x - 1, blastArea.transform.position.y, blastArea.transform.position.z);
+				launchPoint.position = new Vector3 (transform.position.x - 1, launchPoint.position.y, launchPoint.position.z);
+				blastArea.transform.localScale = new Vector3(-1,1,1);
+			}
 		}
        // Vector3 theScale = transform.localScale;
        // theScale.x *= -1;
