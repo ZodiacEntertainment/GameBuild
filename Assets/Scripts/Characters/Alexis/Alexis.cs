@@ -76,7 +76,7 @@ public class Alexis : ZodiacCharacter {
 	// Update is called once per frame
 	void FixedUpdate () {
 		//basic attack
-		if (Input.GetAxis(controller + "BA") > 0.5f && canAttackBasic) {
+		if ((Input.GetAxis(controller + "BA") > 0.5f || Input.GetKeyDown(KeyCode.J))&& canAttackBasic) {
             BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             //call anim
 			anim.SetTrigger("BasicAttack");
@@ -86,7 +86,7 @@ public class Alexis : ZodiacCharacter {
             StartCoroutine(AttackBasicDelay());
         }
 		// special attack
-		if (Input.GetAxis(controller + "SpA") > 0.5f && canAttackSpecial) {
+		if ((Input.GetAxis(controller + "SpA") > 0.5f  || Input.GetKeyDown(KeyCode.K)) && canAttackSpecial) {
 			anim.SetTrigger("SpecialAttack");
 			temp = Instantiate(granade, launchPoint.position, Quaternion.identity) as GameObject;
 			temp.GetComponent<Grenade>().owner = this.gameObject;
@@ -96,12 +96,12 @@ public class Alexis : ZodiacCharacter {
 			aSource.Play ();
             StartCoroutine(AttackSpecialDelay());
 		}
-		if (Input.GetAxis(controller + "ItemUse") > 0.5f && haveItem){
+		if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
             // Use the pickup
             Debug.Log("Used " + inventory);
             haveItem = false;
         }
-		if (Input.GetAxis(controller + "ItemDrop") > 0.5f && haveItem){
+		if ((Input.GetAxis(controller + "ItemDrop") > 0.5f || Input.GetAxis("Fire2") > 0.5f) && haveItem){
             // Drop the pickup
             inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
             inventory.SetActive(true);
