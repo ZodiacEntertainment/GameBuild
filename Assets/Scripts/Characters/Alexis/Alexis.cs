@@ -113,14 +113,14 @@ public class Alexis : ZodiacCharacter {
             	haveItem = false;
         	}
 
-//			if(Input.GetAxis(controller + "SuA") > 0f){
-//				isSusAttacking = true;
-//				Debug.Log ("SusAttacking start");
-//			}
-//			else{
-//				isSusAttacking = false;
-//				Debug.Log ("SusAttacking end");
-//			}
+			if(Input.GetAxis(controller + "SuA") > 0f){
+				isSusAttacking = true;
+				Debug.Log ("SusAttacking start");
+			}
+			else{
+				isSusAttacking = false;
+				Debug.Log ("SusAttacking end");
+			}
 		}
     }
     public IEnumerator AttackBasicDelay(){
