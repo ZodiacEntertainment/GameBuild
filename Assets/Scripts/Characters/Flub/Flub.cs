@@ -20,7 +20,7 @@ public class Flub : ZodiacCharacter {
     private bool isGrounded;
 
     // Status
-    private bool isStunned;
+    //private bool isStunned;
     private bool isInvincible;
     private bool isAlive;
 
@@ -68,6 +68,7 @@ public class Flub : ZodiacCharacter {
     // Use this for initialization
     void Start () {
 	
+		isStunned = false;
 	}
 
     // Update is called once per frame
