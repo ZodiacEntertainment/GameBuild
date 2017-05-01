@@ -12,11 +12,12 @@ public class ShotGunMain : MonoBehaviour{
             target = other.gameObject;
         }
     }
-//	public void OnTriggerExit2D (Collider2D other){
-//		if (other.gameObject.GetInstanceID () == target.gameObject.GetInstanceID ()) {
-//			target = null;
-//		}
-//	}
+	public void OnTriggerExit2D (Collider2D other){
+		if(target != null)
+			if (other.gameObject.GetInstanceID () == target.gameObject.GetInstanceID ()) {
+				target = null;
+			}
+	}
 
     public void BasicAttack() {
         if(target != null) {

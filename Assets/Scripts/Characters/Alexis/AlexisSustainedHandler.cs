@@ -15,6 +15,7 @@ public class AlexisSustainedHandler : MonoBehaviour {
 	}
 	public void OnTriggerEnter2D(Collider2D other){
 		if (myRef.isSusAttacking && other.gameObject.CompareTag ("Character")) {
+			if(!other.GetComponent<ZodiacCharacter>().isStunned)
 			other.GetComponent<ZodiacCharacter> ().TakeDamage (myRef.hDamage);
 		}
 	}
