@@ -1,0 +1,213 @@
+fileFormatVersion: 2
+guid: 5991564f6b5754841b11bedce9ab92d4
+timeCreated: 1493660839
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: special attack SpriteFinal_0
+    21300002: special attack SpriteFinal_1
+    21300004: special attack SpriteFinal_2
+    21300006: special attack SpriteFinal_3
+    21300008: special attack SpriteFinal_4
+    21300010: special attack SpriteFinal_5
+    21300012: special attack SpriteFinal_6
+    21300014: special attack SpriteFinal_7
+    21300016: special attack SpriteFinal_8
+    21300018: special attack SpriteFinal_9
+    21300020: special attack SpriteFinal_10
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: special attack SpriteFinal_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 671
+        width: 171
+        height: 156
+      alignment: 9
+      pivot: {x: 0.46127003, y: 0.5463136}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special attack SpriteFinal_1
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 672
+        width: 175
+        height: 156
+      alignment: 9
+      pivot: {x: 0.42827025, y: 0.5463136}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special attack SpriteFinal_2
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 669
+        width: 171
+        height: 151
+      alignment: 9
+      pivot: {x: 0.4214713, y: 0.54374725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special attack SpriteFinal_3
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 672
+        width: 170
+        height: 167
+      alignment: 9
+      pivot: {x: 0.41057128, y: 0.52710325}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special attack SpriteFinal_4
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 670
+        width: 170
+        height: 173
+      alignment: 9
+      pivot: {x: 0.4159955, y: 0.54309434}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special attack SpriteFinal_5
+      rect:
+        serializedVersion: 2
+        x: 1727
+        y: 672
+        width: 170
+        height: 166
+      alignment: 9
+      pivot: {x: 0.4159955, y: 0.54309434}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special attack SpriteFinal_6
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 301
+        width: 170
+        height: 161
+      alignment: 9
+      pivot: {x: 0.41599557, y: 0.4755992}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special attack SpriteFinal_7
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 303
+        width: 182
+        height: 152
+      alignment: 9
+      pivot: {x: 0.42027903, y: 0.5115015}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special attack SpriteFinal_8
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 272
+        width: 247
+        height: 191
+      alignment: 9
+      pivot: {x: 0.33981508, y: 0.60307}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special attack SpriteFinal_9
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 254
+        width: 325
+        height: 233
+      alignment: 9
+      pivot: {x: 0.26157528, y: 0.5903801}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special attack SpriteFinal_10
+      rect:
+        serializedVersion: 2
+        x: 1599
+        y: 255
+        width: 332
+        height: 237
+      alignment: 9
+      pivot: {x: 0.20965944, y: 0.56987196}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

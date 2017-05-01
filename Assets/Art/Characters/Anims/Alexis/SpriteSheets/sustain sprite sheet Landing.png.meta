@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: f94b441116ce7524b97d709b975b4bf1
+timeCreated: 1493664621
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: sustain sprite sheet Landing_0
+    21300002: sustain sprite sheet Landing_2
+    21300004: sustain sprite sheet Landing_3
+    21300006: sustain sprite sheet Landing_4
+    21300008: sustain sprite sheet Landing_6
+    21300010: sustain sprite sheet Landing_8
+    21300012: sustain sprite sheet Landing_9
+    21300014: sustain sprite sheet Landing_10
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sustain sprite sheet Landing_0
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 399
+        width: 130
+        height: 155
+      alignment: 9
+      pivot: {x: 0.5100125, y: 0.55038553}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sustain sprite sheet Landing_2
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 382
+        width: 130
+        height: 178
+      alignment: 9
+      pivot: {x: 0.46996272, y: 0.5804375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sustain sprite sheet Landing_3
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 382
+        width: 121
+        height: 183
+      alignment: 9
+      pivot: {x: 0.5, y: 0.47866204}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sustain sprite sheet Landing_4
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 385
+        width: 117
+        height: 172
+      alignment: 9
+      pivot: {x: 0.55562544, y: 0.4621623}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sustain sprite sheet Landing_6
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 127
+        width: 120
+        height: 159
+      alignment: 9
+      pivot: {x: 0.5650812, y: 0.52455896}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sustain sprite sheet Landing_8
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 125
+        width: 101
+        height: 175
+      alignment: 9
+      pivot: {x: 0.42267632, y: 0.51487565}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sustain sprite sheet Landing_9
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 118
+        width: 132
+        height: 174
+      alignment: 9
+      pivot: {x: 0.45069653, y: 0.5224418}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sustain sprite sheet Landing_10
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 121
+        width: 131
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

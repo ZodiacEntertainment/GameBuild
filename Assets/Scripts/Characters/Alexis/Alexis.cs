@@ -53,7 +53,8 @@ public class Alexis : ZodiacCharacter {
     // Sustained Attack
     [SerializeField]
     [Tooltip("How many coins lost when attack hits.")]
-    private int hDamage;
+    public int hDamage;
+	public bool isSusAttacking = false;
 
     [HideInInspector]
     public bool haveItem = false;
@@ -78,43 +79,48 @@ public class Alexis : ZodiacCharacter {
 	// Update is called once per frame
 	void FixedUpdate () {
 		if(!isStunned){
-		//basic attack
-		if ((Input.GetAxis(controller + "BA") > 0.5f || Input.GetKeyDown(KeyCode.J))&& canAttackBasic) {
-            BlastArea.GetComponent<ShotGunMain>().BasicAttack();
-            //call anim
-			anim.SetTrigger("BasicAttack");
-			aSource.clip = clips[0];
-			aSource.Play ();
-			//manager.StatUpdate (controller, "Attacks", bDamage);
-            StartCoroutine(AttackBasicDelay());
-        }
-		// special attack
-		if ((Input.GetAxis(controller + "SpA") > 0.5f  || Input.GetKeyDown(KeyCode.K)) && canAttackSpecial) {
-			anim.SetTrigger("SpecialAttack");
-			temp = Instantiate(granade, launchPoint.position, Quaternion.identity) as GameObject;
-			temp.GetComponent<Grenade>().owner = this.gameObject;
-            if (!GetComponent<CharacterMovement>().facingRight)
-                temp.GetComponent<Grenade>().HSpeed *= -1;
-			aSource.clip = clips [1];
-			aSource.Play ();
-            StartCoroutine(AttackSpecialDelay());
-		}
-		if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
-            // Use the pickup
-            Debug.Log("Used " + inventory);
-            haveItem = false;
-        }
-		if ((Input.GetAxis(controller + "ItemDrop") > 0.5f || Input.GetAxis("Fire2") > 0.5f) && haveItem){
-            // Drop the pickup
-            inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
-            inventory.SetActive(true);
-            Debug.Log("Dropped " + inventory);
-            haveItem = false;
-        }
+			//basic attack
+			if ((Input.GetAxis(controller + "BA") > 0.5f || Input.GetKeyDown(KeyCode.J))&& canAttackBasic) {
+        	    BlastArea.GetComponent<ShotGunMain>().BasicAttack();
+            	//call anim
+				anim.SetTrigger("BasicAttack");
+				aSource.clip = clips[0];
+				aSource.Play ();
+				//manager.StatUpdate (controller, "Attacks", bDamage);
+            	StartCoroutine(AttackBasicDelay());
+	        }
+			// special attack
+			if ((Input.GetAxis(controller + "SpA") > 0.5f  || Input.GetKeyDown(KeyCode.K)) && canAttackSpecial) {
+				anim.SetTrigger("SpecialAttack");
+				temp = Instantiate(granade, launchPoint.position, Quaternion.identity) as GameObject;
+				temp.GetComponent<Grenade>().owner = this.gameObject;
+            	if (!GetComponent<CharacterMovement>().facingRight)
+                	temp.GetComponent<Grenade>().HSpeed *= -1;
+				aSource.clip = clips [1];
+				aSource.Play ();
+            	StartCoroutine(AttackSpecialDelay());
+			}
+			if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
+        	    // Use the pickup
+            	Debug.Log("Used " + inventory);
+            	haveItem = false;
+        	}
+			if ((Input.GetAxis(controller + "ItemDrop") > 0.5f || Input.GetAxis("Fire2") > 0.5f) && haveItem){
+            	// Drop the pickup
+            	inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
+            	inventory.SetActive(true);
+            	Debug.Log("Dropped " + inventory);
+            	haveItem = false;
+        	}
 
-		if(Input.GetAxis(controller + "SpA") > 0.5f){
-			
-		}
+//			if(Input.GetAxis(controller + "SuA") > 0f){
+//				isSusAttacking = true;
+//				Debug.Log ("SusAttacking start");
+//			}
+//			else{
+//				isSusAttacking = false;
+//				Debug.Log ("SusAttacking end");
+//			}
 		}
     }
     public IEnumerator AttackBasicDelay(){
