@@ -32,6 +32,8 @@ public class CharacterMovement : MonoBehaviour {
 	GameObject blastArea;
 	Transform launchPoint;
 
+	public float jumpMult;
+
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
@@ -51,29 +53,32 @@ public class CharacterMovement : MonoBehaviour {
         groundCheck2.x = gameObject.transform.position.x - leftOffset;
         groundCheck1.y = gameObject.transform.position.y;
         groundCheck2.y = gameObject.transform.position.y;
+		if (!GetComponent<ZodiacCharacter> ().isStunned) {
+			//sprint when holding shift
+			if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown (KeyCode.RightShift) || Input.GetAxis (controller + "Run") > 0f) {
+				if (currSpeed == speed)
+					currSpeed = runSpeed + currSpeed;
+			}
 
-        //sprint when holding shift
-		if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetAxis(controller + "Run") > 0f)
-        {
-			if(currSpeed == speed)
-				currSpeed = runSpeed + currSpeed;
-        }
+			if (Input.GetKeyUp (KeyCode.LeftShift) || Input.GetKeyUp (KeyCode.RightShift) || Input.GetAxis (controller + "Run") == 0f) {
+				currSpeed = speed;
+			}
 
-		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift) || Input.GetAxis(controller + "Run") == 0f)
-        {
-            currSpeed = speed;
-        }
-
-        //Jump when jump key is held
-		//REMEMBER TO CHANGE KEYCODE.SPACE TO A REMAPABLE KEY LATER
-		if (grounded && Input.GetAxis(controller + "Jump") > 0.5f || Input.GetKeyDown(KeyCode.Space))
-		{
-			anim.SetBool("Ground", false);
-			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce * 8));
-			jumpSource.clip = jumpClip;
-			jumpSource.Play();
+			//Jump when jump key is held
+			//REMEMBER TO CHANGE KEYCODE.SPACE TO A REMAPABLE KEY LATER
+			if (grounded && Input.GetKeyDown (KeyCode.Space)) {
+				anim.SetBool ("Ground", false);
+				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce * jumpMult));
+				jumpSource.clip = jumpClip;
+				jumpSource.Play ();
+			}
+			if (grounded && Input.GetAxis (controller + "Jump") > 0.5f) {
+				anim.SetBool ("Ground", false);
+				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce));
+				jumpSource.clip = jumpClip;
+				jumpSource.Play ();
+			}
 		}
-
     }
 
     //Method both changes values of currSpeed to positive or negative values to make char go right or left, respectively,
@@ -108,20 +113,22 @@ public class CharacterMovement : MonoBehaviour {
 
         anim.SetFloat("vSpeed", GetComponent<Rigidbody2D>().velocity.y);
 
-		float move;
-        //get direction of arrow key pressed (also works with wasd)
+		if (!GetComponent<ZodiacCharacter> ().isStunned) {
+			float move = 0;
+			//get direction of arrow key pressed (also works with wasd)
 		if (Input.GetAxis (controller + "Horizontal") > 0f)
 			move = Input.GetAxis (controller + "Horizontal");
-		else
-			move = Input.GetAxis ("Horizontal");
+		if (Input.GetAxis (controller + "Horizontal") < 0f)
+			move = Input.GetAxis (controller + "Horizontal");
 
-        anim.SetFloat("Speed", Mathf.Abs(move));
+			anim.SetFloat ("Speed", Mathf.Abs (move));
 
-		GetComponent<Rigidbody2D>().velocity = new Vector2 (move * currSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (move * currSpeed, GetComponent<Rigidbody2D> ().velocity.y);
 
-		if (move > 0 && !facingRight)
-			Flip ();
-		else if (move < 0 && facingRight)
-			Flip ();
+			if (move > 0 && !facingRight)
+				Flip ();
+			else if (move < 0 && facingRight)
+				Flip ();
+		}
 	}
 }

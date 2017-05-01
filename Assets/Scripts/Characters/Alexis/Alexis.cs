@@ -23,7 +23,7 @@ public class Alexis : ZodiacCharacter {
     private bool isGrounded;
 
     // Status
-    private bool isStunned;
+    //private bool isStunned;
     private bool isInvincible;
     private bool isAlive;
 
@@ -65,6 +65,7 @@ public class Alexis : ZodiacCharacter {
 
     private bool canAttackBasic = true;
     private bool canAttackSpecial = true;
+	public float stunDur;
 
     // Use this for initialization
     void Start () {
@@ -72,9 +73,11 @@ public class Alexis : ZodiacCharacter {
 		anim = GetComponent<Animator>();
         delayBasic = bCoolDown;
         delaySpecial = spCoolDown;
+		isStunned = false;
     }
 	// Update is called once per frame
 	void FixedUpdate () {
+		if(!isStunned){
 		//basic attack
 		if ((Input.GetAxis(controller + "BA") > 0.5f || Input.GetKeyDown(KeyCode.J))&& canAttackBasic) {
             BlastArea.GetComponent<ShotGunMain>().BasicAttack();
@@ -108,6 +111,11 @@ public class Alexis : ZodiacCharacter {
             Debug.Log("Dropped " + inventory);
             haveItem = false;
         }
+
+		if(Input.GetAxis(controller + "SpA") > 0.5f){
+			
+		}
+		}
     }
     public IEnumerator AttackBasicDelay(){
         canAttackBasic = false;
@@ -135,6 +143,7 @@ public class Alexis : ZodiacCharacter {
         }
     }
 	public override void TakeDamage(int _damage){
+		StartCoroutine (Stun());
 		anim.SetTrigger ("TakeDamage");
 		int i = Random.Range (0, 4);
 		coins -= _damage;
@@ -146,5 +155,10 @@ public class Alexis : ZodiacCharacter {
     }
 	public void AttackUpdate(int amount){
 		manager.StatUpdate (controller, "MDG", amount);
+	}
+	public IEnumerator Stun(){
+		isStunned = true;
+		yield return new WaitForSeconds(stunDur);
+		isStunned = false;
 	}
 }
