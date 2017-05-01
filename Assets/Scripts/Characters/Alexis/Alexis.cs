@@ -114,11 +114,13 @@ public class Alexis : ZodiacCharacter {
         	}
 
 			if(Input.GetAxis(controller + "SuA") > 0f){
+				anim.SetBool ("SustainedAttack", true);
 				isSusAttacking = true;
 				Debug.Log ("SusAttacking start");
 			}
 			else{
 				isSusAttacking = false;
+				anim.SetBool ("SustainedAttack", false);
 				Debug.Log ("SusAttacking end");
 			}
 		}
