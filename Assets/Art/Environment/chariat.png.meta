@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: 1264c344736e5764485c65ec122efd9e
-timeCreated: 1493673574
+guid: e2aa2514e6930e5448f0bcf196c603ac
+timeCreated: 1493756296
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: chariat_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -29,16 +30,16 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
-    aniso: 0
+    filterMode: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: 0
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -47,11 +48,24 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: chariat_0
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 74
+        width: 574
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
