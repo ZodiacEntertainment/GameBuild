@@ -4,7 +4,8 @@ using System.Collections;
 public class BackgroundScroll : MonoBehaviour {
     public Renderer rend;
     public float scrollSpeed;
-	public CamMove camRef;
+	public RaceStart RS;
+	public float offset;
     
 	// Use this for initialization
 	void Start () {
@@ -14,8 +15,8 @@ public class BackgroundScroll : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-		if (camRef.forward) {
-			float offset = Time.time * scrollSpeed;
+		if (RS.started) {
+			offset = Time.time * scrollSpeed;
 			rend.material.SetTextureOffset ("_MainTex", new Vector2 (offset, 0));
 		}
     }
