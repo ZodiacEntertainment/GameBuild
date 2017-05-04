@@ -107,19 +107,20 @@ public class CharacterMovement : MonoBehaviour {
 		//climbcheck
 		if (GetComponent<Flub> () != null) {
 			if (Physics2D.Raycast (transform.position, transform.right * -1, groundRadius, whatIsGround)) {
-				transform.Rotate(Vector2.left * 90);
+				//transform.Rotate(Vector2.left * 90);
 				GetComponent<Rigidbody2D> ().gravityScale = 0;
 			}
 			if (Physics2D.Raycast (transform.position, transform.right, groundRadius, whatIsGround)) {
-				transform.Rotate(Vector2.right * 90);
+				//transform.Rotate(Vector2.right * 90);
 				GetComponent<Rigidbody2D> ().gravityScale = 0;
 			}
 			if (Physics2D.Raycast (transform.position, transform.up, groundRadius, whatIsGround)) {
-				transform.Rotate(Vector2.down * 180);
-				GetComponent<Rigidbody2D> ().gravityScale = 0;
+				GetComponent<SpriteRenderer> ().flipY = true;
+				GetComponent<Rigidbody2D> ().gravityScale = -1;
 			}
 			if (!Physics2D.Raycast (transform.position, transform.right * -1, groundRadius, whatIsGround) && !Physics2D.Raycast (transform.position, transform.up, groundRadius, whatIsGround) && !Physics2D.Raycast (transform.position, transform.right, groundRadius, whatIsGround)) {
-				transform.rotation = Quaternion.Euler(0,0,0);
+				//transform.rotation = Quaternion.Euler(0,0,0);
+				GetComponent<SpriteRenderer> ().flipY = false;
 				GetComponent<Rigidbody2D> ().gravityScale = 2;
 			}
 			//check if player is on ground
