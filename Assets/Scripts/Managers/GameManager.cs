@@ -231,24 +231,56 @@ public class GameManager : MonoBehaviour {
 		if (name == "Flub") {
 			switch(player){
 			case 1:
-				p1 = Instantiate (flub, transform.position, Quaternion.identity) as GameObject;
-				p1.GetComponent<Flub> ().controller = "p1";
-				p1HUD.GetComponent<UIManager>().character = p1;
+				if (p1 == null) {
+					p1 = Instantiate (flub, h1.position, Quaternion.identity) as GameObject;
+					p1.transform.SetParent (this.transform, true);
+					p1.GetComponent<Flub> ().controller = "p1";
+					p1.GetComponent<CharacterMovement>().controller = "p1";
+					p1.GetComponent<Flub> ().manager = this;
+					p1.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P1";
+					p1.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.red;
+					p1HUD.GetComponent<UIManager> ().character = p1;
+					p1HUD.SetActive (true);
+				}
 				break;
 			case 2:
-				p2 = Instantiate (flub, transform.position, Quaternion.identity) as GameObject;
-				p2.GetComponent<Flub> ().controller = "p2";
-				p2HUD.GetComponent<UIManager> ().character = p2;
+				if (p2 == null) {
+					p2 = Instantiate (flub, h2.position, Quaternion.identity) as GameObject;
+					p2.transform.SetParent (this.transform, true);
+					p2.GetComponent<Flub> ().controller = "p2";
+					p2.GetComponent<CharacterMovement>().controller = "p2";
+					p2.GetComponent<Flub> ().manager = this;
+					p2.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P2";
+					p2.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.green;
+					p2HUD.GetComponent<UIManager> ().character = p2;
+					p2HUD.SetActive (true);
+				}
 				break;
 			case 3:
-				p3 = Instantiate (flub, transform.position, Quaternion.identity) as GameObject;
-				p3.GetComponent<Flub> ().controller = "p3";
-				p3HUD.GetComponent<UIManager>().character = p3;
+				if (p3 == null) {
+					p3 = Instantiate (flub, h3.position, Quaternion.identity) as GameObject;
+					p3.transform.SetParent (this.transform, true);
+					p3.GetComponent<Flub> ().controller = "p3";
+					p3.GetComponent<CharacterMovement>().controller = "p3";
+					p3.GetComponent<Flub> ().manager = this;
+					p3.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P3";
+					p3.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.blue;
+					p3HUD.GetComponent<UIManager> ().character = p3;
+					p3HUD.SetActive (true);
+				}
 				break;
 			case 4:
-				p4 = Instantiate (flub, transform.position, Quaternion.identity) as GameObject;
-				p4.GetComponent<Flub> ().controller = "p4";
-				p4HUD.GetComponent<UIManager>().character = p3;
+				if (p4 == null) {
+					p4 = Instantiate (flub, h4.position, Quaternion.identity) as GameObject;
+					p4.transform.SetParent (this.transform, true);
+					p4.GetComponent<Flub> ().controller = "p4";
+					p4.GetComponent<CharacterMovement>().controller = "p4";
+					p4.GetComponent<Flub> ().manager = this;
+					p4.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P4";
+					p4.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.black;
+					p4HUD.GetComponent<UIManager> ().character = p4;
+					p4HUD.SetActive (true);
+				}
 				break;
 			}
 		}

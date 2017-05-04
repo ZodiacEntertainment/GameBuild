@@ -7,11 +7,6 @@ public class CharacterSelectButton : MonoBehaviour {
 
 	//assign player 1 only
 	public void OnClick(){
-		manager.AssignCharacter (1, CharName);
-		//Debug.Log ("Character Selected");
-	}
-	//assign all
-	public void Update (){
 		if(Input.GetAxis("p1Jump") > 0.5f){
 			manager.AssignCharacter (1, CharName);
 		}
@@ -24,5 +19,10 @@ public class CharacterSelectButton : MonoBehaviour {
 		if(Input.GetAxis("p4Jump") > 0.5f){
 			manager.AssignCharacter (4, CharName);
 		}
+		//Debug.Log ("Character Selected");
+	}
+	//assign all
+	public void Update (){
+		
 	}
 }
