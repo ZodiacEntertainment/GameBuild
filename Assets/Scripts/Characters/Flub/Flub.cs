@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Flub : ZodiacCharacter {
+	public GameManager manager;
 
 	public List<AudioClip> clips;
 	private AudioSource aSource;
+	private Animator anim;
 
     //controller prefix in parent
     //public string controller;
@@ -30,7 +32,7 @@ public class Flub : ZodiacCharacter {
     private int bDamage;
     [SerializeField]
     [Tooltip("How long before the attack can be used again.")]
-    private int bCoolDown;
+	private float bCoolDown;
     //is using slip trick
     bool slipTrick = false;
 
@@ -43,7 +45,7 @@ public class Flub : ZodiacCharacter {
     private int spDuration;
     [SerializeField]
     [Tooltip("How long before the attack can be used again.")]
-    private int spCoolDown;
+    private float spCoolDown;
 
     // Sustained Attack
     [SerializeField]
@@ -63,45 +65,61 @@ public class Flub : ZodiacCharacter {
 
     public bool haveItem = false;
     private GameObject inventory;
-    private bool canAttack = true;
+	private bool canAttackBasic = true;
+	private bool canAttackSpecial = true;
+	public float stunDur;
+
 
     // Use this for initialization
     void Start () {
-	
+		aSource = GetComponent<AudioSource>();
+		anim = GetComponent<Animator>();
 		isStunned = false;
 	}
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.A) && canAttack)
-        {
+		if ((Input.GetAxis(controller + "BA") > 0.5f || Input.GetKeyDown(KeyCode.J))&& canAttackBasic){
             //call anim
+			anim.SetTrigger("BasicAttack");
+//			aSource.clip = clips[0];
+//			aSource.Play ();
             StartCoroutine(SlipTrick());
         }
-        if (Input.GetButtonDown("Fire1") && haveItem)
-        {
-            // Use the pickup
-            //Debug.Log("Used " + inventory);
-            haveItem = false;
-        }
-        else if (Input.GetButtonDown("Fire2") && haveItem)
-        {
-            // Drop the pickup
-            inventory.SetActive(true);
-            inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2f, this.gameObject.transform.position.y, inventory.transform.position.z);
-            //Debug.Log("Dropped " + inventory);
-            haveItem = false;
-        }
+		if ((Input.GetAxis(controller + "SpA") > 0.5f  || Input.GetKeyDown(KeyCode.K)) && canAttackSpecial){
+			anim.SetTrigger("SpecialAttack");
+
+		}
+		if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
+			// Use the pickup
+			Debug.Log("Used " + inventory);
+			haveItem = false;
+		}
+		if ((Input.GetAxis(controller + "ItemDrop") > 0.5f || Input.GetAxis("Fire2") > 0.5f) && haveItem){
+			// Drop the pickup
+			inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
+			inventory.SetActive(true);
+			Debug.Log("Dropped " + inventory);
+			haveItem = false;
+		}
         if (slipTrick){
-            transform.Translate(new Vector3(2,0,0) * Time.deltaTime);
+			if (GetComponent<CharacterMovement>().facingRight)
+            	transform.Translate(new Vector3(3,0,0) * Time.deltaTime);
+			else
+				transform.Translate(new Vector3(-3,0,0) * Time.deltaTime);
         }
     }
+	public IEnumerator AttackSpecialDelay(){
+		canAttackSpecial = false;
+		yield return new WaitForSeconds(spCoolDown);
+		canAttackSpecial = true;
+	}
     public IEnumerator SlipTrick(){
         slipTrick = true;
-        canAttack = false;
+        canAttackBasic = false;
         yield return new WaitForSeconds(bCoolDown);
-        canAttack = true;
+        canAttackBasic = true;
         slipTrick = false;
     }
     public void OnTriggerEnter2D(Collider2D other){
@@ -116,12 +134,21 @@ public class Flub : ZodiacCharacter {
             inventory.SetActive(false);
             haveItem = true;
         }
-        if (slipTrick){
+		if (slipTrick && other.CompareTag("Character")){
 			other.gameObject.GetComponent<ZodiacCharacter>().TakeDamage(bDamage);
         }
     }
-    public override void TakeDamage(int _damage){
-        coins -= _damage;
-        Debug.Log("Coins" + coins);
-    }
+	public override void TakeDamage(int _damage){
+		StartCoroutine (Stun());
+		anim.SetTrigger ("TakeDamage");
+		coins -= _damage;
+		Debug.Log("Coins" + coins);
+		manager.StatUpdate (controller, "MDT", _damage);
+	}
+
+	public IEnumerator Stun(){
+		isStunned = true;
+		yield return new WaitForSeconds(stunDur);
+		isStunned = false;
+	}
 }
