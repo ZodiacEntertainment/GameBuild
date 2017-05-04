@@ -1,0 +1,199 @@
+fileFormatVersion: 2
+guid: ea1857a39c3e0694681557a1244a55c0
+timeCreated: 1493669900
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: flub idle sprite_0
+    21300002: flub idle sprite_1
+    21300004: flub idle sprite_2
+    21300006: flub idle sprite_3
+    21300008: flub idle sprite_4
+    21300010: flub idle sprite_5
+    21300012: flub idle sprite_6
+    21300014: flub idle sprite_7
+    21300016: flub idle sprite_8
+    21300018: flub idle sprite_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: flub idle sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 101
+        width: 99
+        height: 83
+      alignment: 9
+      pivot: {x: 0.6093932, y: 0.5584915}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flub idle sprite_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 100
+        width: 100
+        height: 82
+      alignment: 9
+      pivot: {x: 0.61126727, y: 0.5359107}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flub idle sprite_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 101
+        width: 99
+        height: 76
+      alignment: 9
+      pivot: {x: 0.6144967, y: 0.5485306}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flub idle sprite_3
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 100
+        width: 97
+        height: 73
+      alignment: 9
+      pivot: {x: 0.6198617, y: 0.59130275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flub idle sprite_4
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 100
+        width: 98
+        height: 70
+      alignment: 9
+      pivot: {x: 0.6125582, y: 0.6066404}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flub idle sprite_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 98
+        height: 72
+      alignment: 9
+      pivot: {x: 0.6125582, y: 0.6066404}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flub idle sprite_6
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 0
+        width: 98
+        height: 76
+      alignment: 9
+      pivot: {x: 0.6153264, y: 0.57451487}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flub idle sprite_7
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 99
+        height: 80
+      alignment: 9
+      pivot: {x: 0.6153265, y: 0.55106884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flub idle sprite_8
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1
+        width: 99
+        height: 82
+      alignment: 9
+      pivot: {x: 0.6153265, y: 0.55106884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flub idle sprite_9
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 0
+        width: 99
+        height: 83
+      alignment: 9
+      pivot: {x: 0.6153265, y: 0.55106884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -72,7 +72,7 @@ public class CharacterMovement : MonoBehaviour {
 				jumpSource.clip = jumpClip;
 				jumpSource.Play ();
 			}
-			if (grounded && Input.GetAxis (controller + "Jump") > 0.5f) {
+			if (grounded && Input.GetAxis (controller + "Jump") > 0f) {
 				anim.SetBool ("Ground", false);
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce));
 				jumpSource.clip = jumpClip;
@@ -104,27 +104,42 @@ public class CharacterMovement : MonoBehaviour {
     }
 
     void FixedUpdate () {
-		
-        //check if player is on ground
-        if (Physics2D.Raycast(groundCheck1, Vector2.down, groundRadius, whatIsGround) || Physics2D.Raycast(groundCheck2, Vector2.down, groundRadius, whatIsGround)) grounded = true;
-        else grounded = false;
+		//climbcheck
+		if (GetComponent<Flub> () != null) {
+			if (Physics2D.Raycast (transform.position, transform.right * -1, groundRadius, whatIsGround)) {
+				transform.Rotate(Vector2.left * 90);
+				GetComponent<Rigidbody2D> ().gravityScale = 0;
+			}
+			if (Physics2D.Raycast (transform.position, transform.right, groundRadius, whatIsGround)) {
+				transform.Rotate(Vector2.right * 90);
+				GetComponent<Rigidbody2D> ().gravityScale = 0;
+			}
+			if (Physics2D.Raycast (transform.position, transform.up, groundRadius, whatIsGround)) {
+				transform.Rotate(Vector2.down * 180);
+				GetComponent<Rigidbody2D> ().gravityScale = 0;
+			}
+			if (!Physics2D.Raycast (transform.position, transform.right * -1, groundRadius, whatIsGround) && !Physics2D.Raycast (transform.position, transform.up, groundRadius, whatIsGround) && !Physics2D.Raycast (transform.position, transform.right, groundRadius, whatIsGround)) {
+				transform.rotation = Quaternion.Euler(0,0,0);
+				GetComponent<Rigidbody2D> ().gravityScale = 2;
+			}
+			//check if player is on ground
+			if (Physics2D.Raycast(groundCheck1, transform.up * -1, groundRadius, whatIsGround) || Physics2D.Raycast(groundCheck2, transform.up * -1, groundRadius, whatIsGround))
+				grounded = true;
+			else 
+				grounded = false;
+		}
 
-        anim.SetBool("Ground", grounded);
-
-        anim.SetFloat("vSpeed", GetComponent<Rigidbody2D>().velocity.y);
-
+		anim.SetBool ("Ground", grounded);
+		anim.SetFloat ("vSpeed", GetComponent<Rigidbody2D> ().velocity.y);
 		if (!GetComponent<ZodiacCharacter> ().isStunned) {
 			float move = 0;
 			//get direction of arrow key pressed (also works with wasd)
-		if (Input.GetAxis (controller + "Horizontal") > 0f)
-			move = Input.GetAxis (controller + "Horizontal");
-		if (Input.GetAxis (controller + "Horizontal") < 0f)
-			move = Input.GetAxis (controller + "Horizontal");
-
+			if (Input.GetAxis (controller + "Horizontal") > 0f)
+				move = Input.GetAxis (controller + "Horizontal");
+			if (Input.GetAxis (controller + "Horizontal") < 0f)
+				move = Input.GetAxis (controller + "Horizontal");
 			anim.SetFloat ("Speed", Mathf.Abs (move));
-
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (move * currSpeed, GetComponent<Rigidbody2D> ().velocity.y);
-
 			if (move > 0 && !facingRight)
 				Flip ();
 			else if (move < 0 && facingRight)
