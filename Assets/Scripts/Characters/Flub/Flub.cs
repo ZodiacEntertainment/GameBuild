@@ -89,6 +89,7 @@ public class Flub : ZodiacCharacter {
         }
 		if ((Input.GetAxis(controller + "SpA") > 0.5f  || Input.GetKeyDown(KeyCode.K)) && canAttackSpecial){
 			anim.SetTrigger("SpecialAttack");
+			StartCoroutine(AttackSpecialDelay());
 
 		}
 		if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
