@@ -84,8 +84,7 @@ public class Alexis : ZodiacCharacter {
         	    BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             	//call anim
 				anim.SetTrigger("BasicAttack");
-				aSource.clip = clips[0];
-				aSource.Play ();
+				aSource.PlayOneShot(clips[0]);
 				//manager.StatUpdate (controller, "Attacks", bDamage);
             	StartCoroutine(AttackBasicDelay());
 	        }
@@ -93,6 +92,13 @@ public class Alexis : ZodiacCharacter {
 			if ((Input.GetAxis(controller + "SpA") > 0.5f  || Input.GetKeyDown(KeyCode.K)) && canAttackSpecial) {
                 canAttackSpecial = false;
                 StartCoroutine(AttackSpecialDelay());
+				anim.SetTrigger("SpecialAttack");
+				temp = Instantiate(granade, launchPoint.position, Quaternion.identity) as GameObject;
+				temp.GetComponent<Grenade>().owner = this.gameObject;
+            	if (!GetComponent<CharacterMovement>().facingRight)
+                	temp.GetComponent<Grenade>().HSpeed *= -1;
+				aSource.PlayOneShot(clips [1]);
+            	StartCoroutine(AttackSpecialDelay());
 			}
 			if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
         	    // Use the pickup
@@ -156,12 +162,12 @@ public class Alexis : ZodiacCharacter {
         }
     }
 	public override void TakeDamage(int _damage){
+		int i = Random.Range (0, 4);
+
+		aSource.PlayOneShot(dmgTknClips[i]);
 		StartCoroutine (Stun());
 		anim.SetTrigger ("TakeDamage");
-		int i = Random.Range (0, 4);
 		coins -= _damage;
-		aSource.clip = dmgTknClips[i];
-		aSource.Play ();
         Debug.Log("Coins" + coins);
 		manager.StatUpdate (controller, "MDT", _damage);
 		Debug.Log ("Damage Taken Track " + i);
