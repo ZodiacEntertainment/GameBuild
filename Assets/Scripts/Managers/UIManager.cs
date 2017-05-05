@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour {
 
     // Pickup sprites
     public Sprite speedBoost;
-    public Sprite renameThis;
+	public Sprite defaultSprite;
     // Game Manager reference
     public GameManager manager;
     // Character reference
@@ -94,6 +94,9 @@ public class UIManager : MonoBehaviour {
             case "powerup":
 			itemSprite.sprite = speedBoost;
                 break;
+		case "Default":
+			itemSprite.sprite = defaultSprite;
+			break;
 		default:
 			Debug.Log (_image);
                 break;
