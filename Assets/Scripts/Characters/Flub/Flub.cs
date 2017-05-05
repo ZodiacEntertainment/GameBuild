@@ -67,7 +67,7 @@ public class Flub : ZodiacCharacter {
 
     // Use this for initialization
     void Start () {
-	
+		aSource = GetComponent<AudioSource>();
 		isStunned = false;
 	}
 
@@ -76,6 +76,7 @@ public class Flub : ZodiacCharacter {
     {
         if (Input.GetKeyDown(KeyCode.A) && canAttack)
         {
+			aSource.PlayOneShot(clips [0]);
             //call anim
             StartCoroutine(SlipTrick());
         }
@@ -121,7 +122,8 @@ public class Flub : ZodiacCharacter {
         }
     }
     public override void TakeDamage(int _damage){
-        coins -= _damage;
+		aSource.PlayOneShot (clips [3]);
+		coins -= _damage;
         Debug.Log("Coins" + coins);
     }
 }

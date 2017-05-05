@@ -69,14 +69,12 @@ public class CharacterMovement : MonoBehaviour {
 			if (grounded && Input.GetKeyDown (KeyCode.Space)) {
 				anim.SetBool ("Ground", false);
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce * jumpMult));
-				jumpSource.clip = jumpClip;
-				jumpSource.Play ();
+				jumpSource.PlayOneShot(jumpClip);
 			}
 			if (grounded && Input.GetAxis (controller + "Jump") > 0.5f) {
 				anim.SetBool ("Ground", false);
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce));
-				jumpSource.clip = jumpClip;
-				jumpSource.Play ();
+				jumpSource.PlayOneShot(jumpClip);
 			}
 		}
     }
