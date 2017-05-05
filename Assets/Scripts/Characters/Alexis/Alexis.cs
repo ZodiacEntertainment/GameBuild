@@ -67,12 +67,13 @@ public class Alexis : ZodiacCharacter {
     private bool canAttackBasic = true;
     private bool canAttackSpecial = true;
 	public float stunDur;
+	public UIManager uiMan;
 
     // Use this for initialization
     void Start () {
 		aSource = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
-      
+		uiMan = myHUD.GetComponent<UIManager>();
 		isStunned = false;
     }
 	// Update is called once per frame
@@ -147,6 +148,7 @@ public class Alexis : ZodiacCharacter {
         if (other.gameObject.CompareTag("Item") && !haveItem){
             inventory = other.gameObject;
             Debug.Log("Picked up " + inventory);
+			uiMan.ItemDisplay(other.GetComponent<SpriteRenderer>().sprite.name);
             inventory.SetActive(false);
             haveItem = true;
         }

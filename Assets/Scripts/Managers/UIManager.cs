@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class UIManager : MonoBehaviour {
+
+    // HUD sprites
     public int tier;
     public Sprite tier0;
     public Sprite tier1;
@@ -11,29 +13,41 @@ public class UIManager : MonoBehaviour {
     public Sprite tier4;
     public Sprite tier5;
 
-    //public GameManager gm;
+    // Pickup sprites
+    public Sprite speedBoost;
+    public Sprite renameThis;
+    // Game Manager reference
+    public GameManager manager;
+    // Character reference
     public GameObject character;
+    // Script reference
     ZodiacCharacter charScript;
+    // Image reference for tier
+    public Image image;
+    // Inventory reference
+    public GameObject inventory;
 
+    
     void Start ()
-    {
-        Image image = GetComponent<Image>();
+    { 
+        
+        // Set the HUD to the default sprite
+        image = GetComponent<Image>();
         if (image.sprite == null)
             image.sprite = tier0;
-
         charScript = character.GetComponent<ZodiacCharacter>();
     }
 	
 	void Update ()
     {
-        Image image = GetComponent<Image>();
-
         tier = 0;
         tier = charScript.coins;
         /*if (flub != null)
             tier = flub.coins;
             */
- 
+
+
+        // Switch statement for displaying speed in HUD
         switch (tier)
         {
             case 0:
@@ -68,4 +82,22 @@ public class UIManager : MonoBehaviour {
                 break;
         }
 	}
+
+    // Display the Item picked up in HUD
+    public void ItemDisplay(string _image)
+    {
+        Debug.Log("Displaying the Item!");
+        Image itemSprite = inventory.GetComponent<Image>();
+        // Add image name cases based on sprite name.
+        switch (_image)
+        {
+            case "powerup":
+			itemSprite.sprite = speedBoost;
+                break;
+		default:
+			Debug.Log (_image);
+                break;
+        }
+        //item = renameThis;
+    }
 }
