@@ -97,6 +97,7 @@ public class Flub : ZodiacCharacter {
 		if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
 			// Use the pickup
 			Debug.Log("Used " + inventory);
+			uiMan.ItemDisplay("Default");
 			haveItem = false;
 		}
 		if ((Input.GetAxis(controller + "ItemDrop") > 0.5f || Input.GetAxis("Fire2") > 0.5f) && haveItem){
@@ -104,6 +105,7 @@ public class Flub : ZodiacCharacter {
 			inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
 			inventory.SetActive(true);
 			Debug.Log("Dropped " + inventory);
+			uiMan.ItemDisplay("Default");
 			haveItem = false;
 		}
         if (slipTrick){
