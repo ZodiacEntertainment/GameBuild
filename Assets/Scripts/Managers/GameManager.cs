@@ -183,6 +183,7 @@ public class GameManager : MonoBehaviour {
 					p1.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P1";
 					p1.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.red;
 					p1HUD.GetComponent<UIManager> ().character = p1;
+					p1.GetComponent<ZodiacCharacter>().myHUD = p1HUD;
 					p1HUD.SetActive (true);
 				}
 				break;
@@ -196,6 +197,7 @@ public class GameManager : MonoBehaviour {
 					p2.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P2";
 					p2.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.green;
 					p2HUD.GetComponent<UIManager> ().character = p2;
+					p2.GetComponent<ZodiacCharacter>().myHUD = p2HUD;
 					p2HUD.SetActive (true);
 				}
 				break;
@@ -209,6 +211,7 @@ public class GameManager : MonoBehaviour {
 					p3.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P3";
 					p3.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.blue;
 					p3HUD.GetComponent<UIManager> ().character = p3;
+					p3.GetComponent<ZodiacCharacter>().myHUD = p3HUD;
 					p3HUD.SetActive (true);
 				}
 				break;
@@ -222,6 +225,7 @@ public class GameManager : MonoBehaviour {
 					p4.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P4";
 					p4.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.black;
 					p4HUD.GetComponent<UIManager> ().character = p4;
+					p4.GetComponent<ZodiacCharacter>().myHUD = p4HUD;
 					p4HUD.SetActive (true);
 				}
 				break;
@@ -240,6 +244,7 @@ public class GameManager : MonoBehaviour {
 					p1.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P1";
 					p1.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.red;
 					p1HUD.GetComponent<UIManager> ().character = p1;
+					p1.GetComponent<ZodiacCharacter>().myHUD = p1HUD;
 					p1HUD.SetActive (true);
 				}
 				break;
@@ -253,6 +258,7 @@ public class GameManager : MonoBehaviour {
 					p2.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P2";
 					p2.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.green;
 					p2HUD.GetComponent<UIManager> ().character = p2;
+					p2.GetComponent<ZodiacCharacter>().myHUD = p2HUD;
 					p2HUD.SetActive (true);
 				}
 				break;
@@ -266,6 +272,7 @@ public class GameManager : MonoBehaviour {
 					p3.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P3";
 					p3.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.blue;
 					p3HUD.GetComponent<UIManager> ().character = p3;
+					p3.GetComponent<ZodiacCharacter>().myHUD = p3HUD;
 					p3HUD.SetActive (true);
 				}
 				break;
@@ -279,6 +286,7 @@ public class GameManager : MonoBehaviour {
 					p4.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "P4";
 					p4.transform.GetChild(0).GetChild(0).GetComponent<Text>().color= Color.black;
 					p4HUD.GetComponent<UIManager> ().character = p4;
+					p4.GetComponent<ZodiacCharacter>().myHUD = p4HUD;
 					p4HUD.SetActive (true);
 				}
 				break;

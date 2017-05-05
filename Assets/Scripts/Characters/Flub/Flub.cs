@@ -68,6 +68,7 @@ public class Flub : ZodiacCharacter {
 	private bool canAttackBasic = true;
 	private bool canAttackSpecial = true;
 	public float stunDur;
+	public UIManager uiMan;
 
 
     // Use this for initialization
@@ -75,6 +76,7 @@ public class Flub : ZodiacCharacter {
 		aSource = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
 		isStunned = false;
+		uiMan = myHUD.GetComponent<UIManager>();
 	}
 
     // Update is called once per frame
@@ -133,6 +135,7 @@ public class Flub : ZodiacCharacter {
             inventory = other.gameObject;
             //Debug.Log("Picked up " + inventory);
             inventory.SetActive(false);
+			uiMan.ItemDisplay(other.GetComponent<SpriteRenderer>().sprite.name);
             haveItem = true;
         }
 		if (slipTrick && other.CompareTag("Character")){
