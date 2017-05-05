@@ -123,12 +123,12 @@ public class CharacterMovement : MonoBehaviour {
 				GetComponent<SpriteRenderer> ().flipY = false;
 				GetComponent<Rigidbody2D> ().gravityScale = 2;
 			}
-			//check if player is on ground
-			if (Physics2D.Raycast(groundCheck1, transform.up * -1, groundRadius, whatIsGround) || Physics2D.Raycast(groundCheck2, transform.up * -1, groundRadius, whatIsGround))
-				grounded = true;
-			else 
-				grounded = false;
 		}
+		//check if player is on ground
+		if (Physics2D.Raycast(groundCheck1, Vector2.down, groundRadius, whatIsGround) || Physics2D.Raycast(groundCheck2, Vector2.down, groundRadius, whatIsGround))
+			grounded = true;
+		else 
+			grounded = false;
 
 		anim.SetBool ("Ground", grounded);
 		anim.SetFloat ("vSpeed", GetComponent<Rigidbody2D> ().velocity.y);
