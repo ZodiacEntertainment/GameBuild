@@ -44,9 +44,8 @@ public class Alexis : ZodiacCharacter {
     [SerializeField]
     [Tooltip("How long the attack lasts.")]
     private int spDuration;
-    [SerializeField]
-    [Tooltip("How long before the attack can be used again.")]
-    private int spCoolDown;
+    
+
 	public GameObject granade;
 	public Transform launchPoint;
 
@@ -60,20 +59,21 @@ public class Alexis : ZodiacCharacter {
     public bool haveItem = false;
     private GameObject inventory;
 
-	private float delayBasic;
-    private float delaySpecial;
+	public float delayBasic;
+    public float delaySpecial;
+    public float spCooldown;
     GameObject temp;
 
     private bool canAttackBasic = true;
     private bool canAttackSpecial = true;
 	public float stunDur;
+	public UIManager uiMan;
 
     // Use this for initialization
     void Start () {
 		aSource = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
-        delayBasic = bCoolDown;
-        delaySpecial = spCoolDown;
+		uiMan = myHUD.GetComponent<UIManager>();
 		isStunned = false;
     }
 	// Update is called once per frame
@@ -90,6 +90,8 @@ public class Alexis : ZodiacCharacter {
 	        }
 			// special attack
 			if ((Input.GetAxis(controller + "SpA") > 0.5f  || Input.GetKeyDown(KeyCode.K)) && canAttackSpecial) {
+                canAttackSpecial = false;
+                StartCoroutine(AttackSpecialDelay());
 				anim.SetTrigger("SpecialAttack");
 				temp = Instantiate(granade, launchPoint.position, Quaternion.identity) as GameObject;
 				temp.GetComponent<Grenade>().owner = this.gameObject;
@@ -101,6 +103,7 @@ public class Alexis : ZodiacCharacter {
 			if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
         	    // Use the pickup
             	Debug.Log("Used " + inventory);
+				uiMan.ItemDisplay("Default");
             	haveItem = false;
         	}
 			if ((Input.GetAxis(controller + "ItemDrop") > 0.5f || Input.GetAxis("Fire2") > 0.5f) && haveItem){
@@ -108,15 +111,18 @@ public class Alexis : ZodiacCharacter {
             	inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
             	inventory.SetActive(true);
             	Debug.Log("Dropped " + inventory);
+				uiMan.ItemDisplay("Default");
             	haveItem = false;
         	}
 
 			if(Input.GetAxis(controller + "SuA") > 0f){
+				anim.SetBool ("SustainedAttack", true);
 				isSusAttacking = true;
 				Debug.Log ("SusAttacking start");
 			}
 			else{
 				isSusAttacking = false;
+				anim.SetBool ("SustainedAttack", false);
 				Debug.Log ("SusAttacking end");
 			}
 		}
@@ -128,8 +134,16 @@ public class Alexis : ZodiacCharacter {
     }
     public IEnumerator AttackSpecialDelay()
     {
-        canAttackSpecial = false;
+        
+        anim.SetTrigger("SpecialAttack");
         yield return new WaitForSeconds(delaySpecial);
+        temp = Instantiate(granade, launchPoint.position, Quaternion.identity) as GameObject;
+        temp.GetComponent<Grenade>().owner = this.gameObject;
+        if (!GetComponent<CharacterMovement>().facingRight)
+            temp.GetComponent<Grenade>().HSpeed *= -1;
+        aSource.clip = clips[1];
+        aSource.Play();
+        yield return new WaitForSeconds(spCooldown);
         canAttackSpecial = true;
     }
     public void OnTriggerEnter2D(Collider2D other){
@@ -142,6 +156,7 @@ public class Alexis : ZodiacCharacter {
         if (other.gameObject.CompareTag("Item") && !haveItem){
             inventory = other.gameObject;
             Debug.Log("Picked up " + inventory);
+			uiMan.ItemDisplay(other.GetComponent<SpriteRenderer>().sprite.name);
             inventory.SetActive(false);
             haveItem = true;
         }
