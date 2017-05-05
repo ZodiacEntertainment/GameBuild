@@ -7,4 +7,5 @@ public abstract class ZodiacCharacter : MonoBehaviour {
     public int coins;
 	public string controller;
 	public bool isStunned;
+	public GameObject myHUD;
 }
