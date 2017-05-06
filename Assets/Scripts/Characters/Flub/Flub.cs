@@ -114,6 +114,7 @@ public class Flub : ZodiacCharacter {
 			else
 				transform.Translate(new Vector3(-3,0,0) * Time.deltaTime);
         }
+		CoinUpdate ();
     }
 	public IEnumerator AttackSpecialDelay(){
 		canAttackSpecial = false;
@@ -156,5 +157,20 @@ public class Flub : ZodiacCharacter {
 		isStunned = true;
 		yield return new WaitForSeconds(stunDur);
 		isStunned = false;
+	}
+	public override void  CoinUpdate (){
+		if(coins == coinTier1)
+			coinLevel = 1;
+		if (coins == coinTier2)
+			coinLevel = 2;
+		if (coins == coinTier3)
+			coinLevel = 3;
+		if (coins == coinTier4)
+			coinLevel = 4;
+		if (coins == coinTier5)
+			coinLevel = 5;
+		if (coins == coinMax)
+			coinLevel = 6;
+
 	}
 }

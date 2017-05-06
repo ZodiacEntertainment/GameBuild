@@ -71,10 +71,17 @@ public class CharacterMovement : MonoBehaviour {
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce * jumpMult));
 				jumpSource.PlayOneShot(jumpClip);
 			}
-			if (grounded && Input.GetAxis (controller + "Jump") > 0f) {
+			if (Input.GetAxis (controller + "Jump") > 0f) {
 				anim.SetBool ("Ground", false);
-				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce));
 				jumpSource.PlayOneShot(jumpClip);
+				if (GetComponent<SpriteRenderer> ().flipY) {
+					GetComponent<SpriteRenderer> ().flipY = false;
+					GetComponent<Rigidbody2D> ().gravityScale = 2;
+					GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, -jumpForce/2f));
+				}
+				else
+					if(grounded) 
+						GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce));
 			}
 		}
     }
@@ -103,24 +110,21 @@ public class CharacterMovement : MonoBehaviour {
 
     void FixedUpdate () {
 		//climbcheck
-		if (GetComponent<Flub> () != null) {
-			if (Physics2D.Raycast (transform.position, transform.right * -1, groundRadius, whatIsGround)) {
-				//transform.Rotate(Vector2.left * 90);
-				GetComponent<Rigidbody2D> ().gravityScale = 0;
-			}
-			if (Physics2D.Raycast (transform.position, transform.right, groundRadius, whatIsGround)) {
-				//transform.Rotate(Vector2.right * 90);
-				GetComponent<Rigidbody2D> ().gravityScale = 0;
-			}
+		if (GetComponent<Flub> () != null && Input.GetAxis(controller + "SuA") > 0f) {
 			if (Physics2D.Raycast (transform.position, transform.up, groundRadius, whatIsGround)) {
 				GetComponent<SpriteRenderer> ().flipY = true;
-				GetComponent<Rigidbody2D> ().gravityScale = -1;
+				GetComponent<Rigidbody2D> ().gravityScale = -0.5f;
+					
 			}
 			if (!Physics2D.Raycast (transform.position, transform.right * -1, groundRadius, whatIsGround) && !Physics2D.Raycast (transform.position, transform.up, groundRadius, whatIsGround) && !Physics2D.Raycast (transform.position, transform.right, groundRadius, whatIsGround)) {
 				//transform.rotation = Quaternion.Euler(0,0,0);
 				GetComponent<SpriteRenderer> ().flipY = false;
 				GetComponent<Rigidbody2D> ().gravityScale = 2;
 			}
+		}
+		if (GetComponent<Flub> () != null && Input.GetAxis (controller + "SuA") == 0f) {
+			GetComponent<SpriteRenderer> ().flipY = false;
+			GetComponent<Rigidbody2D> ().gravityScale = 2;
 		}
 		//check if player is on ground
 		if (Physics2D.Raycast(groundCheck1, Vector2.down, groundRadius, whatIsGround) || Physics2D.Raycast(groundCheck2, Vector2.down, groundRadius, whatIsGround))
