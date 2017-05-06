@@ -3,18 +3,15 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class LevelTrigger : MonoBehaviour {
-
-    public CamMove cam;
-    public Chariot chariot;
+	
     public int level;
+	public GameManager manager;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (chariot.triggered)
-        {
-            cam.cameraSpeed = 0;
-            SceneManager.LoadScene(level);
-        }
+    void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.tag == "Character") {
+			if (other.GetComponent<ZodiacCharacter> ().coins == other.GetComponent<ZodiacCharacter> ().coinMax)
+				SceneManager.LoadScene (level);
+		}
     }
-
 }
+
