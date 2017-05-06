@@ -1,38 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class Chariot : MonoBehaviour {
 
-    public CamMove cam;
-    public Alexis coinCounter;
-    public GameObject RightBound;
-
-   public  bool triggered;
-
-    public float maxCoins = 3f;
+	public float Speed;
+	public float time;
+	public bool canMove;
+	public GameObject[] players;
 
     void Start()
-    {
-        triggered = false;
+    {	
+		players = GameObject.FindGameObjectsWithTag ("Character");
+		canMove = false;
     }
 
 	// Update is called once per frame
 	void Update () {
+		
+		foreach (GameObject p in players) {
+			if (p.GetComponent<ZodiacCharacter> ().coins == p.GetComponent<ZodiacCharacter> ().coinMax) {
+				canMove = true;
+				StartCoroutine (Appear ());
+			}
+		}
+		if (canMove)
+			transform.Translate (-Speed * Time.deltaTime, 0, 0);
+	}
 
-        if(coinCounter.coins >= maxCoins)
-        {
-            triggered = true;
-        }
-
-        if (triggered)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-10, GetComponent<Rigidbody2D>().velocity.y);
-        }
-        else
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
-        }
-        
+	public IEnumerator Appear(){
+		yield return new WaitForSeconds (time);
+		canMove = false;
 	}
 }
     

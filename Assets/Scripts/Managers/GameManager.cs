@@ -149,21 +149,25 @@ public class GameManager : MonoBehaviour {
 			case 1:
 				p1.transform.position = SP1.position;
 				p1HUD.SetActive (true);
+				p1HUD.GetComponent<UIManager>().Init(p1);
 				//p1.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 2:
 				p2.transform.position = SP2.position;
 				p2HUD.SetActive (true);
+				p2HUD.GetComponent<UIManager>().Init(p2);
 				//p2.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 3:
 				p3.transform.position = SP3.position;
 				p3HUD.SetActive (true);
+				p3HUD.GetComponent<UIManager>().Init(p3);
 				//p3.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			case 4:
 				p4.transform.position = SP4.position;
 				p4HUD.SetActive (true);
+				p4HUD.GetComponent<UIManager>().Init(p4);
 				//p4.GetComponent<CharacterMovement>().grounded = false;
 				break;
 			}
