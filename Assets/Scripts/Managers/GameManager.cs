@@ -31,10 +31,16 @@ public class GameManager : MonoBehaviour {
 	public Transform SP3;
 	public Transform SP4;
 
-	public int[] MostDamageTaken = new int[]{0,0,0,0};
-	public int[] MostTimesInFirst = new int[]{0,0,0,0};
-	public int[] MostDamageGiven = new int[]{0,0,0,0};
-	public int[] MostCoins = new int[]{0,0,0,0};
+    //a number from 1 to 4 representing which player was whatever closest to the chariot.
+    //index represents position, number represents player.
+    public int[] score;
+
+    public Sprite[] profiles = new Sprite[4];
+
+	public int[] MostDamageTaken = new int[4]{0,0,0,0};
+	public int[] MostTimesInFirst = new int[4]{0,0,0,0};
+	public int[] MostDamageGiven = new int[4]{0,0,0,0};
+	public int[] MostCoins = new int[4]{0,0,0,0};
 	public int[] statRef;
 
 	bool gameStarted = false;
@@ -42,7 +48,7 @@ public class GameManager : MonoBehaviour {
 	bool onePlayer = false;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		DontDestroyOnLoad (this.gameObject);
 	}
 	public void Update(){
@@ -296,6 +302,7 @@ public class GameManager : MonoBehaviour {
 				break;
 			}
 		}
+<<<<<<< HEAD
 	}
 
 	public void PlayerPlacement(){
@@ -352,4 +359,12 @@ public class GameManager : MonoBehaviour {
 			break;
 		}
 	}
+=======
+
+        if (p1 != null) profiles[0] = p1.GetComponent<ZodiacCharacter>().profileImage;
+        if (p2 != null) profiles[1] = p2.GetComponent<ZodiacCharacter>().profileImage;
+        if (p3 != null) profiles[2] = p3.GetComponent<ZodiacCharacter>().profileImage;
+        if (p4 != null) profiles[3] = p4.GetComponent<ZodiacCharacter>().profileImage;
+    }
+>>>>>>> refs/remotes/origin/Results
 }

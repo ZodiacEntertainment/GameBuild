@@ -2,7 +2,7 @@
 using System.Collections;
 
 [System.Serializable]
-public class Player {
+public class Player:MonoBehaviour {
 
     public int score = 0;
     public static Player curr;

@@ -17,6 +17,10 @@ public abstract class ZodiacCharacter : MonoBehaviour {
 
 
     public int coins;
+<<<<<<< HEAD
 	public abstract void CoinUpdate ();
+=======
+    public Sprite profileImage;
+>>>>>>> refs/remotes/origin/Results
 }
 
