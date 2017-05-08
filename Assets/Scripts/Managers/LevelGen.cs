@@ -9,7 +9,6 @@ public class LevelGen : MonoBehaviour {
     [HideInInspector]
     public GameObject[] selectTiles;
     public GameObject startLine;
-    public GameObject startBack;
     [HideInInspector]
     public List<GameObject> Tiles = new List<GameObject>();
     GameObject tileTempCurr;

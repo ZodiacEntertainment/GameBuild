@@ -23,13 +23,16 @@ public class Chariot : MonoBehaviour {
 				StartCoroutine (Appear ());
 			}
 		}
-		if (canMove)
+		if (canMove) {
 			transform.Translate (-Speed * Time.deltaTime, 0, 0);
+		}
+
 	}
 
 	public IEnumerator Appear(){
 		yield return new WaitForSeconds (time);
 		canMove = false;
+		Debug.Log ("WOah there");
 	}
 }
     
