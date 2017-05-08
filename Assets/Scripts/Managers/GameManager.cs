@@ -302,8 +302,11 @@ public class GameManager : MonoBehaviour {
 				break;
 			}
 		}
-<<<<<<< HEAD
-	}
+        if (p1 != null) profiles[0] = p1.GetComponent<ZodiacCharacter>().profileImage;
+        if (p2 != null) profiles[1] = p2.GetComponent<ZodiacCharacter>().profileImage;
+        if (p3 != null) profiles[2] = p3.GetComponent<ZodiacCharacter>().profileImage;
+        if (p4 != null) profiles[3] = p4.GetComponent<ZodiacCharacter>().profileImage;
+    }
 
 	public void PlayerPlacement(){
 		switch(DetermineNumOfPlayers()){
@@ -359,12 +362,4 @@ public class GameManager : MonoBehaviour {
 			break;
 		}
 	}
-=======
-
-        if (p1 != null) profiles[0] = p1.GetComponent<ZodiacCharacter>().profileImage;
-        if (p2 != null) profiles[1] = p2.GetComponent<ZodiacCharacter>().profileImage;
-        if (p3 != null) profiles[2] = p3.GetComponent<ZodiacCharacter>().profileImage;
-        if (p4 != null) profiles[3] = p4.GetComponent<ZodiacCharacter>().profileImage;
-    }
->>>>>>> refs/remotes/origin/Results
 }
