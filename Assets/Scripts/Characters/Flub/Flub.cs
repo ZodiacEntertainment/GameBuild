@@ -8,7 +8,7 @@ public class Flub : ZodiacCharacter {
 
 	public List<AudioClip> clips;
 	private AudioSource aSource;
-	private Animator anim;
+	Animator anim;
 
     //controller prefix in parent
     //public string controller;
@@ -86,6 +86,7 @@ public class Flub : ZodiacCharacter {
 		if ((Input.GetAxis(controller + "BA") > 0.5f || Input.GetKeyDown(KeyCode.J))&& canAttackBasic){
             //call anim
 			anim.SetTrigger("BasicAttack");
+
 //			aSource.clip = clips[0];
 //			aSource.Play ();
             StartCoroutine(SlipTrick());
@@ -148,7 +149,7 @@ public class Flub : ZodiacCharacter {
     }
 	public override void TakeDamage(int _damage){
 		StartCoroutine (Stun());
-		anim.SetTrigger ("TakeDamage");
+		anim.SetTrigger ("FlubDamage");
 		coins -= _damage;
 		Debug.Log("Coins" + coins);
 		manager.StatUpdate (controller, "MDT", _damage);

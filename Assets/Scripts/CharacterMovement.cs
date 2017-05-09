@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	private AudioSource jumpSource;
 
-    Animator anim;
+    public Animator anim;
 	public string controller;
 
     //bool to store if on ground
@@ -141,7 +141,12 @@ public class CharacterMovement : MonoBehaviour {
 				move = Input.GetAxis (controller + "Horizontal");
 			if (Input.GetAxis (controller + "Horizontal") < 0f)
 				move = Input.GetAxis (controller + "Horizontal");
-			anim.SetFloat ("Speed", Mathf.Abs (move));
+			if (GetComponent<SpriteRenderer> ().flipY && Input.GetAxis (controller + "Horizontal") < 0f) {
+				anim.Play("wallClimb",-1,0f);
+				move = Input.GetAxis (controller + "Horizontal");
+			} else {
+				anim.SetFloat ("Speed", Mathf.Abs (move));
+			}
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (move * currSpeed, GetComponent<Rigidbody2D> ().velocity.y);
 			if (move > 0 && !facingRight)
 				Flip ();
