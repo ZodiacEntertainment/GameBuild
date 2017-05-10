@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class RaceStart : MonoBehaviour {
 	public bool started;
 	public float countDownTime;
 	float counter;
-	//public Text text;
+	public Text text;
+    public GameObject barriers;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,19 @@ public class RaceStart : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		counter -= Time.deltaTime;
+        if(counter <= 4 && counter > 3){
+            text.text = "3";
+        }else if(counter <= 3 && counter > 2){
+            text.text = "2";
+        }else if(counter <= 2 && counter > 1){
+            text.text = "1";
+        } else if(counter < 1 && counter > 0){
+            barriers.SetActive(false);
+            started = true;
+            text.text = "GO!";
+        }else{
+            text.text = null;
+        }
 	}
 
 //	public IEnumerator CountDown() {
@@ -37,9 +51,9 @@ public class RaceStart : MonoBehaviour {
 //			Destroy (text.transform.parent.gameObject);
 
 //	}
-	public void OnGUI(){
-		if (counter > 0) {
-			GUILayout.Label ("Start " + counter);
-		}
-	}
+	//public void OnGUI(){
+	//	if (counter > 0) {
+	//		GUILayout.Label ("Start " + Mathf.RoundToInt(counter));
+	//	}
+	//}
 }
