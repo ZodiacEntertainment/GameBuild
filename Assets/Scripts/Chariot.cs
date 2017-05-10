@@ -18,7 +18,7 @@ public class Chariot : MonoBehaviour {
 	void Update () {
 		
 		foreach (GameObject p in players) {
-			if (p.GetComponent<ZodiacCharacter> ().coins == p.GetComponent<ZodiacCharacter> ().coinMax) {
+			if (p.GetComponent<ZodiacCharacter> ().coinLevel == 6) {
 				canMove = true;
 				StartCoroutine (Appear ());
 			}
