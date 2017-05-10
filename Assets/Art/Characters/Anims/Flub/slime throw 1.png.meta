@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-guid: 25d6785e642cc524db9fbfd6a047b2af
-timeCreated: 1493670463
+guid: 53e6a812be64d384eb9c277f0f8ad92d
+timeCreated: 1494266338
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: flub sprite runn_0
-    21300002: flub sprite runn_1
-    21300004: flub sprite runn_2
-    21300006: flub sprite runn_3
-    21300008: flub sprite runn_4
-    21300010: flub sprite runn_5
-    21300012: flub sprite runn_6
+    21300000: slime throw 1_0
+    21300002: slime throw 1_1
+    21300004: slime throw 1_2
+    21300006: slime throw 1_3
+    21300008: slime throw 1_4
+    21300010: slime throw 1_5
+    21300012: slime throw 1_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -51,7 +51,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 90
+  spritePixelsToUnits: 85
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
@@ -60,93 +60,93 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: flub sprite runn_0
+      name: slime throw 1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 101
-        width: 68
-        height: 62
+        x: 124
+        y: 402
+        width: 75
+        height: 66
       alignment: 9
-      pivot: {x: 0.57351, y: 0.5548108}
+      pivot: {x: 0.60412985, y: 0.5000005}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: flub sprite runn_1
+      name: slime throw 1_1
       rect:
         serializedVersion: 2
-        x: 114
-        y: 100
-        width: 70
-        height: 60
+        x: 359
+        y: 401
+        width: 75
+        height: 61
       alignment: 9
-      pivot: {x: 0.593398, y: 0.5290571}
+      pivot: {x: 0.6106197, y: 0.64107275}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: flub sprite runn_2
+      name: slime throw 1_2
       rect:
         serializedVersion: 2
-        x: 212
-        y: 100
-        width: 74
-        height: 54
+        x: 619
+        y: 402
+        width: 75
+        height: 50
       alignment: 9
-      pivot: {x: 0.5795144, y: 0.51210713}
+      pivot: {x: 0.62426674, y: 0.67210877}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: flub sprite runn_3
+      name: slime throw 1_3
       rect:
         serializedVersion: 2
-        x: 307
-        y: 101
-        width: 83
-        height: 52
+        x: 867
+        y: 401
+        width: 72
+        height: 73
       alignment: 9
-      pivot: {x: 0.5446362, y: 0.44132715}
+      pivot: {x: 0.6123793, y: 0.4929567}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: flub sprite runn_4
+      name: slime throw 1_4
       rect:
         serializedVersion: 2
-        x: 13
-        y: 0
-        width: 74
-        height: 55
+        x: 121
+        y: 153
+        width: 78
+        height: 101
       alignment: 9
-      pivot: {x: 0.58013994, y: 0.486605}
+      pivot: {x: 0.59247196, y: 0.3864045}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: flub sprite runn_5
+      name: slime throw 1_5
       rect:
         serializedVersion: 2
-        x: 114
-        y: 0
-        width: 70
-        height: 58
+        x: 369
+        y: 153
+        width: 72
+        height: 73
       alignment: 9
-      pivot: {x: 0.5915022, y: 0.51035076}
+      pivot: {x: 0.6251869, y: 0.52103037}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: flub sprite runn_6
+      name: slime throw 1_6
       rect:
         serializedVersion: 2
-        x: 212
-        y: 0
-        width: 68
-        height: 63
+        x: 695
+        y: 153
+        width: 75
+        height: 66
       alignment: 9
-      pivot: {x: 0.576403, y: 0.57461256}
+      pivot: {x: 0.6051489, y: 0.55431205}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

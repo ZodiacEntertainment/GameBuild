@@ -7,7 +7,7 @@ public class Flub : ZodiacCharacter {
 
 	public List<AudioClip> clips;
 	private AudioSource aSource;
-	private Animator anim;
+	Animator anim;
 
     //controller prefix in parent
     //public string controller;
@@ -23,7 +23,7 @@ public class Flub : ZodiacCharacter {
 
     // Status
     //private bool isStunned;
-    private bool isInvincible;
+	//public bool isInvincible;
     private bool isAlive;
 
     // Basic Attack
@@ -35,17 +35,22 @@ public class Flub : ZodiacCharacter {
 	private float bCoolDown;
     //is using slip trick
     bool slipTrick = false;
+	public GameObject slipCol;
+
 
     // Special Attack
     [SerializeField]
     [Tooltip("How many coins lost when attack hits.")]
-    private int spDamage;
+    public int spDamage;
     [SerializeField]
     [Tooltip("How long the attack lasts.")]
     private int spDuration;
     [SerializeField]
     [Tooltip("How long before the attack can be used again.")]
     private float spCoolDown;
+	public GameObject slimeBall;
+	public Transform throwPoint;
+	GameObject spTemp;
 
     // Sustained Attack
     [SerializeField]
@@ -76,6 +81,7 @@ public class Flub : ZodiacCharacter {
 		aSource = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
 		isStunned = false;
+		isInvincible = false;
 		uiMan = myHUD.GetComponent<UIManager>();
 	}
 
@@ -97,6 +103,13 @@ public class Flub : ZodiacCharacter {
 		if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
 			// Use the pickup
 			Debug.Log("Used " + inventory);
+			switch(inventory.GetComponent<SpriteRenderer>().sprite.name){
+			case "powerup":
+				StartCoroutine (Invincible());
+				break;
+			default:
+				break;
+			}
 			uiMan.ItemDisplay("Default");
 			haveItem = false;
 		}
@@ -108,25 +121,37 @@ public class Flub : ZodiacCharacter {
 			uiMan.ItemDisplay("Default");
 			haveItem = false;
 		}
-        if (slipTrick){
-			if (GetComponent<CharacterMovement>().facingRight)
-            	transform.Translate(new Vector3(3,0,0) * Time.deltaTime);
-			else
-				transform.Translate(new Vector3(-3,0,0) * Time.deltaTime);
-        }
+//        if (slipTrick){
+//			if (GetComponent<CharacterMovement>().facingRight)
+//            	transform.Translate(new Vector3(3,0,0) * Time.deltaTime);
+//			else
+//				transform.Translate(new Vector3(-3,0,0) * Time.deltaTime);
+//        }
 		CoinUpdate ();
     }
 	public IEnumerator AttackSpecialDelay(){
 		canAttackSpecial = false;
+		spTemp = Instantiate(slimeBall, throwPoint.position, Quaternion.identity) as GameObject;
+		spTemp.GetComponent<SlimeBall> ().owner = this.gameObject;
+		if (!GetComponent<CharacterMovement>().facingRight)
+			spTemp.GetComponent<SlimeBall>().HSpeed *= -1;
+		if(GetComponent<SpriteRenderer>().flipY)
+			spTemp.GetComponent<SlimeBall> ().launchForce *= -1;
 		yield return new WaitForSeconds(spCoolDown);
 		canAttackSpecial = true;
 	}
     public IEnumerator SlipTrick(){
         slipTrick = true;
         canAttackBasic = false;
+		slipCol.SetActive (true);
+		GetComponent<Rigidbody2D> ().isKinematic = true;
+		GetComponent<Collider2D> ().isTrigger = true;
         yield return new WaitForSeconds(bCoolDown);
         canAttackBasic = true;
         slipTrick = false;
+		slipCol.SetActive (false);
+		GetComponent<Rigidbody2D> ().isKinematic = false;
+		GetComponent<Collider2D> ().isTrigger = false;
     }
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){
@@ -140,9 +165,6 @@ public class Flub : ZodiacCharacter {
             inventory.SetActive(false);
 			uiMan.ItemDisplay(other.GetComponent<SpriteRenderer>().sprite.name);
             haveItem = true;
-        }
-		if (slipTrick && other.CompareTag("Character")){
-			other.gameObject.GetComponent<ZodiacCharacter>().TakeDamage(bDamage);
         }
     }
 	public override void TakeDamage(int _damage){
@@ -172,5 +194,10 @@ public class Flub : ZodiacCharacter {
 		if (coins == coinMax)
 			coinLevel = 6;
 
+	}
+	public IEnumerator Invincible(){
+		isInvincible = true;
+		yield return new WaitForSeconds(stunDur);
+		isInvincible= false;
 	}
 }

@@ -24,16 +24,13 @@ public class Alexis : ZodiacCharacter {
 
     // Status
     //private bool isStunned;
-    private bool isInvincible;
     private bool isAlive;
 
     // Basic Attack
     [SerializeField]
     [Tooltip("How many coins lost when attack hits.")]
     private int bDamage;
-    [SerializeField]
-    [Tooltip("How long before the attack can be used again.")]
-    private int bCoolDown;
+
     //main AOE
 	public GameObject BlastArea;
 
@@ -78,8 +75,7 @@ public class Alexis : ZodiacCharacter {
 			if ((Input.GetAxis(controller + "BA") > 0.5f || Input.GetKeyDown(KeyCode.J))&& canAttackBasic) {
         	    BlastArea.GetComponent<ShotGunMain>().BasicAttack();
             	//call anim
-				anim.SetTrigger("BasicAttack");
-				aSource.PlayOneShot(clips[0]);
+				canAttackBasic = false;
 				//manager.StatUpdate (controller, "Attacks", bDamage);
             	StartCoroutine(AttackBasicDelay());
 	        }
@@ -91,6 +87,13 @@ public class Alexis : ZodiacCharacter {
 			if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
         	    // Use the pickup
             	Debug.Log("Used " + inventory);
+				switch(inventory.GetComponent<SpriteRenderer>().sprite.name){
+				case "powerup":
+					StartCoroutine (Invincible());
+					break;
+				default:
+					break;
+				}
 				uiMan.ItemDisplay("Default");
             	haveItem = false;
         	}
@@ -117,7 +120,9 @@ public class Alexis : ZodiacCharacter {
 		CoinUpdate ();
     }
     public IEnumerator AttackBasicDelay(){
-        canAttackBasic = false;
+       
+		anim.SetTrigger("BasicAttack");
+		aSource.PlayOneShot(clips[0]);
 		yield return new WaitForSeconds(delayBasic);
         canAttackBasic = true;
     }
@@ -183,5 +188,10 @@ public class Alexis : ZodiacCharacter {
 		if (coins == coinMax)
 			coinLevel = 6;
 
+	}
+	public IEnumerator Invincible(){
+		isInvincible = true;
+		yield return new WaitForSeconds(stunDur);
+		isInvincible= false;
 	}
 }

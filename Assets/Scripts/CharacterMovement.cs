@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	private AudioSource jumpSource;
 
-    Animator anim;
+    public Animator anim;
 	public string controller;
 
     //bool to store if on ground
@@ -31,6 +31,7 @@ public class CharacterMovement : MonoBehaviour {
     SpriteRenderer sprite;
 	GameObject blastArea;
 	Transform launchPoint;
+	Transform SlimePoint;
 
 	public float jumpMult;
 
@@ -38,11 +39,14 @@ public class CharacterMovement : MonoBehaviour {
     void Start () {
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+		jumpSource = GetComponent<AudioSource> ();
 		if (GetComponent<Alexis> () != null) {
 			blastArea = GetComponent<Alexis> ().BlastArea;
 			launchPoint = GetComponent<Alexis> ().launchPoint;
 		}
-		jumpSource = GetComponent<AudioSource> ();
+		if (GetComponent<Flub> () != null) {
+			SlimePoint = GetComponent<Flub> ().throwPoint;
+		}
     }
 
     // Update is called once per frame
@@ -103,6 +107,13 @@ public class CharacterMovement : MonoBehaviour {
 				blastArea.transform.localScale = new Vector3(-1,1,1);
 			}
 		}
+		if (GetComponent<Flub> () != null) {
+			if (facingRight) {
+				SlimePoint.position = new Vector3(transform.position.x + 0.375f, SlimePoint.position.y, SlimePoint.position.z);
+			} else {
+				SlimePoint.position = new Vector3(transform.position.x - 0.375f, SlimePoint.position.y, SlimePoint.position.z);
+			}
+		}
        // Vector3 theScale = transform.localScale;
        // theScale.x *= -1;
        // transform.localScale = theScale;
@@ -139,9 +150,14 @@ public class CharacterMovement : MonoBehaviour {
 			//get direction of arrow key pressed (also works with wasd)
 			if (Input.GetAxis (controller + "Horizontal") > 0f)
 				move = Input.GetAxis (controller + "Horizontal");
-			if (Input.GetAxis (controller + "Horizontal") < 0f)
+			if (Input.GetAxis (controller + "Horizontal") < 0f) 
 				move = Input.GetAxis (controller + "Horizontal");
-			anim.SetFloat ("Speed", Mathf.Abs (move));
+			if (GetComponent<SpriteRenderer> ().flipY && Input.GetAxis (controller + "Horizontal") < 0f) {
+				anim.Play ("wallClimb", -1, 0f);
+				move = Input.GetAxis (controller + "Horizontal");
+			} else {
+				anim.SetFloat ("Speed", Mathf.Abs (move));
+			}
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (move * currSpeed, GetComponent<Rigidbody2D> ().velocity.y);
 			if (move > 0 && !facingRight)
 				Flip ();

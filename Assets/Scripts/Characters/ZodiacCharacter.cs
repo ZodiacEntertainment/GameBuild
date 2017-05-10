@@ -6,6 +6,7 @@ public abstract class ZodiacCharacter : MonoBehaviour {
 	public abstract void TakeDamage(int damage);
 	public string controller;
 	public bool isStunned;
+	public bool isInvincible;
 	public GameObject myHUD;
     public int coinLevel;
     public int coinTier1;
