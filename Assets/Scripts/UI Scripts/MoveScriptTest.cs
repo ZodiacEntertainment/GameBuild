@@ -9,15 +9,12 @@ public class MoveScriptTest : MonoBehaviour {
     public float timeDelta;
     public bool displayed;
     public bool canClick;
-    public float screenWidth;
-
     public void Awake()
     {
         canClick = true;
         displayed = false;
         startPos = gameObject.transform.position;
-        screenWidth = Screen.width;
-        relativeLocation = new Vector3(-(screenWidth - (screenWidth / 5)), 0, 0);
+       relativeLocation = new Vector3(-800, 0, 0);
 	    targetLocation = transform.position + relativeLocation;
 		timeDelta = 0.05f;
     }

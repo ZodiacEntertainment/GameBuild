@@ -5,7 +5,7 @@ using System.Collections;
 public class UIController : MonoBehaviour {
 	[SerializeField] private TestPopup TestPopup;
 
-	void Start() {
+	public void OnCloseSettings() {
 		TestPopup.Close();
 	}
 

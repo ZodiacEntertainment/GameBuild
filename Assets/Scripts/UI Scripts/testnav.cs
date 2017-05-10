@@ -13,7 +13,7 @@ public class testnav : MonoBehaviour {
 		if(Input.GetAxisRaw("Vertical") != 0 && buttonSelected == false) {
 			eventSystem.SetSelectedGameObject(selectedObject);
 			buttonSelected = true;
-		}
+        }
 	}
 	private void OnDisable() {
 		buttonSelected = false;
