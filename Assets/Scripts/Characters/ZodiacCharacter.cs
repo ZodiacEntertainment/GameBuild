@@ -15,10 +15,23 @@ public abstract class ZodiacCharacter : MonoBehaviour {
     public int coinTier5;
     public int coinMax;
 	public bool isInvincible;
-
-
+	public Sprite profileImage;
     public int coins;
-	public abstract void CoinUpdate ();
-    public Sprite profileImage;
+	public void Update(){
+		if(coins == coinTier1)
+			coinLevel = 1;
+		if (coins == coinTier2)
+			coinLevel = 2;
+		if (coins == coinTier3)
+			coinLevel = 3;
+		if (coins == coinTier4)
+			coinLevel = 4;
+		if (coins == coinTier5)
+			coinLevel = 5;
+		if (coins > coinMax)
+			coinLevel = 6;
+
+	}
+    
 }
 

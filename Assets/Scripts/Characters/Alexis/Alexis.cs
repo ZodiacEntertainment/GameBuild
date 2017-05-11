@@ -91,6 +91,13 @@ public class Alexis : ZodiacCharacter {
 			if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
         	    // Use the pickup
             	Debug.Log("Used " + inventory);
+				switch(inventory.GetComponent<SpriteRenderer>().sprite.name){
+				case "powerup":
+					StartCoroutine (Invincible());
+					break;
+				default:
+					break;
+				}
 				uiMan.ItemDisplay("Default");
             	haveItem = false;
         	}
@@ -114,7 +121,6 @@ public class Alexis : ZodiacCharacter {
 				Debug.Log ("SusAttacking end");
 			}
 		}
-		CoinUpdate ();
     }
     public IEnumerator AttackBasicDelay(){
         canAttackBasic = false;
@@ -168,20 +174,9 @@ public class Alexis : ZodiacCharacter {
 		yield return new WaitForSeconds(stunDur);
 		isStunned = false;
 	}
-	public override void  CoinUpdate (){
-		Debug.Log ("Coins updating");
-		if(coins == coinTier1)
-			coinLevel = 1;
-		if (coins == coinTier2)
-			coinLevel = 2;
-		if (coins == coinTier3)
-			coinLevel = 3;
-		if (coins == coinTier4)
-			coinLevel = 4;
-		if (coins == coinTier5)
-			coinLevel = 5;
-		if (coins == coinMax)
-			coinLevel = 6;
-
+	public IEnumerator Invincible(){
+		isInvincible = true;
+		yield return new WaitForSeconds(stunDur);
+		isInvincible= false;
 	}
 }
