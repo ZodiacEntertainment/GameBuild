@@ -40,7 +40,7 @@ public class Results : MonoBehaviour {
             statPanes[i].setActive(false);
         }
 
-        loserText.transform.position = new Vector3(loserText.transform.position.x, vectors[numPlayers].y, vectors[numPlayers - 1].z);
+        loserText.transform.position = new Vector3(loserText.transform.position.x, vectors[numPlayers - 1].y, vectors[numPlayers - 1].z);
 
         //run through players in order of the position they came in, setting their number at that position and displaying their stats
         for (int i = 0; i < numPlayers; i++)
