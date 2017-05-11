@@ -25,7 +25,6 @@ public class Alexis : ZodiacCharacter {
 
     // Status
     //private bool isStunned;
-    private bool isInvincible;
     private bool isAlive;
 
     // Basic Attack

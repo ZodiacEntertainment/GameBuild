@@ -24,7 +24,6 @@ public class Flub : ZodiacCharacter {
 
     // Status
     //private bool isStunned;
-    private bool isInvincible;
     private bool isAlive;
 
     // Basic Attack
@@ -40,7 +39,7 @@ public class Flub : ZodiacCharacter {
     // Special Attack
     [SerializeField]
     [Tooltip("How many coins lost when attack hits.")]
-    private int spDamage;
+    public int spDamage;
     [SerializeField]
     [Tooltip("How long the attack lasts.")]
     private int spDuration;

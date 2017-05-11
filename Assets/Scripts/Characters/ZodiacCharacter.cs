@@ -14,6 +14,7 @@ public abstract class ZodiacCharacter : MonoBehaviour {
     public int coinTier4;
     public int coinTier5;
     public int coinMax;
+	public bool isInvincible;
 
 
     public int coins;

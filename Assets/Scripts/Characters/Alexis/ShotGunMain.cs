@@ -8,9 +8,10 @@ public class ShotGunMain : MonoBehaviour{
     GameObject target;
 
     public void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.GetInstanceID() != owner.gameObject.GetInstanceID()){
-            target = other.gameObject;
-        }
+		if(other.tag == "Character")
+			if (other.gameObject.GetInstanceID() != owner.gameObject.GetInstanceID() && !other.GetComponent<ZodiacCharacter> ().isInvincible  && !other.GetComponent<ZodiacCharacter> ().isStunned){
+            	target = other.gameObject;
+        	}
     }
 	public void OnTriggerExit2D (Collider2D other){
 		if(target != null)
