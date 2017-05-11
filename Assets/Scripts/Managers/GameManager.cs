@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour {
 
     //a number from 1 to 4 representing which player was whatever closest to the chariot.
     //index represents position, number represents player.
-    public int[] score;
-    public GameObject[] positions;
+    public int[] score = new int[4] {0, 0, 0, 0};
+    public GameObject[] positions = new GameObject[4] {null, null, null, null };
 
     public Sprite[] profiles = new Sprite[4];
 
@@ -364,45 +364,56 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-    public void getScore()
-    {
-        if (p1 != null) updateScore(p1);
-        if (p2 != null) updateScore(p2);
-        if (p3 != null) updateScore(p3);
-        if (p4 != null) updateScore(p4);
+    //public void getScore()
+    //{
+    //    if (p1 != null)
+    //    {
+    //        updateScore(p1);
+    //    }
+    //    if (p2 != null)
+    //    {
+    //        updateScore(p2);
+    //    }
+    //    if (p3 != null)
+    //    {
+    //        updateScore(p3);
+    //    }
+    //    if (p4 != null)
+    //    {
+    //        updateScore(p4);
+    //    }
 
-        for(int i = 0; i < DetermineNumOfPlayers(); i++)
-        {
-            if (positions[i] == p1) score[i] = 1;
-            if (positions[i] == p2) score[i] = 2;
-            if (positions[i] == p3) score[i] = 3;
-            if (positions[i] == p4) score[i] = 4;
-        }
-    }
+    //    for(int i = 0; i < DetermineNumOfPlayers(); i++)
+    //    {
+    //        if (positions[i] == p1) score[i] = 1;
+    //        if (positions[i] == p2) score[i] = 2;
+    //        if (positions[i] == p3) score[i] = 3;
+    //        if (positions[i] == p4) score[i] = 4;
+    //    }
+    //}
 
-    public void updateScore(GameObject player)
-    {
-        float currPlayerPos = player.transform.position.x;
+    //public void UpdateScore(GameObject player)
+    //{
+    //    float currPlayerPos = player.transform.position.x;
 
-        for(int i = 0; i < DetermineNumOfPlayers(); i++)
-        {
-            if(positions[i] != null)
-            {
-                if (currPlayerPos > positions[i].transform.position.x)
-                {
-                    for (int n = DetermineNumOfPlayers() - 1; n > i; n--)
-                    {
-                        positions[n] = positions[n - 1];
-                    }
-                    positions[i] = player;
-                    i = DetermineNumOfPlayers();
-                }
-            }
-            else
-            {
-                positions[i] = player;
-                i = DetermineNumOfPlayers();
-            }                     
-        } 
-    }
+    //    for(int i = 0; i < DetermineNumOfPlayers(); i++)
+    //    {
+    //        if(positions[i] != null)
+    //        {
+    //            if (currPlayerPos > positions[i].transform.position.x)
+    //            {
+    //                for (int n = DetermineNumOfPlayers() - 1; n > i; n--)
+    //                {
+    //                    positions[n] = positions[n - 1];
+    //                }
+    //                positions[i] = player;
+    //                i = DetermineNumOfPlayers();
+    //            }
+    //        } else
+    //        {
+    //            positions[i] = player;
+    //            i = DetermineNumOfPlayers();
+    //        }                     
+    //    } 
+    //}
 }

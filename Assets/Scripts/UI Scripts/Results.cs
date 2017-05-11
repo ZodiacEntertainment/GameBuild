@@ -22,7 +22,7 @@ public class Results : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        numPlayers = manager.DetermineNumOfPlayers();
+        numPlayers = GameObject.FindGameObjectsWithTag("Character").Length;
 
         string[] statTypes = new string [4] {"MDG", "MC", "MTIF", "MDT"};
         Vector3[] vectors = new Vector3[] { places[0].transform.position, places[1].transform.position, places[2].transform.position, places[3].transform.position };
@@ -52,7 +52,7 @@ public class Results : MonoBehaviour {
             //runs through and displays stats
             for(int s = 0; s < 4; s++)
             {
-                statPanes[scores[i]-1].setStat(statTypes[s], statLists[s][i]);
+                statPanes[scores[i]-1].setStat(statTypes[s], statLists[s][scores[i] - 1]);
             }
             
         }

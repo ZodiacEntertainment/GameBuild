@@ -133,6 +133,7 @@ public class Flub : ZodiacCharacter {
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){
             coins++;
+            manager.StatUpdate(controller, "MC", 1);    
             //Debug.Log("Total Coins = " + coins);
             Destroy(other.gameObject);
         }
