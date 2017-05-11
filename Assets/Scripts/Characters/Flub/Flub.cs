@@ -74,8 +74,8 @@ public class Flub : ZodiacCharacter {
 	public float stunDur;
 	public float InvincTime;
 	public UIManager uiMan;
-	public float horForce = -2;
-	public float vertForce = 3;
+	public float horForce;
+	public float vertForce;
 
 
     // Use this for initialization
@@ -120,19 +120,15 @@ public class Flub : ZodiacCharacter {
 		}
 		if ((Input.GetAxis(controller + "ItemDrop") > 0.5f || Input.GetAxis("Fire2") > 0.5f) && haveItem){
 			// Drop the pickup
-			inventory.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, inventory.transform.position.z);
+			inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
 			inventory.SetActive(true);
 			aSource.PlayOneShot (clips [7]);
-
-            // apply a force to make it move
-            Collider2D col = inventory.GetComponent<Collider2D>();
+			// apply a force to make it move
 			GameObject child = inventory.transform.GetChild(0).gameObject;
 			Rigidbody2D rb = inventory.GetComponent<Rigidbody2D>();
-            col.enabled = false;
 			child.SetActive(true);
 			rb.isKinematic = false;
 			rb.AddForce(new Vector2(horForce, vertForce), ForceMode2D.Impulse);
-
 			Debug.Log("Dropped " + inventory);
 			uiMan.ItemDisplay("Default");
 			haveItem = false;
