@@ -62,6 +62,7 @@ public class Alexis : ZodiacCharacter {
     private bool canAttackBasic = true;
     private bool canAttackSpecial = true;
 	public float stunDur;
+	public float InvincTime;
 	public UIManager uiMan;
 
 	public float horForce;
@@ -69,6 +70,7 @@ public class Alexis : ZodiacCharacter {
 
     // Use this for initialization
     void Start () {
+		transform.GetChild (1).gameObject.SetActive (false);
 		aSource = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
 		uiMan = myHUD.GetComponent<UIManager>();
@@ -172,12 +174,12 @@ public class Alexis : ZodiacCharacter {
 		int i = Random.Range (0, 4);
 
 		aSource.PlayOneShot(dmgTknClips[i]);
-		StartCoroutine (Stun());
 		anim.SetTrigger ("TakeDamage");
 		coins -= _damage;
         Debug.Log("Coins" + coins);
 		manager.StatUpdate (controller, "MDT", _damage);
 		Debug.Log ("Damage Taken Track " + i);
+		StartCoroutine (Stun());
     }
 	public void AttackUpdate(int amount){
 		manager.StatUpdate (controller, "MDG", amount);
@@ -189,7 +191,9 @@ public class Alexis : ZodiacCharacter {
 	}
 	public IEnumerator Invincible(){
 		isInvincible = true;
-		yield return new WaitForSeconds(stunDur);
+		transform.GetChild (1).gameObject.SetActive (true);
+		yield return new WaitForSeconds(InvincTime);
+		transform.GetChild (1).gameObject.SetActive (false);
 		isInvincible= false;
 	}
 }

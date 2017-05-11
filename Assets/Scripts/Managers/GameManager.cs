@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour {
 
     //a number from 1 to 4 representing which player was whatever closest to the chariot.
     //index represents position, number represents player.
-    public int[] score;
+	public int[] score = new int[4] {0, 0, 0, 0};
+	public GameObject[] positions = new GameObject[4] {null, null, null, null };
 
     public Sprite[] profiles = new Sprite[4];
 

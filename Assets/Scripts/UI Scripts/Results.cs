@@ -31,7 +31,7 @@ public class Results : MonoBehaviour {
         int[][] statLists = new int[][] { manager.MostDamageGiven, manager.MostCoins, manager.MostTimesInFirst, manager.MostDamageTaken };
 
         scores = manager.score;
-        winner.GetComponent<Image>().sprite = manager.profiles[scores[0]-1];
+        winner.GetComponent<Image>().sprite = manager.profiles[scores[0]];
 
         //deactive unneeded graphics
         for(int i = 3; i >= numPlayers; i--)
@@ -40,19 +40,19 @@ public class Results : MonoBehaviour {
             statPanes[i].setActive(false);
         }
 
-        loserText.transform.position = new Vector3(loserText.transform.position.x, vectors[numPlayers - 1].y, vectors[numPlayers - 1].z);
+        loserText.transform.position = new Vector3(loserText.transform.position.x, vectors[numPlayers].y, vectors[numPlayers - 1].z);
 
         //run through players in order of the position they came in, setting their number at that position and displaying their stats
         for (int i = 0; i < numPlayers; i++)
         {
             //sets player number at place i. scores[i] is the player number
-            places[scores[i] - 1].GetComponentInChildren<Text>().text = "Player " + (scores[i]).ToString();
-            places[scores[i] - 1].transform.position = vectors[i];
+            places[scores[i]].GetComponentInChildren<Text>().text = "Player " + (scores[i]).ToString();
+            places[scores[i]].transform.position = vectors[i];
 
             //runs through and displays stats
             for(int s = 0; s < 4; s++)
             {
-                statPanes[scores[i]-1].setStat(statTypes[s], statLists[s][i]);
+                statPanes[scores[i]].setStat(statTypes[s], statLists[s][i]);
             }
             
         }
