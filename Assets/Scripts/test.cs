@@ -12,7 +12,7 @@ public class test : MonoBehaviour
         btn.onClick.AddListener(TaskOnClick);
     }
 
-    void TaskOnClick()
+    public void TaskOnClick()
     {
         Application.LoadLevel(1);
     }
