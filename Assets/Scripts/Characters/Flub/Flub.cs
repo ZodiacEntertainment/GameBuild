@@ -73,6 +73,8 @@ public class Flub : ZodiacCharacter {
 	private bool canAttackSpecial = true;
 	public float stunDur;
 	public UIManager uiMan;
+	public float horForce;
+	public float vertForce;
 
 
     // Use this for initialization
@@ -117,6 +119,12 @@ public class Flub : ZodiacCharacter {
 			// Drop the pickup
 			inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
 			inventory.SetActive(true);
+			// apply a force to make it move
+			GameObject child = inventory.transform.GetChild(0).gameObject;
+			Rigidbody2D rb = inventory.GetComponent<Rigidbody2D>();
+			child.SetActive(true);
+			rb.isKinematic = false;
+			rb.AddForce(new Vector2(horForce, vertForce), ForceMode2D.Impulse);
 			Debug.Log("Dropped " + inventory);
 			uiMan.ItemDisplay("Default");
 			haveItem = false;
