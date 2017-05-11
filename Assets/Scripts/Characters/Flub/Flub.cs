@@ -124,9 +124,9 @@ public class Flub : ZodiacCharacter {
 			inventory.SetActive(true);
 			aSource.PlayOneShot (clips [7]);
 			// apply a force to make it move
-			GameObject child = inventory.transform.GetChild(0).gameObject;
+			//GameObject child = inventory.transform.GetChild(0).gameObject;
 			Rigidbody2D rb = inventory.GetComponent<Rigidbody2D>();
-			child.SetActive(true);
+			//child.SetActive(true);
 			rb.isKinematic = false;
 			rb.AddForce(new Vector2(horForce, vertForce), ForceMode2D.Impulse);
 			Debug.Log("Dropped " + inventory);

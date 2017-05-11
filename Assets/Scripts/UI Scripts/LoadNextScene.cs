@@ -13,6 +13,8 @@ public class LoadNextScene : MonoBehaviour {
 	private bool soundPlayed;
 
 	public void Start(){
+		gameManager = GameObject.Find ("GameManager");
+		hudCanvas = GameObject.Find ("HUD Canvas");
 		clickSoundPlaying = false;
 
 	}
@@ -26,10 +28,11 @@ public class LoadNextScene : MonoBehaviour {
 	public IEnumerator FullClickSound(int scene){
 		yield return new WaitForSeconds (1.1f);
 			if (scene < SceneManager.GetActiveScene ().buildIndex) {
-				Destroy (gameManager);
-				UnityEngine.SceneManagement.SceneManager.LoadScene (scene);
-				Destroy (hudCanvas);
-				
+				if (gameManager != null && hudCanvas != null) {
+					Destroy (gameManager);
+					UnityEngine.SceneManagement.SceneManager.LoadScene (scene);
+					Destroy (hudCanvas);
+				}
 			} else {
 				UnityEngine.SceneManagement.SceneManager.LoadScene (scene);
 			}

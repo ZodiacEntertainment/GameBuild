@@ -111,9 +111,9 @@ public class Alexis : ZodiacCharacter {
             	inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
             	inventory.SetActive(true);
 				// apply a force to make it move
-				GameObject child = inventory.transform.GetChild(0).gameObject;
+				//GameObject child = inventory.transform.GetChild(0).gameObject;
 				Rigidbody2D rb = inventory.GetComponent<Rigidbody2D>();
-				child.SetActive(true);
+				//child.SetActive(true);
 				rb.isKinematic = false;
 				rb.AddForce(new Vector2(horForce, vertForce), ForceMode2D.Impulse);
 

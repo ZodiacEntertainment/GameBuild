@@ -72,11 +72,11 @@ public class CharacterMovement : MonoBehaviour {
 			if (grounded && Input.GetKeyDown (KeyCode.Space)) {
 				anim.SetBool ("Ground", false);
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce * jumpMult));
-				mvmtSource.PlayOneShot(jumpClip);
+				//mvmtSource.PlayOneShot(jumpClip);
 			}
 			if (Input.GetAxis (controller + "Jump") > 0f) {
 				anim.SetBool ("Ground", false);
-				mvmtSource.PlayOneShot(jumpClip);
+				//mvmtSource.PlayOneShot(jumpClip);
 				if (GetComponent<SpriteRenderer> ().flipY) {
 					GetComponent<SpriteRenderer> ().flipY = false;
 					GetComponent<Rigidbody2D> ().gravityScale = 2;
