@@ -8,7 +8,7 @@ public class LevelTrigger : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == "Character") {
-			if (other.GetComponent<ZodiacCharacter> ().coins == other.GetComponent<ZodiacCharacter> ().coinMax)
+			if (other.GetComponent<ZodiacCharacter> ().coinLevel == 6)
 				SceneManager.LoadScene (level);
 		}
     }

@@ -7,6 +7,7 @@ public class Chariot : MonoBehaviour {
 	public float time;
 	public bool canMove;
 	public GameObject[] players;
+	bool showFirstTime = true;
 
     void Start()
     {	
@@ -18,8 +19,9 @@ public class Chariot : MonoBehaviour {
 	void Update () {
 		
 		foreach (GameObject p in players) {
-			if (p.GetComponent<ZodiacCharacter> ().coinLevel == 6) {
+			if (p.GetComponent<ZodiacCharacter> ().coinLevel == 6 && showFirstTime) {
 				canMove = true;
+				showFirstTime = false;
 				StartCoroutine (Appear ());
 			}
 		}

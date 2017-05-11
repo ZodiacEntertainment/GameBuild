@@ -16,7 +16,7 @@ public class Results : MonoBehaviour {
     public Image winner;
 
     void Awake() {
-        managerObj = GameObject.FindGameObjectWithTag("GameManager") as GameObject;
+        managerObj = GameObject.Find("GameManager") as GameObject;
         manager = managerObj.GetComponent<GameManager>();
     }
 
