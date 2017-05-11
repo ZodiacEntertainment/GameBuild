@@ -181,7 +181,10 @@ public class Flub : ZodiacCharacter {
 		StartCoroutine (Stun());
 		aSource.PlayOneShot (clips [3]);
 		anim.SetTrigger ("TakeDamage");
-		coins -= _damage;
+		if (coins - _damage <= 0)
+			coins = 0;
+		else
+			coins -= _damage;
 		Debug.Log("Coins" + coins);
 		manager.StatUpdate (controller, "MDT", _damage);
 	}

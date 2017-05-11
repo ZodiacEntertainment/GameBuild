@@ -175,7 +175,10 @@ public class Alexis : ZodiacCharacter {
 
 		aSource.PlayOneShot(dmgTknClips[i]);
 		anim.SetTrigger ("TakeDamage");
-		coins -= _damage;
+		if (coins - _damage <= 0)
+			coins = 0;
+		else
+			coins -= _damage;
         Debug.Log("Coins" + coins);
 		manager.StatUpdate (controller, "MDT", _damage);
 		Debug.Log ("Damage Taken Track " + i);
