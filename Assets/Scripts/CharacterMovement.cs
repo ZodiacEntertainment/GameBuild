@@ -8,7 +8,8 @@ public class CharacterMovement : MonoBehaviour {
 	public bool facingRight = true;
 	public AudioClip jumpClip;
 
-	private AudioSource jumpSource;
+	//private AudioSource jumpSource;
+	public AudioSource mvmtSource;
 
     public Animator anim;
 	public string controller;
@@ -25,6 +26,8 @@ public class CharacterMovement : MonoBehaviour {
     public float rightOffset = .77f;
     public float jumpForce = 1000f;
 	public float runSpeed;
+	public float runSoundDelay;
+	public bool runSoundPlaying;
 
     public float JumpForce { get; private set; }
 
@@ -42,7 +45,7 @@ public class CharacterMovement : MonoBehaviour {
 			blastArea = GetComponent<Alexis> ().BlastArea;
 			launchPoint = GetComponent<Alexis> ().launchPoint;
 		}
-		jumpSource = GetComponent<AudioSource> ();
+		mvmtSource = GetComponent<AudioSource> ();
     }
 
     // Update is called once per frame
@@ -69,11 +72,11 @@ public class CharacterMovement : MonoBehaviour {
 			if (grounded && Input.GetKeyDown (KeyCode.Space)) {
 				anim.SetBool ("Ground", false);
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce * jumpMult));
-				jumpSource.PlayOneShot(jumpClip);
+				mvmtSource.PlayOneShot(jumpClip);
 			}
 			if (Input.GetAxis (controller + "Jump") > 0f) {
 				anim.SetBool ("Ground", false);
-				jumpSource.PlayOneShot(jumpClip);
+				mvmtSource.PlayOneShot(jumpClip);
 				if (GetComponent<SpriteRenderer> ().flipY) {
 					GetComponent<SpriteRenderer> ().flipY = false;
 					GetComponent<Rigidbody2D> ().gravityScale = 2;
@@ -153,5 +156,18 @@ public class CharacterMovement : MonoBehaviour {
 			else if (move < 0 && facingRight)
 				Flip ();
 		}
+		if(grounded == true){
+			if (Input.GetAxis (controller + "Horizontal") != 0f && !runSoundPlaying) {
+				runSoundPlaying = true;
+				StartCoroutine (RunSound ());
+			} else if(Input.GetAxis (controller + "Horizontal") == 0f) {
+				mvmtSource.Stop ();
+			}
+		}
+	}
+	IEnumerator RunSound(){
+		mvmtSource.Play();
+		yield return new WaitForSeconds (runSoundDelay);
+		runSoundPlaying = false;
 	}
 }

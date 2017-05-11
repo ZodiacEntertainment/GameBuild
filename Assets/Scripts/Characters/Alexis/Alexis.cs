@@ -123,6 +123,7 @@ public class Alexis : ZodiacCharacter {
 			if(Input.GetAxis(controller + "SuA") > 0f){
 				anim.SetBool ("SustainedAttack", true);
 				isSusAttacking = true;
+				aSource.PlayOneShot (clips [2]);
 				Debug.Log ("SusAttacking start");
 			}
 			else{
@@ -134,6 +135,7 @@ public class Alexis : ZodiacCharacter {
     }
     public IEnumerator AttackBasicDelay(){
         canAttackBasic = false;
+		aSource.PlayOneShot(clips[0]);
 		yield return new WaitForSeconds(delayBasic);
         canAttackBasic = true;
     }
@@ -145,14 +147,14 @@ public class Alexis : ZodiacCharacter {
         temp.GetComponent<Grenade>().owner = this.gameObject;
         if (!GetComponent<CharacterMovement>().facingRight)
             temp.GetComponent<Grenade>().HSpeed *= -1;
-        aSource.clip = clips[1];
-        aSource.Play();
+		aSource.PlayOneShot(clips [1]);
         yield return new WaitForSeconds(spCooldown);
         canAttackSpecial = true;
     }
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){
             coins++;
+			aSource.PlayOneShot (clips [3]);
 			manager.StatUpdate (controller, "MC", 1);
             //Debug.Log("Total Coins = " + coins);
             Destroy(other.gameObject);
@@ -160,6 +162,7 @@ public class Alexis : ZodiacCharacter {
         if (other.gameObject.CompareTag("Item") && !haveItem){
             inventory = other.gameObject;
             Debug.Log("Picked up " + inventory);
+			aSource.PlayOneShot (clips [4]);
 			uiMan.ItemDisplay(other.GetComponent<SpriteRenderer>().sprite.name);
             inventory.SetActive(false);
             haveItem = true;

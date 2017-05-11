@@ -105,6 +105,7 @@ public class Flub : ZodiacCharacter {
 		if ((Input.GetAxis(controller + "ItemUse") > 0.5f || Input.GetAxis("Fire1") > 0.5f) && haveItem){
 			// Use the pickup
 			Debug.Log("Used " + inventory);
+			aSource.PlayOneShot (clips [6]);
 			switch(inventory.GetComponent<SpriteRenderer>().sprite.name){
 			case "powerup":
 				StartCoroutine (Invincible());
@@ -119,6 +120,7 @@ public class Flub : ZodiacCharacter {
 			// Drop the pickup
 			inventory.transform.position = new Vector3(this.gameObject.transform.position.x - 2.5f, this.gameObject.transform.position.y, inventory.transform.position.z);
 			inventory.SetActive(true);
+			aSource.PlayOneShot (clips [7]);
 			// apply a force to make it move
 			GameObject child = inventory.transform.GetChild(0).gameObject;
 			Rigidbody2D rb = inventory.GetComponent<Rigidbody2D>();
@@ -132,6 +134,7 @@ public class Flub : ZodiacCharacter {
     }
 	public IEnumerator AttackSpecialDelay(){
 		canAttackSpecial = false;
+		aSource.PlayOneShot (clips [1]);
 		spTemp = Instantiate(slimeBall, throwPoint.position, Quaternion.identity) as GameObject;
 		spTemp.GetComponent<SlimeBall> ().owner = this.gameObject;
 		if (!GetComponent<CharacterMovement>().facingRight)
@@ -145,6 +148,7 @@ public class Flub : ZodiacCharacter {
 		slipTrick = true;
 		canAttackBasic = false;
 		slipCol.SetActive (true);
+		aSource.PlayOneShot (clips[0]);
 		GetComponent<Rigidbody2D> ().isKinematic = true;
 		GetComponent<Collider2D> ().isTrigger = true;
 		yield return new WaitForSeconds(bCoolDown);
@@ -157,11 +161,13 @@ public class Flub : ZodiacCharacter {
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){
             coins++;
+			aSource.PlayOneShot (clips [4]);
             //Debug.Log("Total Coins = " + coins);
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Item") && !haveItem){
             inventory = other.gameObject;
+			aSource.PlayOneShot (clips [5]);
             //Debug.Log("Picked up " + inventory);
             inventory.SetActive(false);
 			uiMan.ItemDisplay(other.GetComponent<SpriteRenderer>().sprite.name);
@@ -170,6 +176,7 @@ public class Flub : ZodiacCharacter {
     }
 	public override void TakeDamage(int _damage){
 		StartCoroutine (Stun());
+		aSource.PlayOneShot (clips [3]);
 		anim.SetTrigger ("FlubDamage");
 		coins -= _damage;
 		Debug.Log("Coins" + coins);
