@@ -72,6 +72,7 @@ public class Flub : ZodiacCharacter {
 	private bool canAttackBasic = true;
 	private bool canAttackSpecial = true;
 	public float stunDur;
+	public float InvincTime;
 	public UIManager uiMan;
 	public float horForce;
 	public float vertForce;
@@ -79,6 +80,7 @@ public class Flub : ZodiacCharacter {
 
     // Use this for initialization
     void Start () {
+		transform.GetChild (1).gameObject.SetActive (false);
 		aSource = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
 		isStunned = false;
@@ -161,6 +163,7 @@ public class Flub : ZodiacCharacter {
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){
             coins++;
+			manager.StatUpdate (controller, "MC", 1);
 			aSource.PlayOneShot (clips [4]);
             //Debug.Log("Total Coins = " + coins);
             Destroy(other.gameObject);
@@ -177,7 +180,7 @@ public class Flub : ZodiacCharacter {
 	public override void TakeDamage(int _damage){
 		StartCoroutine (Stun());
 		aSource.PlayOneShot (clips [3]);
-		anim.SetTrigger ("FlubDamage");
+		anim.SetTrigger ("TakeDamage");
 		coins -= _damage;
 		Debug.Log("Coins" + coins);
 		manager.StatUpdate (controller, "MDT", _damage);
@@ -190,7 +193,9 @@ public class Flub : ZodiacCharacter {
 	}
 	public IEnumerator Invincible(){
 		isInvincible = true;
-		yield return new WaitForSeconds(stunDur);
+		transform.GetChild (1).gameObject.SetActive (true);
+		yield return new WaitForSeconds(InvincTime);
+		transform.GetChild (1).gameObject.SetActive (false);
 		isInvincible= false;
 	}
 }
